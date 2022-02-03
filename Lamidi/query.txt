@@ -1,0 +1,10 @@
+1. INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `tanggal_lahir`, `alamat`, `no_tlp`) VALUES ('2', 'AZIZ', '1980-03-12', 'MAKASSAR', '0822345964351');
+2. UPDATE `transaksi` SET `id_transaksi`='2',`id_pasien`='3',`id_obat`='1',`jumlah_bayar`='2000' WHERE id_transaksi ='1';
+3. DELETE FROM `transaksi` WHERE id_transaksi= 10;
+4. SELECT * FROM `transaksi` WHERE id_transaksi = 9;
+5. SELECT * FROM `obat` WHERE NOT harga = 3000; 
+6. SELECT `id_transaksi`, `id_pasien`, `id_obat`, `jumlah_bayar` FROM `transaksi` WHERE jumlah_bayar= 3000;
+7. SELECT DISTINCT jumlah_bayar FROM transaksi;
+8. SELECT * FROM `transaksi` WHERE jumlah_bayar ='3000' OR jumlah_bayar= '6000';
+9. SELECT nama_obat, harga FROM `obat` WHERE harga >= '3000' ORDER BY harga DESC;
+10. SELECT * FROM `obat` WHERE stock BETWEEN '10' AND '30';
