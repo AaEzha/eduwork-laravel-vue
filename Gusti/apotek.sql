@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2022 at 11:04 AM
+-- Generation Time: Feb 04, 2022 at 08:38 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -46,27 +46,6 @@ INSERT INTO `obat` (`id_obat`, `nama_obat`, `jenis_obat`, `harga`, `stok`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pegawai`
---
-
-CREATE TABLE `pegawai` (
-  `id_pegawai` int(11) NOT NULL,
-  `nama_pegawai` varchar(30) NOT NULL,
-  `no_tlp` varchar(13) NOT NULL,
-  `jenkel_pegawai` enum('Laki - Laki','Perempuan') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pegawai`
---
-
-INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `no_tlp`, `jenkel_pegawai`) VALUES
-(1, 'Adit', '088185851', 'Laki - Laki'),
-(2, 'Amel', '08857157155', 'Perempuan');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `pelanggan`
 --
 
@@ -89,25 +68,30 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `umur`, `alamat`, `je
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Table structure for table `penjualan`
 --
 
-CREATE TABLE `transaksi` (
+CREATE TABLE `penjualan` (
   `id_transaksi` int(11) NOT NULL,
   `id_pelanggan` int(11) NOT NULL,
-  `id_pegawai` int(11) NOT NULL,
-  `id_obat` int(5) NOT NULL,
-  `tgl_transaksi` date NOT NULL,
-  `jmlh_obat` int(3) NOT NULL,
-  `total_bayar` int(15) NOT NULL
+  `tgl_transaksi` date DEFAULT NULL,
+  `total_harga` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `transaksi`
+-- Table structure for table `penjualan_detail`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_pelanggan`, `id_pegawai`, `id_obat`, `tgl_transaksi`, `jmlh_obat`, `total_bayar`) VALUES
-(2001, 2, 1, 1, '2022-02-09', 5, 50000);
+CREATE TABLE `penjualan_detail` (
+  `id` int(11) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
+  `id_obat` int(5) NOT NULL,
+  `jmlh_obat` int(10) DEFAULT NULL,
+  `harga_obat` int(10) DEFAULT NULL,
+  `total_bayar` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -120,35 +104,29 @@ ALTER TABLE `obat`
   ADD PRIMARY KEY (`id_obat`);
 
 --
--- Indexes for table `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD PRIMARY KEY (`id_pegawai`);
-
---
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
 
 --
--- Indexes for table `transaksi`
+-- Indexes for table `penjualan`
 --
-ALTER TABLE `transaksi`
+ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id_pelanggan` (`id_pelanggan`),
-  ADD KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
+
+--
+-- Indexes for table `penjualan_detail`
+--
+ALTER TABLE `penjualan_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_transaksi` (`id_transaksi`),
   ADD KEY `id_obat` (`id_obat`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `pegawai`
---
-ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
@@ -157,22 +135,21 @@ ALTER TABLE `pelanggan`
   MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2002;
-
---
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `transaksi`
+-- Constraints for table `penjualan`
 --
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `penjualan`
+  ADD CONSTRAINT `penjualan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
+
+--
+-- Constraints for table `penjualan_detail`
+--
+ALTER TABLE `penjualan_detail`
+  ADD CONSTRAINT `penjualan_detail_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `penjualan` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `penjualan_detail_ibfk_2` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
