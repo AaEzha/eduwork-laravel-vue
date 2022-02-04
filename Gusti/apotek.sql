@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2022 at 08:38 AM
+-- Generation Time: Feb 04, 2022 at 09:45 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -41,7 +41,15 @@ CREATE TABLE `obat` (
 
 INSERT INTO `obat` (`id_obat`, `nama_obat`, `jenis_obat`, `harga`, `stok`) VALUES
 (1, 'Panadol', 'tablet', 10000, 100),
-(2, 'delcogen', 'tablet', 5000, 50);
+(2, 'delcogen', 'tablet', 5000, 50),
+(3, 'Dulcolax', 'kapsul', 5000, 100),
+(4, 'Paramex', 'kapsul', 7000, 50),
+(5, 'Panadol Hijau', 'Tablet', 8000, 30),
+(6, 'Panadol Merah', 'Tablet', 8000, 42),
+(7, 'Tolak Angin', 'Cair', 4000, 50),
+(8, 'OBH', 'Cair', 15000, 20),
+(9, 'Laserin', 'Cair', 15000, 10),
+(10, 'Komix', 'Cair', 3000, 40);
 
 -- --------------------------------------------------------
 
@@ -63,7 +71,15 @@ CREATE TABLE `pelanggan` (
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `umur`, `alamat`, `jenkel_pelanggan`) VALUES
 (1, 'Gusti', 25, 'mampang', 'Laki - Laki'),
-(2, 'Echi', 22, 'depok', 'Perempuan');
+(2, 'Echi', 22, 'depok', 'Perempuan'),
+(3, 'Ace', 26, 'Tebet', 'Laki - Laki'),
+(4, 'Wadud', 24, 'Bangka', 'Laki - Laki'),
+(5, 'Sarah', 20, 'Kalibata', 'Perempuan'),
+(6, 'Novi', 26, 'Buncit', 'Perempuan'),
+(7, 'Bima', 27, 'Tendean', 'Laki - Laki'),
+(8, 'Dion', 19, 'Kemang', 'Laki - Laki'),
+(9, 'Joey', 23, 'Kalibata', 'Laki - Laki'),
+(10, 'Siska', 24, 'Bangka', 'Perempuan');
 
 -- --------------------------------------------------------
 
@@ -74,9 +90,24 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `umur`, `alamat`, `je
 CREATE TABLE `penjualan` (
   `id_transaksi` int(11) NOT NULL,
   `id_pelanggan` int(11) NOT NULL,
-  `tgl_transaksi` date DEFAULT NULL,
-  `total_harga` int(10) DEFAULT NULL
+  `tgl_transaksi` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_transaksi`, `id_pelanggan`, `tgl_transaksi`) VALUES
+(2001, 6, '2022-02-01'),
+(2002, 9, '2022-02-02'),
+(2003, 4, '2022-01-11'),
+(2004, 8, '2022-02-03'),
+(2005, 7, '2022-01-31'),
+(2006, 10, '2022-01-26'),
+(2007, 3, '2022-02-02'),
+(2008, 5, '2022-02-01'),
+(2009, 1, '2022-01-30'),
+(2010, 2, '2022-02-03');
 
 -- --------------------------------------------------------
 
@@ -92,6 +123,22 @@ CREATE TABLE `penjualan_detail` (
   `harga_obat` int(10) DEFAULT NULL,
   `total_bayar` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penjualan_detail`
+--
+
+INSERT INTO `penjualan_detail` (`id`, `id_transaksi`, `id_obat`, `jmlh_obat`, `harga_obat`, `total_bayar`) VALUES
+(1, 2001, 3, 5, 5000, 25000),
+(2, 2002, 8, 1, 15000, 15000),
+(3, 2003, 5, 2, 8000, 16000),
+(4, 2004, 4, 1, 7000, 7000),
+(5, 2005, 7, 3, 4000, 12000),
+(6, 2006, 8, 1, 15000, 15000),
+(7, 2007, 4, 2, 7000, 14000),
+(8, 2008, 9, 1, 15000, 15000),
+(9, 2009, 1, 1, 10000, 10000),
+(10, 2010, 3, 2, 5000, 10000);
 
 --
 -- Indexes for dumped tables
@@ -132,7 +179,7 @@ ALTER TABLE `penjualan_detail`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

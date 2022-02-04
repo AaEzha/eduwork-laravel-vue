@@ -1,0 +1,12 @@
+
+
+1. SELECT * FROM `pelanggan` WHERE jenkel_pelanggan = 'Laki - Laki';
+2. SELECT * FROM pelanggan WHERE jenkel_pelanggan = 'Perempuan';
+3. SELECT * FROM pelanggan WHERE umur > 23;
+4. SELECT * FROM pelanggan WHERE id_pelanggan = 2;
+5. SELECT nama_pelanggan, alamat FROM pelanggan WHERE alamat = 'Kalibata';
+6. SELECT id_obat, nama_obat FROM obat WHERE id_obat IN (1,2,3);
+7. SELECT *FROM obat WHERE jenis_obat = 'Tablet';
+8. SELECT *FROM obat WHERE harga <= 10000;
+9. SELECT * FROM `penjualan` WHERE tgl_transaksi = '2022-02-02';
+10. SELECT * FROM `penjualan` WHERE tgl_transaksi < '2022-02-02';
