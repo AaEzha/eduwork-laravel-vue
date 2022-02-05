@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2022 at 09:45 AM
+-- Generation Time: Feb 05, 2022 at 03:02 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -46,10 +46,9 @@ INSERT INTO `obat` (`id_obat`, `nama_obat`, `jenis_obat`, `harga`, `stok`) VALUE
 (4, 'Paramex', 'kapsul', 7000, 50),
 (5, 'Panadol Hijau', 'Tablet', 8000, 30),
 (6, 'Panadol Merah', 'Tablet', 8000, 42),
-(7, 'Tolak Angin', 'Cair', 4000, 50),
-(8, 'OBH', 'Cair', 15000, 20),
-(9, 'Laserin', 'Cair', 15000, 10),
-(10, 'Komix', 'Cair', 3000, 40);
+(7, 'Tolak Angin', 'Cair', 12000, 50),
+(8, 'OBH', 'Cair', 12000, 20),
+(9, 'Laserin', 'Cair', 15000, 10);
 
 -- --------------------------------------------------------
 
@@ -70,10 +69,10 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `umur`, `alamat`, `jenkel_pelanggan`) VALUES
-(1, 'Gusti', 25, 'mampang', 'Laki - Laki'),
+(1, 'Uti', 25, 'mampang', 'Laki - Laki'),
 (2, 'Echi', 22, 'depok', 'Perempuan'),
 (3, 'Ace', 26, 'Tebet', 'Laki - Laki'),
-(4, 'Wadud', 24, 'Bangka', 'Laki - Laki'),
+(4, 'Wadud', 22, 'Bangka', 'Laki - Laki'),
 (5, 'Sarah', 20, 'Kalibata', 'Perempuan'),
 (6, 'Novi', 26, 'Buncit', 'Perempuan'),
 (7, 'Bima', 27, 'Tendean', 'Laki - Laki'),
@@ -98,7 +97,6 @@ CREATE TABLE `penjualan` (
 --
 
 INSERT INTO `penjualan` (`id_transaksi`, `id_pelanggan`, `tgl_transaksi`) VALUES
-(2001, 6, '2022-02-01'),
 (2002, 9, '2022-02-02'),
 (2003, 4, '2022-01-11'),
 (2004, 8, '2022-02-03'),
@@ -129,7 +127,6 @@ CREATE TABLE `penjualan_detail` (
 --
 
 INSERT INTO `penjualan_detail` (`id`, `id_transaksi`, `id_obat`, `jmlh_obat`, `harga_obat`, `total_bayar`) VALUES
-(1, 2001, 3, 5, 5000, 25000),
 (2, 2002, 8, 1, 15000, 15000),
 (3, 2003, 5, 2, 8000, 16000),
 (4, 2004, 4, 1, 7000, 7000),

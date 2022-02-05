@@ -1,0 +1,5 @@
+1. UPDATE `pelanggan` SET nama_pelanggan = 'Uti' WHERE id_pelanggan = 1;
+2. UPDATE `pelanggan` SET umur = 22 WHERE id_pelanggan = 4;
+3. DELETE FROM `obat` WHERE id_obat = 10;
+4. UPDATE `obat` SET harga = 12000 WHERE id_obat = 8;
+5. DELETE FROM `penjualan` WHERE id_transaksi = 2001;
