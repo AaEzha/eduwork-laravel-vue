@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2022 at 03:02 PM
+-- Generation Time: Feb 05, 2022 at 07:37 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -48,7 +48,9 @@ INSERT INTO `obat` (`id_obat`, `nama_obat`, `jenis_obat`, `harga`, `stok`) VALUE
 (6, 'Panadol Merah', 'Tablet', 8000, 42),
 (7, 'Tolak Angin', 'Cair', 12000, 50),
 (8, 'OBH', 'Cair', 12000, 20),
-(9, 'Laserin', 'Cair', 15000, 10);
+(9, 'Laserin', 'Cair', 15000, 10),
+(10, 'OBH Combi', 'Cair', 14000, 5),
+(11, 'Fatigon', 'Tablet', 5000, 20);
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,9 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `umur`, `alamat`, `je
 (7, 'Bima', 27, 'Tendean', 'Laki - Laki'),
 (8, 'Dion', 19, 'Kemang', 'Laki - Laki'),
 (9, 'Joey', 23, 'Kalibata', 'Laki - Laki'),
-(10, 'Siska', 24, 'Bangka', 'Perempuan');
+(10, 'Siska', 24, 'Bangka', 'Perempuan'),
+(11, 'Reva', 25, '', 'Perempuan'),
+(12, 'Haekal', 23, '', 'Laki - Laki');
 
 -- --------------------------------------------------------
 
@@ -105,7 +109,9 @@ INSERT INTO `penjualan` (`id_transaksi`, `id_pelanggan`, `tgl_transaksi`) VALUES
 (2007, 3, '2022-02-02'),
 (2008, 5, '2022-02-01'),
 (2009, 1, '2022-01-30'),
-(2010, 2, '2022-02-03');
+(2010, 2, '2022-02-03'),
+(2011, 6, '2022-02-02'),
+(2012, 9, '2022-02-01');
 
 -- --------------------------------------------------------
 
@@ -135,7 +141,9 @@ INSERT INTO `penjualan_detail` (`id`, `id_transaksi`, `id_obat`, `jmlh_obat`, `h
 (7, 2007, 4, 2, 7000, 14000),
 (8, 2008, 9, 1, 15000, 15000),
 (9, 2009, 1, 1, 10000, 10000),
-(10, 2010, 3, 2, 5000, 10000);
+(10, 2010, 3, 2, 5000, 10000),
+(11, 2010, 8, 5, 12000, 60000),
+(12, 2011, 9, 1, 15000, 15000);
 
 --
 -- Indexes for dumped tables
@@ -176,7 +184,7 @@ ALTER TABLE `penjualan_detail`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
