@@ -1,0 +1,10 @@
+SELECT * FROM `data_jenis_obat` WHERE jenis_obat = 'kaplet';
+SELECT * FROM `data_obat` WHERE harga <= '10000';
+SELECT * FROM `data_obat` WHERE id_jenis_obat = '06';
+SELECT * FROM `data_pegawai` WHERE jenis_kelamin = 'laki-laki';
+SELECT * FROM `data_pegawai` WHERE jenis_kelamin = 'perempuan';
+SELECT * FROM `data_pelanggan` WHERE jenis_kelamin = 'laki-laki';
+SELECT * FROM `data_pelanggan` WHERE jenis_kelamin = 'perempuan';
+SELECT * FROM `data_pelanggan` WHERE alamat = 'taman pipitan indah';
+SELECT * FROM `data_penjualan` WHERE tanggal < '2022-02-07';
+SELECT * FROM `data_penjualan` WHERE id_pelanggan = '11';
