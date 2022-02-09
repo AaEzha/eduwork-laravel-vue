@@ -1,6 +1,6 @@
 <?php 
 
-include_once('../config/connect.php');
+include_once('../templates/header.php');
     
 $katalog = [];
 
@@ -16,40 +16,50 @@ while ($each = $result->fetch_assoc()) {
 
  ?>
 
+ <?php include_once('../templates/navbar.php') ?>
+
+
+    <div class="d-flex justify-content-between p-3">
+        
+        <h3 class=""><i class="bi bi-file-earmark-binary"></i> Tambah Katalog </h3>
+
+        <div>
+            
+        <?php include_once('../templates/btn-back.php') ?>
+        </div>
+
+    </div>  
+    
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Tambah</title>
-</head>
-<body>
+    <form action="add.php" method="post" class="row p-5">
 
-     <a href="index.php">Go to Katalog</a>
-    <br /><br />
-    <form action="add.php" method="post">
-        <table width="25%" border="0">
-            <tr>
-                <td>ID Katalog</td>
-                <td style="font-size: 11pt;"><input type="text" name="id"></td>
-            </tr>
-            <tr>
-                <td>Nama Katalog</td>
-                <td><input type="text" name="nama"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="submit" value="submit"></td>
-            </tr>
-        </table>
+          <div class="mb-3 row">
+            <label for="id_katalog" class="col-sm-2 col-form-label">ID Katalog</label>
+            <div class="col-sm-10">
+              <input type="text" name="id" class="form-control" placeholder="KG0..">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="nama" class="col-sm-2 col-form-label">Nama Katalogs</label>
+            <div class="col-sm-10">
+              <input type="text" name="nama" class="form-control" placeholder="Buku...">
+            </div>
+          </div>
+
+          <div class="mt-3 row ">
+               <?php include_once('../templates/btn-send.php') ?>
+          </div>
+
+
+
+    </form>
 
 <?php 
     
 
-    if(isset($_POST['submit'])) {
+    if(isset($_POST['Submit'])) {
 
         $id = $_POST['id'];
 
@@ -59,7 +69,7 @@ while ($each = $result->fetch_assoc()) {
         $result = $koneksi->query("INSERT INTO katalog (id_katalog, nama) VALUES ('$id','$nama')");
 
 
-        header("Location:index.php");
+        include_once('../templates/alert.php');
 
 
 
@@ -67,11 +77,6 @@ while ($each = $result->fetch_assoc()) {
     }
 
 
-
-
-
  ?>
 
-    
-</body>
-</html>
+<?php include_once('../templates/footer.php') ?>

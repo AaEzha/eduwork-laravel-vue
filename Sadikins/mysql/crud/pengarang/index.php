@@ -3,6 +3,8 @@
 
 include_once('../config/connect.php');
 
+$title = 'Pengarang';
+$icon = 'person-bounding-box';
 
 
 $pengarang = [];
@@ -16,41 +18,20 @@ while ($each = $result->fetch_assoc()) {
 }
 
 
-    // echo "<pre>";
-    // echo print_r($pengarang);
-    // echo "<pre>";
-
-
-
 
  ?>
 
 
 
+<?php include_once('../templates/header.php') ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php include_once('../templates/navbar.php') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengarang</title>
-</head>
-
-<body>
-
-      <center>
-        <a href="../buku/index.php">Buku</a> |
-        <a href="../penerbit/index.php">Penerbit</a> |
-        <a href="index.php">Pengarang</a> |
-        <a href="../katalog/index.php">Katalog</a>
-        <hr>
-    </center>
+<?php include_once('../templates/title.php') ?>
 
 
-<a href="add.php">Add New Pengarang</a><br /><br />
-    <table width='50%' border=1>
+
+    <table class="table table-hover table-bordered" width='50%' >
         <thead>
             <tr>
                 <th>No</th>
@@ -74,7 +55,7 @@ while ($each = $result->fetch_assoc()) {
                 <td><?php echo $value['telp']?></td>
                 <td><?php echo $value['alamat']?></td>
                 <td>
-                    <a class='btn btn-primary' href='edit.php?id=<?php echo $value['id_pengarang'] ?>'>Edit</a> | <a class='btn btn-danger' href='delete.php?id=<?php echo $value['id_pengarang'] ?>'>Delete</a>
+                    <a class='btn btn-sm btn-warning me-2' href='edit.php?id=<?php echo $value['id_pengarang'] ?>'><i class="bi bi-pencil-square"></i> Edit</a>  <a class='btn btn-sm btn-danger' href='delete.php?id=<?php echo $value['id_pengarang'] ?>'><i class="bi bi-trash"></i> Delete</a>
                 </td>
             </tr>
 
@@ -82,7 +63,4 @@ while ($each = $result->fetch_assoc()) {
         <?php endforeach ?>
 
 
-
-</body>
-
-</html>
+<?php include_once('../templates/footer.php') ?>

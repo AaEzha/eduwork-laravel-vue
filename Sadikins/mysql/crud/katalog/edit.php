@@ -1,6 +1,6 @@
 <?php
 
-include_once('../config/connect.php');
+include_once('../templates/header.php');
 
 $id_katalog = $_GET['id'];
 
@@ -17,32 +17,42 @@ while ($katalog_data = $result->fetch_assoc()) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Edit</title>
-</head>
-<body>
+<?php include_once('../templates/navbar.php') ?>
 
-    <a href="index.php">Go to Katalog</a>
-    <br /><br />
-    <form action="edit.php?id=<?php echo $id_katalog; ?>" method="post">
-        <table width="25%" border="0">
-            <tr>
-                <td>ID Katalog</td>
-                <td style="font-size: 11pt;"><?php echo $id_katalog; ?> </td>
-            </tr>
-            <tr>
-                <td>Nama Katalog</td>
-                <td><input type="text" name="nama" value="<?php echo $nama; ?>"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="update" value="Update"></td>
-            </tr>
-        </table>
+<div class="d-flex justify-content-between p-3">
+    
+    <h3 class=""><i class="bi bi-file-earmark-binary"></i> Edit Katalog </h3>
+
+    <div>
+        
+    <?php include_once('../templates/btn-back.php') ?>
+    </div>
+
+</div>  
+
+
+    <form action="edit.php?id=<?php echo $id_katalog; ?>" method="post" class="row p-5">
+
+        <div class="mb-3 row">
+          <label for="id_katalog" class="col-sm-2 col-form-label">ID Katalog</label>
+          <div class="col-sm-10">
+            <input type="text" name="id" class="form-control" value="<?php echo $id_katalog; ?>" >
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="nama" class="col-sm-2 col-form-label">Nama Katalogs</label>
+          <div class="col-sm-10">
+            <input type="text" name="nama" class="form-control" value="<?php echo $nama; ?>">
+          </div>
+        </div>
+
+        <div class="mt-3 row ">
+         
+             <?php include_once('../templates/btn-update.php') ?>
+        </div>
+
+
+    </form>
 
     <?php
 
@@ -57,7 +67,7 @@ while ($katalog_data = $result->fetch_assoc()) {
 
         $result = $koneksi->query("UPDATE katalog SET nama = '$nama' WHERE id_katalog = '$id_katalog';");
 
-        header("Location:index.php");
+        include_once('../templates/alert.php');
     }
     ?>
     

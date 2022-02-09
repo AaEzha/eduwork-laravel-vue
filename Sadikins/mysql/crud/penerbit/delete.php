@@ -7,6 +7,6 @@ include_once('../config/connect.php');
 
  $koneksi->query("DELETE FROM penerbit WHERE id_penerbit='$id_penerbit'  ");
 
- header("Location:index.php");
+ include_once('../templates/alert.php');
 
  ?>

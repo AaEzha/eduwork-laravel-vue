@@ -7,6 +7,6 @@ include_once('../config/connect.php');
 
  $koneksi->query("DELETE FROM pengarang WHERE id_pengarang='$id_pengarang'  ");
 
- header("Location:index.php");
+ include_once('../templates/alert.php');
 
  ?>

@@ -1,6 +1,6 @@
 <?php 
 
-	include_once('../config/connect.php');
+	include_once('../templates/header.php');
 	
 	$id_penerbit = $_GET['id'];
 
@@ -22,48 +22,62 @@
  ?>
 
 
- <!DOCTYPE html>
- <html lang="en">
- <head>
- 	<meta charset="UTF-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
- 	<title>Edit Penerbit</title>
- </head>
- <body>
 
- 	<a href="index.php">Go to penerbit</a>
- 	<br /><br />
- 	<form action="edit.php?id=<?php echo $id_penerbit; ?>" method="post">
- 	    <table width="25%" border="0">
- 	        <tr>
- 	            <td>ID penerbit</td>
- 	            <td style="font-size: 11pt;"><?php echo $id_penerbit; ?> </td>
- 	        </tr>
- 	        <tr>
- 	            <td>Nama penerbit</td>
- 	            <td><input type="text" name="nama" value="<?php echo $nama_penerbit; ?>"></td>
- 	        </tr>
- 	        <tr>
- 	            <td>Email</td>
- 	            <td><input type="email" name="email" value="<?php echo $email; ?>"></td>
- 	        </tr>
+ 	<?php include_once('../templates/navbar.php') ?>
 
- 	         <tr>
- 	            <td>telp</td>
- 	            <td><input type="text" name="telp" value="<?php echo $telp; ?>"></td>
- 	        </tr>
+ 	<div class="d-flex justify-content-between p-3">
+ 	    
+ 	    <h3 class=""><i class="bi bi-building"></i> Edit Penerbit </h3>
 
- 	        <tr>
- 	            <td>alamat</td>
- 	            <td><input type="text" name="alamat" value="<?php echo $alamat; ?>"></td>
- 	        </tr>
+ 	    <div>
+ 	        
+ 	    <?php include_once('../templates/btn-back.php') ?>
+ 	    </div>
 
- 	        <tr>
- 	            <td></td>
- 	            <td><input type="submit" name="update" value="Update"></td>
- 	        </tr>
- 	    </table>
+ 	</div>  
+ 	<form action="edit.php?id=<?php echo $id_penerbit; ?>" method="post" class="row p-5">
 
+ 	    <div class="mb-3 row">
+ 	       <label for="id_katalog" class="col-sm-2 col-form-label">ID Penerbit</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="id" class="form-control" value="<?php echo $id_penerbit; ?>" disabled>
+ 	       </div>
+ 	     </div>
+ 	     <div class="mb-3 row">
+ 	       <label for="nama" class="col-sm-2 col-form-label">Nama Penerbit</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="nama" class="form-control" value="<?php echo $nama_penerbit; ?>">
+ 	       </div>
+ 	     </div>
+
+ 	     <div class="mb-3 row">
+ 	       <label for="email" class="col-sm-2 col-form-label">Email</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+ 	       </div>
+ 	     </div>
+
+ 	    
+ 	     <div class="mb-3 row">
+ 	       <label for="telp" class="col-sm-2 col-form-label">Telepon</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="telp" class="form-control" value="<?php echo $telp; ?>">
+ 	       </div>
+ 	     </div>
+
+ 	     <div class="mb-3 row">
+ 	       <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="alamat" class="form-control" value="<?php echo $alamat; ?>">
+ 	       </div>
+ 	     </div>
+
+
+ 	     <div class="mt-3 row ">
+ 	          <?php include_once('../templates/btn-update.php') ?>
+ 	     </div>
+
+	 </form>
  	<?php
 
  	// Check If form submitted, insert form data into users table.
@@ -80,9 +94,8 @@
 
  	    $result = $koneksi->query("UPDATE penerbit SET nama_penerbit = '$nama_penerbit', email = '$email', telp = '$telp', alamat = '$alamat'  WHERE id_penerbit = '$id_penerbit';");
 
- 	    header("Location:index.php");
+ 	    include_once('../templates/alert.php');
  	}
  	?>
  	
- </body>
- </html>
+ <?php include_once('../templates/footer.php') ?>

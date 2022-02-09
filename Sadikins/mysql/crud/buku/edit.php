@@ -1,11 +1,12 @@
-<html>
 
-<head>
-	<title>Edit Buku</title>
-</head>
+
 
 <?php
-include_once("../config/connect.php");
+
+include_once('../templates/header.php');
+
+
+
 $isbn = $_GET['isbn'];
 
 $buku = $koneksi->query("SELECT * FROM buku WHERE isbn='$isbn'");
@@ -25,73 +26,92 @@ while ($buku_data = $buku->fetch_assoc()) {
 }
 ?>
 
-<body>
-	<a href="index.php">Go to Home</a>
-	<br /><br />
 
-	<form action="edit.php?isbn=<?php echo $isbn; ?>" method="post">
-		<table width="25%" border="0">
-			<tr>
-				<td>ISBN</td></td>
-				<td style="font-size: 11pt;"><?php echo $isbn; ?> </td>
-			</tr>
-			<tr>
-				<td>Judul</td>
-				<td><input type="text" name="judul" value="<?php echo $judul; ?>"></td>
-			</tr>
-			<tr>
-				<td>Tahun</td>
-				<td><input type="text" name="tahun" value="<?php echo $tahun; ?>"></td>
-			</tr>
-			<tr>
-				<td>Penerbit</td>
-				<td>
-					<select name="id_penerbit">
-						<?php
+
+
+
+<?php include_once('../templates/navbar.php') ?>
+	
+	<div class="d-flex justify-content-between p-3">
+		
+		<h3 class=""><i class="bi bi-journal-code"></i> Edit Buku </h3>
+
+		<div>
+			
+		<?php include_once('../templates/btn-back.php') ?>
+		</div>
+
+	</div>	
+
+	<form action="edit.php?isbn=<?php echo $isbn; ?>" method="post" class="row p-5">
+		
+
+		<div class="col-md-6 mb-4">
+			<label for="" class="form-label">ISBN</label>
+			<input type="text" name="isbn" class="form-control " placeholder="ISBN" value="<?php echo $isbn; ?>" disabled>
+		</div> 
+		
+		<div class=" col-md-6 mb-4">
+			<label for="" class="form-label">Judul</label>
+			<input type="text" name="judul" class="form-control" placeholder="Judul Buku" value="<?php echo $judul; ?>">
+		</div>
+		
+		<div class=" col-md-6 mb-4"> 
+			<label for="" class="form-label">Tahun</label>
+			<input type="text" name="tahun" class="form-control" placeholder="Tahun (2009)" value="<?php echo $tahun; ?>" >
+		</div>
+		
+		<div class="col-md-6 mb-4">
+			
+			<label for="" class="form-label">Penerbit</label>
+			
+			<select name="id_penerbit" class="form-select" >
+					
+					<?php
 						while ($penerbit_data = $penerbit->fetch_assoc()) {
 							echo "<option " . ($penerbit_data['id_penerbit'] == $id_penerbit ? 'selected' : '') . " value='" . $penerbit_data['id_penerbit'] . "'>" . $penerbit_data['nama_penerbit'] . "</option>";
 						}
 						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Pengarang</td>
-				<td>
-					<select name="id_pengarang">
-						<?php
-						while ($pengarang_data = $pengarang->fetch_assoc()) {
-							echo "<option " . ($pengarang_data['id_pengarang'] == $id_pengarang ? 'selected' : '') . " value='" . $pengarang_data['id_pengarang'] . "'>" . $pengarang_data['nama_pengarang'] . "</option>";
-						}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Katalog</td>
-				<td>
-					<select name="id_katalog">
-						<?php
-						while ($katalog_data = $katalog->fetch_assoc()) {
-							echo "<option " . ($katalog_data['id_katalog'] == $id_katalog ? 'selected' : '') . " value='" . $katalog_data['id_katalog'] . "'>" . $katalog_data['nama'] . "</option>";
-						}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Qty Stok</td>
-				<td><input type="text" name="qty_stok" value="<?php echo $qty_stok; ?>"></td>
-			</tr>
-			<tr>
-				<td>Harga Pinjam</td>
-				<td><input type="text" name="harga_pinjam" value="<?php echo $harga_pinjam; ?>"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
+			</select>
+		</div>
+			
+		
+		<div class="col-md-6 mb-4"> 
+			<label for="" class="form-label">Pengarang</label>
+			
+			<select name="id_pengarang" class="form-select" >
+				<?php
+					while ($pengarang_data = $pengarang->fetch_assoc()) {
+						echo "<option " . ($pengarang_data['id_pengarang'] == $id_pengarang ? 'selected' : '') . " value='" . $pengarang_data['id_pengarang'] . "'>" . $pengarang_data['nama_pengarang'] . "</option>";
+					}
+				?>
+			</select>
+			
+		</div>
+		<div class="col-md-6 mb-4"> 
+			<label for="" class="form-label">Katalog</label>
+			
+			<select name="id_katalog" class="form-select" >
+				<?php
+				while ($katalog_data = $katalog->fetch_assoc()) {
+					echo "<option " . ($katalog_data['id_katalog'] == $id_katalog ? 'selected' : '') . " value='" . $katalog_data['id_katalog'] . "'>" . $katalog_data['nama'] . "</option>";
+				}
+				?>
+			</select>
+			
+		</div>
+
+		<div class="col-md-6 mb-4"> 
+			<label for="" class="form-label">Qty Stok</label>
+			<input type="text" name="qty_stok" class="form-control" placeholder="Qty Stok" value="<?php echo $qty_stok; ?>">
+		</div>
+
+		<div class="col-md-6 mb-5"> 
+			<label for="" class="form-label">Harga Pinjam</label>
+			<input type="text" name="harga_pinjam" class="form-control" placeholder="Harga Pinjam" value="<?php echo $harga_pinjam; ?>" >
+		</div>
+
+			<?php include_once('../templates/btn-update.php') ?>
 	</form>
 
 	<?php
@@ -108,11 +128,11 @@ while ($buku_data = $buku->fetch_assoc()) {
 		$qty_stok = $_POST['qty_stok'];
 		$harga_pinjam = $_POST['harga_pinjam'];
 
-		include_once("../config/connect.php");
+	
 
 		$result = $koneksi->query("UPDATE buku SET judul = '$judul', tahun = '$tahun', id_penerbit = '$id_penerbit', id_pengarang = '$id_pengarang', id_katalog = '$id_katalog', qty_stok = '$qty_stok', harga_pinjam = '$harga_pinjam' WHERE isbn = '$isbn';");
 
-		header("Location:index.php");
+		include_once('../templates/alert.php');
 	}
 	?>
 </body>

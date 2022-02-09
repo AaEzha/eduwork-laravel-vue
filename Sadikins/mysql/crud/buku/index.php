@@ -1,5 +1,11 @@
+
 <?php
-include_once("../config/connect.php");
+
+include_once('../templates/header.php');
+
+$title = 'Buku';
+$icon = 'journal-code';
+
 $buku = [];
 $result = $koneksi->query("SELECT buku.*, nama_pengarang, nama_penerbit, katalog.nama as nama_katalog FROM buku 
                                         LEFT JOIN  pengarang ON pengarang.id_pengarang = buku.id_pengarang
@@ -13,27 +19,17 @@ while ($each = $result->fetch_assoc()) {
 
 ?>
 
-<html>
 
-<head>
-    <title>Homepage</title>
-</head>
 
-<body>
+<?php include_once('../templates/navbar.php') ?> 
 
-    <center>
-        <a href="index.php">Buku</a> |
-        <a href="../penerbit/index.php">Penerbit</a> |
-        <a href="../pengarang/index.php">Pengarang</a> |
-        <a href="../katalog/index.php">Katalog</a>
-        <hr>
-    </center>
+<?php include_once('../templates/title.php') ?> 
 
-    <a href="add.php">Add New Buku</a><br /><br />
 
-    <table class="table" width='80%' border=1>
-
+    <table class="table table-hover table-bordered" width='80%'>
+        <thead >
         <tr>
+            <th>No.</th>
             <th>ISBN</th>
             <th>Judul</th>
             <th>Tahun</th>
@@ -44,8 +40,11 @@ while ($each = $result->fetch_assoc()) {
             <th>Harga Pinjam</th>
             <th>Aksi</th>
         </tr>
+        </thead>
+        <tbody>
         <?php foreach ($buku as $key => $value) : ?>
             <tr>
+                <td> <?php echo $key+1 ?> </td>
                 <td><?php echo $value['isbn'] ?></td>
                 <td><?php echo $value['judul'] ?></td>
                 <td><?php echo $value['tahun'] ?></td>
@@ -54,10 +53,12 @@ while ($each = $result->fetch_assoc()) {
                 <td><?php echo $value['nama_katalog'] ?></td>
                 <td><?php echo $value['qty_stok'] ?></td>
                 <td><?php echo $value['harga_pinjam'] ?></td>
-                <td><a class='btn btn-primary' href='edit.php?isbn=<?php echo $value['isbn'] ?>'>Edit</a> | <a class='btn btn-danger' href='delete.php?isbn=<?php echo $value['isbn'] ?>'>Delete</a></td>
+                <td><a class='btn btn-sm btn-warning' href='edit.php?isbn=<?php echo $value['isbn'] ?>'><i class="bi bi-pencil-square"></i> Edit</a>  <a class='btn btn-sm btn-danger ms-2' href='delete.php?isbn=<?php echo $value['isbn'] ?>'><i class="bi bi-trash"></i> Delete</a></td>
             </tr>
         <?php endforeach ?>
+        </tbody>
     </table>
-</body>
 
-</html>
+    
+
+<?php include_once('../templates/footer.php') ?>

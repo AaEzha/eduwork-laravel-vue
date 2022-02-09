@@ -2,6 +2,9 @@
 
     include_once('../config/connect.php');
 
+    $title = 'Penerbit';
+    $icon = 'building';
+
 
     $penerbit = [];
 
@@ -13,43 +16,15 @@
     }
 
 
-    // echo "<pre>";
-    // echo print_r($penerbit);
-    // echo "<pre>";
-
-
-
-
 
  ?>
 
+<?php include_once('../templates/header.php') ?>
+<?php include_once('../templates/navbar.php') ?>
+<?php include_once('../templates/title.php') ?>
 
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penerbit</title>
-</head>
-
-<body>
-
-    <center>
-        <a href="../buku/index.php">Buku</a> |
-        <a href="..index.php">Penerbit</a> |
-        <a href="../pengarang/index.php">Pengarang</a> |
-        <a href="../katalog/index.php">Katalog</a>
-        <hr>
-    </center>
-
-
-<a href="add.php">Add New Penerbit</a><br /><br />
-    <table width='50%' border=1>
+    <table class="table table-hover table-bordered" width='50%' border=1>
         <thead>
             <tr>
                 <th>No</th>
@@ -73,7 +48,9 @@
                 <td><?php echo $value['telp']?></td>
                 <td><?php echo $value['alamat']?></td>
                 <td>
-                    <a class='btn btn-primary' href='edit.php?id=<?php echo $value['id_penerbit'] ?>'>Edit</a> | <a class='btn btn-danger' href='delete.php?id=<?php echo $value['id_penerbit'] ?>'>Delete</a>
+                    <a class='btn btn-sm btn-warning me-2' href='edit.php?id=<?php echo $value['id_penerbit'] ?>'><i class="bi bi-pencil-square"></i> Edit</a>  
+
+                    <a class='btn btn-sm btn-danger' href='delete.php?id=<?php echo $value['id_penerbit'] ?>'><i class="bi bi-trash"></i> Delete</a>
                 </td>
             </tr>
 
@@ -85,6 +62,4 @@
         </tbody>
     </table>
 
-</body>
-
-</html>
+<?php include_once('../templates/footer.php') ?>

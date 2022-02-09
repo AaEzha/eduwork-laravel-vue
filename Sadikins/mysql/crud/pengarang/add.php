@@ -1,6 +1,6 @@
 <?php
 
-include_once('../config/connect.php');
+include_once('../templates/header.php');
     
 $pengarang = [];
 
@@ -16,51 +16,71 @@ while ($each = $result->fetch_assoc()) {
 
  ?>
 
+ <?php include_once('../templates/navbar.php') ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pengarang Tambah</title>
-</head>
-<body>
+    <div class="d-flex justify-content-between p-3">
+        
+        <h3 class=""><i class="bi bi-person-bounding-box"></i> Tambah Pengarang </h3>
 
-	 <a href="index.php">Go to Pengarang</a>
-    <br /><br />
-    <form action="add.php" method="post">
-        <table width="25%" border="0">
-            <tr>
-                <td>ID pengarang</td>
-                <td style="font-size: 11pt;"><input type="text" name="id"></td>
-            </tr>
-            <tr>
-                <td>Nama pengarang</td>
-                <td><input type="text" name="nama"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="email" name="email"></td>
-            </tr>
-            <tr>
-                <td>Telepon</td>
-                <td><input type="text" name="telp"></td>
-            </tr>
-            <tr>
-                <td>Alamat</td>
-                <td><input type="text" name="alamat"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="submit" value="submit"></td>
-            </tr>
-        </table>
+        <div>
+            
+        <?php include_once('../templates/btn-back.php') ?>
+        </div>
+
+    </div>  
+    
+
+
+    <form action="add.php" method="post" class="row p-5">
+  
+
+         <div class="mb-3 row">
+            <label for="id_katalog" class="col-sm-2 col-form-label">ID Pengarang</label>
+            <div class="col-sm-10">
+              <input type="text" name="id" class="form-control" placeholder="P01..">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="nama" class="col-sm-2 col-form-label">Nama Pengarang</label>
+            <div class="col-sm-10">
+              <input type="text" name="nama" class="form-control" placeholder="Nama...">
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" name="email" class="form-control" placeholder="Email...">
+            </div>
+          </div>
+
+        
+          <div class="mb-3 row">
+            <label for="telp" class="col-sm-2 col-form-label">Telepon</label>
+            <div class="col-sm-10">
+              <input type="text" name="telp" class="form-control" placeholder="Telepon...">
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+            <div class="col-sm-10">
+              <input type="text" name="alamat" class="form-control" placeholder="Alamat...">
+            </div>
+          </div>
+
+
+          <div class="mt-3 row ">
+               <?php include_once('../templates/btn-send.php') ?>
+          </div>
+
+    </form>
 
         <?php 
 
 
-        if(isset($_POST['submit']))
+        if(isset($_POST['Submit']))
         {
         	$id = $_POST['id'];
         	$nama = $_POST['nama'];
@@ -70,7 +90,7 @@ while ($each = $result->fetch_assoc()) {
 
         	$result = $koneksi->query("INSERT INTO pengarang (id_pengarang, nama_pengarang, email, telp, alamat) VALUES('$id', '$nama', '$email', '$telp', '$alamat')");
 
-        	header("Location:index.php");
+        	include_once('../templates/alert.php');
 
         }
 

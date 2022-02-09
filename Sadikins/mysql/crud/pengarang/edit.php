@@ -1,6 +1,6 @@
 <?php 
 
-	include_once('../config/connect.php');
+	include_once('../templates/header.php');
 	
 	$id_pengarang = $_GET['id'];
 
@@ -22,47 +22,64 @@
  ?>
 
 
- <!DOCTYPE html>
- <html lang="en">
- <head>
- 	<meta charset="UTF-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
- 	<title>Edit Pengarang</title>
- </head>
- <body>
+ <?php include_once('../templates/navbar.php') ?>
 
- 	<a href="index.php">Go to pengarang</a>
- 	<br /><br />
- 	<form action="edit.php?id=<?php echo $id_pengarang; ?>" method="post">
- 	    <table width="25%" border="0">
- 	        <tr>
- 	            <td>ID pengarang</td>
- 	            <td style="font-size: 11pt;"><?php echo $id_pengarang; ?> </td>
- 	        </tr>
- 	        <tr>
- 	            <td>Nama pengarang</td>
- 	            <td><input type="text" name="nama" value="<?php echo $nama_pengarang; ?>"></td>
- 	        </tr>
- 	        <tr>
- 	            <td>Email</td>
- 	            <td><input type="email" name="email" value="<?php echo $email; ?>"></td>
- 	        </tr>
+ <div class="d-flex justify-content-between p-3">
+     
+     <h3 class=""><i class="bi bi-person-bounding-box"></i> Edit Pengarang </h3>
 
- 	         <tr>
- 	            <td>telp</td>
- 	            <td><input type="text" name="telp" value="<?php echo $telp; ?>"></td>
- 	        </tr>
+     <div>
+         
+     <?php include_once('../templates/btn-back.php') ?>
+     </div>
 
- 	        <tr>
- 	            <td>alamat</td>
- 	            <td><input type="text" name="alamat" value="<?php echo $alamat; ?>"></td>
- 	        </tr>
+ </div>  
 
- 	        <tr>
- 	            <td></td>
- 	            <td><input type="submit" name="update" value="Update"></td>
- 	        </tr>
- 	    </table>
+
+
+ 	<form action="edit.php?id=<?php echo $id_pengarang; ?>" method="post" class="row p-5">
+
+ 	    <div class="mb-3 row">
+ 	       <label for="id_katalog" class="col-sm-2 col-form-label">ID Pengarang</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="id" class="form-control" disabled value="<?php echo $id_pengarang; ?>">
+ 	       </div>
+ 	     </div>
+ 	     <div class="mb-3 row">
+ 	       <label for="nama" class="col-sm-2 col-form-label">Nama Pengarang</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="nama" class="form-control" value="<?php echo $nama_pengarang; ?>">
+ 	       </div>
+ 	     </div>
+
+ 	     <div class="mb-3 row">
+ 	       <label for="email" class="col-sm-2 col-form-label">Email</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+ 	       </div>
+ 	     </div>
+
+ 	    
+ 	     <div class="mb-3 row">
+ 	       <label for="telp" class="col-sm-2 col-form-label">Telepon</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="telp" class="form-control" value="<?php echo $telp; ?>">
+ 	       </div>
+ 	     </div>
+
+ 	     <div class="mb-3 row">
+ 	       <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+ 	       <div class="col-sm-10">
+ 	         <input type="text" name="alamat" class="form-control" value="<?php echo $alamat; ?>">
+ 	       </div>
+ 	     </div>
+
+
+ 	     <div class="mt-3 row ">
+ 	          <?php include_once('../templates/btn-update.php') ?>
+ 	     </div>
+
+ 	</form>
 
  	<?php
 
@@ -80,7 +97,7 @@
 
  	    $result = $koneksi->query("UPDATE pengarang SET nama_pengarang = '$nama_pengarang', email = '$email', telp = '$telp', alamat = '$alamat'  WHERE id_pengarang = '$id_pengarang';");
 
- 	    header("Location:index.php");
+ 	    include_once('../templates/alert.php');
  	}
  	?>
  	

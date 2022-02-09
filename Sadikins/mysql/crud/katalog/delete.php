@@ -7,6 +7,6 @@ include_once('../config/connect.php');
 
  $koneksi->query("DELETE FROM katalog WHERE id_katalog='$id_katalog'  ");
 
- header("Location:index.php");
+ include_once('../templates/alert.php'); 
 
  ?>
