@@ -21,7 +21,7 @@
 <body>
     <center>
         <a href="index.php">Buku</a>
-        <a href="#">Penerbit</a>
+        <a href="penerbit.php">Penerbit</a>
         <a href="#">Pengarang</a>
         <a href="#">Katalog</a>
         <hr>
