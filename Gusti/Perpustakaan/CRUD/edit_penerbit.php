@@ -61,7 +61,7 @@
 
 			$id_penerbit = $_GET['id_penerbit'];
 			$nama_penerbit = $_POST['nama_penerbit'];
-			$email = $_POST['emaill'];
+			$email = $_POST['email'];
 			$telp = $_POST['telp'];
 			$alamat = $_POST['alamat'];
 
