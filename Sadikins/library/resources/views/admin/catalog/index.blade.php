@@ -5,18 +5,21 @@
             <div class="col-md-6">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Catalogs </h4>
-                  <p class="card-description">
-                    All Catalogs
-                  </p>
+                <div class="d-flex justify-content-between mb-3">
+                  <h4 class="card-title mt-3">Catalogs </h4>
+                  <div>
+                      <a href="{{ route('catalogs.create') }}" class="btn  btn-primary">Add New Catalog</a>
+                  </div>
+                  </div>
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
                         <tr>
                           <th width="10">#</th>
                           <th>Nama</th>
-                          <th class="text-center">Total Books</th>
-                          <th class="text-center">Created At</th>
+                          <th >Total Books</th>
+                          <th >Created At</th>
+                          <th >Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -24,8 +27,18 @@
                           <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $catalog->name }}</td>
-                            <td class="text-center">{{ count($catalog->books) }}</td>
-                            <td class="text-center">{{ $catalog->created_at }}</td>
+                            <td >{{ count($catalog->books) }}</td>
+                            <td >{{ $catalog->created_at }}</td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                <a href="{{ route('catalogs.edit', $catalog->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <form action="{{ route('catalogs.destroy', $catalog->id) }}" method="post">
+                                    <input type="submit" class="btn btn-sm btn-danger ms-2" value="Delete" onclick="return confirm('Are you sure?')">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                       </tbody>
