@@ -384,34 +384,34 @@
             </a>
           </li>
           <li class="nav-item nav-category">pages</li>
-          <li class="nav-item {{ request()->is('author') ? 'active' : '' }}">
-            <a class="nav-link"  href="{{ route('author') }}">
+          <li class="nav-item {{ request()->is('authors') ? 'active' : '' }}">
+            <a class="nav-link"  href="{{ route('authors') }}">
               <i class="menu-icon mdi mdi-account-circle-outline"></i>
               <span class="menu-title">Author</span>
             </a>
           </li>
-          <li class="nav-item {{ request()->is('publisher') ? 'active' : '' }}">
-            <a class="nav-link"  href="{{ route('publisher') }}">
+          <li class="nav-item {{ request()->is('publishers') ? 'active' : '' }}">
+            <a class="nav-link"  href="{{ route('publishers') }}">
               <i class="menu-icon mdi mdi-layers-outline"></i>
               <span class="menu-title">Publisher</span>
             </a>
           </li>
-          <li class="nav-item {{ request()->is('catalog') ? 'active' : '' }}">
-            <a class="nav-link"  href="{{ route('catalog') }}">
+          <li class="nav-item {{ request()->is('catalogs') ? 'active' : '' }}">
+            <a class="nav-link"  href="{{ route('catalogs') }}">
               <i class="menu-icon mdi mdi-card-text-outline""></i>
               <span class="menu-title">Catalog</span>
             </a>
           </li>
-          <li class="nav-item {{ request()->is('book') ? 'active' : '' }}">
-            <a class="nav-link"  href="{{ route('book') }}">
+          <li class="nav-item {{ request()->is('books') ? 'active' : '' }}">
+            <a class="nav-link"  href="{{ route('books') }}">
               <i class="menu-icon mdi mdi-file-document"></i>
               <span class="menu-title">Book</span>
             </a>
           </li>
-          <li class="nav-item {{ request()->is('member') ? 'active' : '' }}">
-            <a class="nav-link"  href="{{ route('member') }}">
+          <li class="nav-item {{ request()->is('members') ? 'active' : '' }}">
+            <a class="nav-link"  href="{{ route('members') }}">
               <i class="menu-icon mdi mdi-account-circle-outline"></i>
-              <span class="menu-title">Member</span>
+              <span class="menu-title">Members</span>
             </a>
           </li>
 
