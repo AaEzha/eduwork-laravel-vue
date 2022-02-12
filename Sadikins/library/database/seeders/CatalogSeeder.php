@@ -18,10 +18,11 @@ class CatalogSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i=0; $i < ; $i++) { 
+        for ($i = 0; $i < 4; $i++) {
             $catalog = new Catalog;
-
             $catalog->name = $faker->name;
+
+            $catalog->save();
         }
     }
 }

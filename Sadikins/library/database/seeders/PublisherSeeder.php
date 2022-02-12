@@ -20,20 +20,16 @@ class PublisherSeeder extends Seeder
     {
         $faker = Faker::create();
 
-               for ($i=0; $i < 20; $i++) {
+        for ($i = 0; $i < 20; $i++) {
 
-                   $book = new Book;
+            $publisher = new Publisher;
 
-                   $book->isbn = $faker->randomNumber(9);
-                   $book->title = $faker->name;
-                   $book->year = rand(2010,2021);
-                   $book->publisher_id = rand(1,20);
-                   $book->author_id = rand(1,20);
-                   $book->catalog_id = rand(1,4);
-                   $book->qty = rand(10,20);
-                   $book->price = rand(10000,20000);
+            $publisher->name = $faker->name;
+            $publisher->email = $faker->email;
+            $publisher->phone_number = '081' . $faker->randomNumber(8);
+            $publisher->address = rand(1, 20);
 
-                   $book->save();
-               }
+            $publisher->save();
+        }
     }
 }
