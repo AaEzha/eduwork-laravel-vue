@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 @section('title','author')
 @section('css')
-
+{{-- Data table --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" />
 @endsection
 @section('content')
 <div id="controller">
@@ -18,7 +20,7 @@
             </div>
             </div>
             <div class="table-responsive">
-            <table class="table table-hover ">
+            <table id="tabel-data" class="table table-hover table-bordered my-3 ">
                 <thead>
                 <tr>
                     <th width="10">#</th>
@@ -117,6 +119,16 @@
     </div>
 @endsection
 @section('js')
+{{-- Data table --}}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script>
+   $(document).ready(function() {
+    $('#tabel-data').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+} );
+</script>
 <script>
     var controller = new Vue({
         el : "#controller",
