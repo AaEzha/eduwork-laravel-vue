@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','author')
+@section('title','member')
 @section('css')
 {{-- Data table --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
@@ -12,11 +12,11 @@
         <div class="card">
         <div class="card-body">
         <div class="d-flex justify-content-between mb-3">
-            <h4 class="card-title mt-3">Authors </h4>
+            <h4 class="card-title mt-3">members </h4>
             <div>
                     <!-- Button trigger modal -->
                 <a href="#" @click="addData()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add New author
+                Add New member
                 </a>
             </div>
             </div>
@@ -25,10 +25,11 @@
                 <thead>
                 <tr>
                     <th width="10">#</th>
-                    <th>Nama</th>
-                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Gender</th>
                     <th>Phone Number</th>
                     <th>Address</th>
+                    <th>Email</th>
                     <th >Action</th>
                 </tr>
                 </thead>
@@ -47,7 +48,7 @@
     <div class="modal-content">
     <form :action="actionUrl" method="post" autocomplete="off" @submit="submitForm($event, data.id)">
       <div class="modal-header">
-        <h5> <b>Author</b></h5>
+        <h5> <b>member</b></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -109,14 +110,15 @@
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
     <script>
-    var actionUrl= '{{ url('authors') }}';
-    var apiUrl= '{{ url('api/authors') }}';
+    var actionUrl= '{{ url('members') }}';
+    var apiUrl= '{{ url('api/members') }}';
     var columns = [
         {data: 'DT_RowIndex', class: 'text-center', orderable: true},
         {data: 'name', class: 'text-center', orderable: true},
-        {data: 'email', class: 'text-center', orderable: true},
+        {data: 'gender', class: 'text-center', orderable: true},
         {data: 'phone_number', class: 'text-center', orderable: true},
         {data: 'address', class: 'text-center', orderable: true, width:'30%'},
+        {data: 'email', class: 'text-center', orderable: true},
         {render: function(index, row, data, meta) {
             return `
             <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit </a>

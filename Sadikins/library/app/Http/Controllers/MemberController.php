@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class memberController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +18,16 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('admin.member.index');
+        $members = Member::all();
+        // return $catalogs;
+        return view('admin.member', compact('members'));
+    }
+
+    public function api()
+    {
+        $members = Member::all();
+        $datatables = datatables()->of($members)->addIndexColumn();
+        return $datatables->make(true);
     }
 
     /**
@@ -28,7 +37,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.member.create');
     }
 
     /**
@@ -39,16 +48,25 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            ['name' => 'required|min:5|string'],
+            ['gender' => 'required'],
+            ['phone_number' => 'required'],
+            ['address' => 'required|max:50'],
+            ['email' => 'required|email'],
+        );
+        Member::create($request->all());
+        return redirect('members');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $member)
+    public function show(member $member)
     {
         //
     }
@@ -56,34 +74,44 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $member)
+    public function edit(member $member)
     {
-        //
+        return view('admin.member.edit', ['member' => $member]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, member $member)
     {
-        //
+        $this->validate(
+            $request,
+            ['name' => 'required|min:5|string'],
+            ['gender' => 'required'],
+            ['phone_number' => 'required'],
+            ['address' => 'required|max:50'],
+            ['email' => 'required|email'],
+        );
+        $member->update($request->all());
+        return redirect('members');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function destroy(member $member)
     {
-        //
+        $member->delete();
+        return redirect('members');
     }
 }

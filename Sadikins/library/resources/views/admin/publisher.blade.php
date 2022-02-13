@@ -1,16 +1,18 @@
 @extends('layouts.admin')
 @section('title','publisher')
 @section('css')
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" /> --}}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" />
+{{-- Data table --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css" />
 @endsection
 @section('content')
 <div id="controller">
     <div class="col-md-12" >
-        <div class="card p-3">
+        <div class="card">
         <div class="card-body">
         <div class="d-flex justify-content-between mb-3">
-            <h4 class="card-title mt-3">Publishers </h4>
+            <h4 class="card-title mt-3">publishers </h4>
             <div>
                     <!-- Button trigger modal -->
                 <a href="#" @click="addData()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -19,7 +21,7 @@
             </div>
             </div>
             <div class="table-responsive">
-            <table id="tabel-data" class="table table-hover table-bordered my-3">
+            <table id="datatable" class="table table-hover table-bordered my-3 ">
                 <thead>
                 <tr>
                     <th width="10">#</th>
@@ -27,28 +29,10 @@
                     <th>Email</th>
                     <th>Phone Number</th>
                     <th>Address</th>
-                    <th >Total Books</th>
                     <th >Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                    @foreach ($publishers as $key => $publisher)
-                    <tr>
-                    <td>{{ $key+1 }}</td>
-                    <td>{{ $publisher->name }}</td>
-                    <td>{{ $publisher->email }}</td>
-                    <td>{{ $publisher->phone_number }}</td>
-                    <td>{{ $publisher->address }}</td>
-                    <td >{{ count($publisher->books) }}</td>
-                    <td>
-                        <div class="d-flex justify-content-around">
-                        <a href="#" @click="editData({{ $publisher }})" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>
-                        <a href="#" @click="deleteData({{ $publisher->id }})" class="btn btn-sm btn-danger">Delete</a>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
+
             </table>
             </div>
         </div>
@@ -61,7 +45,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    <form :action="actionUrl" method="post" autocomplete="off">
+    <form :action="actionUrl" method="post" autocomplete="off" @submit="submitForm($event, data.id)">
       <div class="modal-header">
         <h5> <b>publisher</b></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -71,7 +55,7 @@
           <input type="hidden" name="_method" value="PUT" v-if="status">
         <div class="form-group">
             <label for="">Name</label>
-            <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" :value="input.name" placeholder="Enter name.." required>
+            <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" :value="data.name" placeholder="Enter name.." required>
             @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -80,7 +64,7 @@
         </div>
         <div class="form-group">
             <label for="">Email</label>
-            <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" :value="input.email" placeholder="Enter email.." required>
+            <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" :value="data.email" placeholder="Enter email.." required>
             @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -89,7 +73,7 @@
         </div>
         <div class="form-group">
             <label for="">Phone Number</label>
-                <input type="text" class="form-control form-control-lg @error('phone_number') is-invalid @enderror" name="phone_number" :value="input.phone_number" placeholder="Enter phone number.." required>
+                <input type="text" class="form-control form-control-lg @error('phone_number') is-invalid @enderror" name="phone_number" :value="data.phone_number" placeholder="Enter phone number.." required>
                 @error('phone_number')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -98,7 +82,7 @@
         </div>
         <div class="form-group">
             <label for="">Address</label>
-            <input type="text" class="form-control form-control-lg @error('address') is-invalid @enderror" name="address" :value="input.address" placeholder="Enter addrees.." required>
+            <input type="text" class="form-control form-control-lg @error('address') is-invalid @enderror" name="address" :value="data.address" placeholder="Enter addrees.." required>
             @error('address')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -118,55 +102,28 @@
     </div>
 @endsection
 @section('js')
+{{-- Data table --}}
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-    $('#tabel-data').DataTable( {
-        "order": [[ 3, "desc" ]]
-    } );
-} );
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script>
+    var actionUrl= '{{ url('publishers') }}';
+    var apiUrl= '{{ url('api/publishers') }}';
+    var columns = [
+        {data: 'DT_RowIndex', class: 'text-center', orderable: true},
+        {data: 'name', class: 'text-center', orderable: true},
+        {data: 'email', class: 'text-center', orderable: true},
+        {data: 'phone_number', class: 'text-center', orderable: true},
+        {data: 'address', class: 'text-center', orderable: true, width:'30%'},
+        {render: function(index, row, data, meta) {
+            return `
+            <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit </a>
+            <a  class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})"> Delete </a>
+            `;
+        }, orderable: false, width: '10%', class: 'text-center'},
+    ];
 </script>
-<script>
-    var controller = new Vue({
-        el : "#controller",
-        data: {
-            input: {},
-            actionUrl:'{{ url('publishers') }}',
-            status:false,
-
-        },
-        methods: {
-            addData() {
-                this.actionUrl = '{{ url('publishers') }}';
-                this.input= {};
-                this.status=false;
-                $('#exampleModal').modal();
-            },
-            editData(data) {
-                // console.log(data);
-                this.actionUrl = '{{ url('publishers') }}'+'/'+data.id ;
-                this.input=data;
-                this.status=true;
-                $('#exampleModal').modal();
-
-            },
-            deleteData(id) {
-                // console.log(id);
-                this.actionUrl =  '{{ url('publishers') }}'+'/'+id ;
-
-                if(confirm("Are you sure ?"))
-                {
-                    axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => { location.reload();
-                     });
-                }
-
-
-            },
-
-        }
-    })
-
-</script>
-
+<script src="{{ asset('js/data.js') }}"></script>
 @endsection
