@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class PublisherController extends Controller
     {
         $publishers = Publisher::with('books')->get();
         // return $catalogs;
-        return view('admin.publisher.index', compact('publishers'));
+        return view('admin.publisher', compact('publishers'));
     }
 
     /**
@@ -39,7 +43,7 @@ class PublisherController extends Controller
     {
         $this->validate(
             $request,
-            ['name' => 'required|min:5'],
+            ['name' => 'required|min:5|string'],
             ['email' => 'required|email'],
             ['phone_number' => 'required'],
             ['address' => 'required|max:50'],
@@ -81,7 +85,7 @@ class PublisherController extends Controller
     {
         $this->validate(
             $request,
-            ['name' => 'required|min:5'],
+            ['name' => 'required|min:5|string'],
             ['email' => 'required|email'],
             ['phone_number' => 'required'],
             ['address' => 'required|max:50'],

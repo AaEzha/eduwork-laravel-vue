@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
   {{-- <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" /> --}}
+    @yield('css')
 </head>
 
 <body>
@@ -46,7 +47,7 @@
       <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
+            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">{{ Auth::user()->name }}</span></h1>
             <h3 class="welcome-sub-text">Your performance summary this week </h3>
           </li>
         </ul>
@@ -451,7 +452,7 @@
   <!-- inject:js -->
   <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
   <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-  <script src="{{ asset('assets/js/template.js') }}"></script>
+  {{-- <script src="{{ asset('assets/js/template.js') }}"></script> --}}
   <script src="{{ asset('assets/js/settings.js') }}"></script>
   <script src="{{ asset('assets/js/todolist.js') }}"></script>
   <!-- endinject -->
@@ -460,6 +461,13 @@
   <script src="{{ asset('assets/js/typeahead.js') }}"></script>
   <script src="{{ asset('assets/js/select2.js') }}"></script>
   <!-- End custom js for this page-->
+
+  {{-- Vue js --}}
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  {{-- AXIOS --}}
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  @yield('js')
 </body>
 
 </html>
