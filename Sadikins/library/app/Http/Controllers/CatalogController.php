@@ -19,7 +19,12 @@ class CatalogController extends Controller
     public function index()
     {
         $catalogs = Catalog::with('books')->get();
+
+        foreach ($catalogs as $key => $catalog) {
+            $catalog->date = convert_date($catalog->created_at);
+        }
         // return $catalogs;
+
         return view('admin.catalog.index', compact('catalogs'));
     }
 

@@ -24,12 +24,13 @@
             <table id="datatable" class="table table-hover table-bordered my-3 ">
                 <thead>
                 <tr>
-                    <th width="5">#</th>
-                    <th width="20">Nama</th>
-                    <th width="20">Email</th>
-                    <th width="20">Phone Number</th>
-                    <th width="20">Address</th>
-                    <th width="15">Action</th>
+                    <th width="10">#</th>
+                    <th >Nama</th>
+                    <th >Email</th>
+                    <th >Phone Number</th>
+                    <th >Address</th>
+                    <th >Created At</th>
+                    <th >Action</th>
                 </tr>
                 </thead>
 
@@ -117,6 +118,7 @@
         {data: 'email', class: 'text-center', orderable: true},
         {data: 'phone_number', class: 'text-center', orderable: true},
         {data: 'address', class: 'text-center', orderable: true},
+        {data: 'date', class: 'text-center', orderable: true},
         {render: function(index, row, data, meta) {
             return `
             <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit </a>

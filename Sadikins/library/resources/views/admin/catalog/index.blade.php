@@ -28,7 +28,7 @@
                             <td>{{ $key+1 }}</td>
                             <td>{{ $catalog->name }}</td>
                             <td >{{ count($catalog->books) }}</td>
-                            <td >{{ $catalog->created_at }}</td>
+                            <td >{{ $catalog->date }}</td>
                             <td>
                                 <div class="d-flex justify-content-between">
                                 <a href="{{ route('catalogs.edit', $catalog->id) }}" class="btn btn-sm btn-warning">Edit</a>
