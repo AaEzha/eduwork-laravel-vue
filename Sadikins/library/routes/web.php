@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
 
 /*
@@ -40,3 +41,4 @@ Route::resource('transaction_details', TransactionDetailController::class);
 Route::get('/api/authors', [AuthorController::class, 'api']);
 Route::get('/api/publishers', [PublisherController::class, 'api']);
 Route::get('/api/members', [MemberController::class, 'api']);
+Route::get('/api/books', [BookController::class, 'api']);
