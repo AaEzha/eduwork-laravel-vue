@@ -1,0 +1,73 @@
+body {
+    margin: auto;
+    padding: 10;
+    font-family: comic 'Kaushan Script', cursive;
+    background: linear-gradient(to right, #D8BFD8, #E6E6FA, #D8BFD8	);
+}
+
+.container{
+    width: 720px;
+}
+.main{
+    width: 50%;
+    margin: auto;
+}
+.card{
+    width: 50%;
+    margin: auto;
+    
+}
+
+
+/* 
+.navigasi ul{
+    text-align: center;
+    float: center;
+    color:black;
+    margin-top: 5px;
+    padding : 5px;   
+}
+
+.navigasi ul li{
+    display: inline-block;
+
+}
+.navigasi ul li a{
+    text-decoration: none;
+	margin-top: 5px;
+	padding: 10px 15px;
+	color: black;
+	font-size: 14px;	
+	font-family: 'Kaushan Script', cursive;
+
+}
+
+.navigasi ul li a:hover{
+	background-color: #6A5ACD	;
+	color: black;
+ 	text-decoration: none;
+} */
+
+/* 
+button {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    margin-left: 10%;
+    cursor: pointer;
+}
+
+
+button a {
+    text-decoration: none;
+} */
+
+table{
+    width: 700px;
+    
+}
+
+table td {
+    padding: 10px;
+}
