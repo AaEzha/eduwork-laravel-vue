@@ -10,7 +10,7 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                <label for="">Username</label>
+                <label for="">Name</label>
                 <input type="text" class="form-control form-control-lg" name="name" value="{{ old('name') ?? $catalog->name }}"  required>
 
                 </div>

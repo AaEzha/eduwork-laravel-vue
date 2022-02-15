@@ -9,7 +9,7 @@
 <form action="{{ route('catalogs.store') }}" method="post">
 @csrf
  <div class="form-group">
- <label for="">Username</label>
+ <label for="">Name</label>
     <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Enter name.." required>
     @error('name')
         <span class="invalid-feedback" role="alert">

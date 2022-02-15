@@ -27,7 +27,7 @@
                           <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $catalog->name }}</td>
-                            <td >{{ count($catalog->books) }}</td>
+                            <td class="text-center text-primary"><b>{{ count($catalog->books) }}</b></td>
                             <td >{{ $catalog->date }}</td>
                             <td>
                                 <div class="d-flex justify-content-between">

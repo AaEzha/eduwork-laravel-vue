@@ -21,9 +21,12 @@
            <div class="card" style="width: 18rem;" v-on:click="editData(book)"  data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div class="card-body">
                 <h5 class="card-title">@{{ book.title }} (@{{ book.qty }})</h5>
-                <h6 class="card-subtitle mb-2 text-muted">ISBN : @{{ book.isbn }}</h6>
                 <small class="card-subtitle mb-2 text-muted">Year : @{{ book.year }}</small>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h6 class="card-subtitle mb-2 text-muted">ISBN : @{{ book.isbn }}</h6>
+                <small class="card-subtitle mb-2 text-muted">Publisher : @{{ book.publisher.name }}</small> <br>
+                <small class="card-subtitle mb-2 text-muted">Author : @{{ book.author.name }}</small> <br>
+                <small class="card-subtitle mb-2 text-muted">Catalog : @{{ book.catalog.name }}</small> <br> <br>
+                {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
                 <a href="#" class="text-primary" style="text-decoration: none;">Rp @{{ numberWithSpace(book.price) }}</a>
             </div>
             </div>

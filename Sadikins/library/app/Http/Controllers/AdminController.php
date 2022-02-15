@@ -18,7 +18,44 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+
+    public function dashboard()
+    {
+        $total_members = Member::count();
+        $total_books = Book::count();
+        $total_transactions = Transaction::count();
+        $total_publishers = Publisher::count();
+        // Doughnut
+        $data_donut = Book::select(DB::raw("COUNT(publisher_id) as total"))->groupBy('publisher_id')->orderBy('publisher_id', 'ASC')->pluck('total');
+        $label_donut = Publisher::orderBy('publishers.id', 'ASC')->join('books', 'books.publisher_id', 'publishers.id')->groupBy('publishers.name')->pluck('publishers.name');
+
+        // Line
+        $data_line = Book::select(DB::raw("COUNT(author_id) as total"))->groupBy('author_id')->orderBy('author_id', 'ASC')->pluck('total');
+        $label_line = Author::orderBy('authors.id', 'ASC')->join('books', 'books.author_id', 'authors.id')->groupBy('authors.name')->pluck('authors.name');
+
+        // Line
+        $label_bar = ['Borrowing', 'Returning'];
+        $data_bar = [];
+
+        foreach ($label_bar as $key => $value) {
+            $data_bar[$key]['label'] = $label_bar[$key];
+            $data_bar[$key]['backgroundColor'] = $key == 0 ? '#B983FF' : "#99FEFF";
+            $data_month = [];
+
+            foreach (range(1, 12) as $month) {
+                if ($key == 0) {
+                    $data_month[] = transaction::select(DB::raw("COUNT(*) as total"))->whereMonth('date_start', $month)->first()->total;
+                } else {
+                    $data_month[] = transaction::select(DB::raw("COUNT(*) as total"))->whereMonth('date_end', $month)->first()->total;
+                }
+            }
+            $data_bar[$key]['data'] = $data_month;
+
+            // return $data_bar;
+        }
+        return view('admin.dashboard', compact('total_books', 'total_members', 'total_transactions', 'total_publishers', 'data_donut', 'label_donut', 'data_bar', 'label_line', 'data_line'));
+    }
+    public function query()
     {
         // $members = Member::with('user')->get();
         // $books = Book::with('publisher', 'author', 'catalog')->get();

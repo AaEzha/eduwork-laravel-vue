@@ -29,7 +29,7 @@ class BookController extends Controller
 
     public function api()
     {
-        $books = Book::all();
+        $books = Book::with('publisher', 'author', 'catalog')->get();
 
         return json_encode($books);
     }

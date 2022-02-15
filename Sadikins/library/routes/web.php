@@ -27,7 +27,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('home');
 // Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
 
 Route::resource('publishers', PublisherController::class);
