@@ -7,20 +7,23 @@ order by nama_penerbit asc");
 <html>
     <head>
         <title> Homepage</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <center>
-        <a href="index.php"> Buku</s>|
-        <a href="penerbit.php"> Penerbit</s>|
-        <a href="pengarang.php"> Pengarang</s>|
-        <a href="katalog.php"> Katalog</s>|
-        <hr>    
+    <div class="btn-group">
+        <a class= "btn btn-primary" href="index.php"> Buku</a>
+        <a class= "btn btn-primary active" aria-current="page" href="penerbit.php"> Penerbit</a>
+        <a class= "btn btn-primary" href="pengarang.php"> Pengarang</a>
+        <a class= "btn btn-primary" href="katalog.php"> Katalog</a>
+        </div> 
 </center>
 
-<a href="add_penerbit.php"> Add New Penerbit</s><br/><br/>
+<a class= "btn btn-secondary" href="add_penerbit.php"> Add New Penerbit</a>
 
-<table width = '80%' border=1>
+<table class = "table" width = '80%' border=1>
 
 <tr>
     <th>ID_PENERBIT</th>
@@ -38,7 +41,7 @@ while($penerbit_data = mysqli_fetch_array($penerbit)) {
     echo"<td>". $penerbit_data['email']."</td>";
     echo"<td>". $penerbit_data['telp']."</td>";
     echo"<td>". $penerbit_data['alamat']."</td>";
-    echo"<td><a href= 'edit_penerbit.php?id_penerbit=$penerbit_data[id_penerbit]'>Edit</a>|<a href= 'delete_penerbit.php?id_penerbit=$penerbit_data[id_penerbit]'>Delete</a></td></tr>";
+    echo"<td><a a class= 'btn btn-primary' href= 'edit_penerbit.php?id_penerbit=$penerbit_data[id_penerbit]'>Edit</a><a class= 'btn btn-danger' href= 'delete_penerbit.php?id_penerbit=$penerbit_data[id_penerbit]'>Delete</a></td></tr>";
 }
 ?>
 </table>
