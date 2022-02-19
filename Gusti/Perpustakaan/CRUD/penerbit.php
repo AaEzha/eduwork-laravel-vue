@@ -18,8 +18,7 @@
     <title>Penerbit</title>
 </head>
 <body >
-    <div class="container">
-
+    <div class="container-md">
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="index.php">Buku</a>
@@ -60,7 +59,7 @@
                     echo "<td><a class='btn btn-primary' href='edit_penerbit.php?id_penerbit=$penerbit_data[id_penerbit]'>Edit</a> | <a class='btn btn-danger' href='delete.php?id_penerbit=$penerbit_data[id_penerbit]'>Delete</a></td></tr>";        
                 }
             ?>
-            </table>
+        </table>
     </div>
 </body>
 </html>

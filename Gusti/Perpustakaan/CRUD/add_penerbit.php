@@ -12,7 +12,7 @@ $penerbit = mysqli_query($conn, "SELECT * FROM penerbit");
 ?>
 
 <body>
-	<div class="container">
+	<div class="container-md">
 		<a href="index.php">Go to Home</a>
 		<br /><br />
 		<div class="card">
@@ -20,7 +20,6 @@ $penerbit = mysqli_query($conn, "SELECT * FROM penerbit");
 				Tambah Penerbit
 			</div>
 			<div class="card-body">
-
 				<form action="add_penerbit.php" method="post" name="form1">
 					<table border="0">
 						<tr>

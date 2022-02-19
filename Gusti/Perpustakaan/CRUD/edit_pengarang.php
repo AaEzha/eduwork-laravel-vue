@@ -23,18 +23,18 @@ while ($pengarang_data = mysqli_fetch_array($pengarang)) {
 ?>
 
 <body>
-	<div class="container">
+	<div class="container-md">
 		<a href="index.php">Go to Home</a>
 		<br /><br />
 
 		<div class="card">
 			<div class="card-header text-white bg-secondary">
-				Tambah Katalog
+				Edit Pengarang
 			</div>
 			<div class="card-body">
 
 				<form action="edit_pengarang.php?id_pengarang=<?php echo $id_pengarang; ?>" method="post">
-					<table width="25%" border="0">
+					<table>
 						<tr>
 							<td>Id Pengarang</td>
 							<td style="font-size: 11pt;"><?php echo $id_pengarang; ?> </td>

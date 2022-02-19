@@ -14,8 +14,8 @@ $katalog = mysqli_query($conn, "SELECT * FROM katalog");
 ?>
 
 <body>
-	<div class="container">
-		<div class="main">
+	<div class="container-md">
+		<!-- <div class="main"> -->
 			<a href="index.php">Go to Home</a>
 			<br /><br />
 
@@ -25,7 +25,7 @@ $katalog = mysqli_query($conn, "SELECT * FROM katalog");
 				</div>
 				<div class="card-body">
 					<form action="add.php" method="post" name="form1">
-						<table border="0">
+						<table>
 							<tr>
 								<td>ISBN</td>
 								<td><input type="text" name="isbn"></td>
@@ -92,7 +92,7 @@ $katalog = mysqli_query($conn, "SELECT * FROM katalog");
 					</form>
 				</div>
 			</div>
-		</div>
+		<!-- </div> -->
 	</div>
 	<?php
 

@@ -12,7 +12,7 @@ $katalog = mysqli_query($conn, "SELECT * FROM katalog");
 ?>
 
 <body>
-	<div class="container">
+	<div class="container-md">
 		<a href="index.php">Go to Home</a>
 		<br /><br />
 

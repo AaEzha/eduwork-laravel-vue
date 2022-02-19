@@ -12,9 +12,9 @@ $pengarang = mysqli_query($conn, "SELECT * FROM pengarang");
 ?>
 
 <body>
-	<div class="container">
+	<div class="container-md">
 
-		<div class="main">
+		<!-- <div class="main"> -->
 			<a href="index.php">Go to Home</a>
 			<br /><br />
 			<div class="card">
@@ -56,7 +56,7 @@ $pengarang = mysqli_query($conn, "SELECT * FROM pengarang");
 					</form>
 				</div>
 			</div>
-		</div>
+		<!-- </div> -->
 	</div>
 	<?php
 

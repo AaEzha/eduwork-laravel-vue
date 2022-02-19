@@ -28,18 +28,18 @@ while ($buku_data = mysqli_fetch_array($buku)) {
 ?>
 
 <body>
-	<div class="container">
+	<div class="container-md">
 		<a href="index.php">Go to Home</a>
 		<br /><br />
 		
 		<div class="card">
 			<div class="card-header text-white bg-secondary">
-				Tambah Katalog
+				Edit Buku
 			</div>
 			<div class="card-body">
 
 				<form action="edit.php?isbn=<?php echo $isbn; ?>" method="post">
-					<table width="25%" border="0">
+					<table>
 						<tr>
 							<td>ISBN</td>
 							<td style="font-size: 11pt;"><?php echo $isbn; ?> </td>

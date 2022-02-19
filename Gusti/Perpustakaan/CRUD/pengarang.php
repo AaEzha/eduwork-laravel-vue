@@ -20,7 +20,7 @@ $pengarang = mysqli_query($conn, "SELECT pengarang. *, nama_pengarang, pengarang
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-md">
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="index.php">Buku</a>

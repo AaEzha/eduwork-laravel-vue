@@ -23,7 +23,7 @@ $buku = mysqli_query($conn, "SELECT buku. *, nama_pengarang, nama_penerbit, kata
 </head>
 
 <body>
-    <div class="container" >
+    <div class="container-md" >
         
         <!-- <div class="Navigasi">
             <ul>

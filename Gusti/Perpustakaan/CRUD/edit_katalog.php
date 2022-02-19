@@ -20,7 +20,7 @@ while ($katalog_data = mysqli_fetch_array($katalog)) {
 ?>
 
 <body>
-	<div class="container">
+	<div class="container-md">
 		<a href="index.php">Go to Home</a>
 		<br /><br />
 
