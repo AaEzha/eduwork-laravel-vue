@@ -8,7 +8,7 @@
                 <div class="d-flex justify-content-between mb-3">
                   <h4 class="card-title mt-3">Catalogs </h4>
                   <div>
-                      <a href="{{ route('catalogs.create') }}" class="btn  btn-primary">Add New Catalog</a>
+                      <a href="{{ route('catalogs.create') }}" class="btn  btn-primary">Add New Catalog &nbsp; +</a>
                   </div>
                   </div>
                   <div class="table-responsive">

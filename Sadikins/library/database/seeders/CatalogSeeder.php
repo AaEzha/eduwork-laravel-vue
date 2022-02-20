@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 use App\Models\Catalog;
+use Faker\Factory as Faker;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CatalogSeeder extends Seeder
 {
@@ -16,13 +17,13 @@ class CatalogSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
 
-        for ($i = 0; $i < 4; $i++) {
-            $catalog = new Catalog;
-            $catalog->name = $faker->name;
+        $catalog = collect(['Education', 'Religious', 'Business', 'Programming', 'Psychology']);
+        $catalog->each(function ($c) {
+            Catalog::create([
+                'name' => $c
 
-            $catalog->save();
-        }
+            ]);
+        });
     }
 }

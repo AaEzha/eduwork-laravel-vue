@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('member_id');
-            $table->date('date_start');
-            $table->date('date_end');
-            $table->timestamps();
-
-            $table->foreign('member_id')->references('id')->on('members');
+        Schema::table('book_transaction', function (Blueprint $table) {
+            $table->integer('qty')->default(1);
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::table('book_transaction', function (Blueprint $table) {
+            $table->dropColumn('qty');
+        });
     }
 };

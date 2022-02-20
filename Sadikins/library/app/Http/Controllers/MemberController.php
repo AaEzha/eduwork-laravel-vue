@@ -18,15 +18,20 @@ class memberController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
-        // return $catalogs;
-        return view('admin.member', compact('members'));
+        return view('admin.member');
     }
 
-    public function api()
+    public function api(Request $request)
     {
-        $members = Member::all();
-        $datatables = datatables()->of($members)->addIndexColumn();
+        // $members = Member::all();
+        // $datatables = datatables()->of($members)->addIndexColumn();
+        // return $datatables->make(true);
+        if ($request->gender) {
+            $datas = Member::where('gender', $request->gender)->get();
+        } else {
+            $datas = Member::all();
+        }
+        $datatables = datatables()->of($datas)->addIndexColumn();
         return $datatables->make(true);
     }
 

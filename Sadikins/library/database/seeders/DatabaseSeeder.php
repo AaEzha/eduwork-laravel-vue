@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             MemberSeeder::class,
+            UserSeeder::class,
             AuthorSeeder::class,
             CatalogSeeder::class,
             PublisherSeeder::class,
             BookSeeder::class,
-            UserSeeder::class,
 
         ]);
     }

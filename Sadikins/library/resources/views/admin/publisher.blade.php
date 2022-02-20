@@ -2,7 +2,6 @@
 @section('title','publisher')
 @section('css')
 {{-- Data table --}}
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" /> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css" />
 @endsection
@@ -16,10 +15,11 @@
             <div>
                     <!-- Button trigger modal -->
                 <a href="#" @click="addData()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add New publisher
+                Add New publisher &nbsp;+
                 </a>
             </div>
             </div>
+            <hr>
             <table id="datatable" class="table table-hover my-3 ">
                 <thead>
                 <tr>
@@ -104,9 +104,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
-    <script>
+<script>
     var actionUrl= '{{ url('publishers') }}';
     var apiUrl= '{{ url('api/publishers') }}';
     var columns = [

@@ -92,6 +92,7 @@ class AdminController extends Controller
             ->leftJoin('members', 'transactions.member_id', 'members.id')
             ->orderBy('transactions.member_id', 'ASC')
             ->get();
+
         $data7 = Transaction::select('members.name', 'members.address', 'date_start', 'date_end')
             ->leftJoin('members', 'transactions.member_id', 'members.id')
             ->where(DB::raw('MONTH(transactions.date_start)'), '=', '02')

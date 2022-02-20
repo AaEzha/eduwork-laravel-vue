@@ -73,8 +73,34 @@
         </div>
         </div>
 
+          <div class="col-8 grid-margin stretch-card">
+            <div class="card ">
+                <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                        <h4 class="card-title card-title-dash">Authors</h4>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                    <div class="mt-3"
+                    >
+                        <div class="chart">
+                        <canvas id="lineChart" style="min-height:250px; height:550px; max-height:600px; max-width:100%;"></canvas>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="col-4 grid-margin stretch-card">
+    </div>
+    <div class="row flex-grow mt-5">
+
+        <div class="col-12 grid-margin stretch-card">
             <div class="card ">
                 <div class="card-body">
                 <div class="row">
@@ -97,29 +123,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 grid-margin stretch-card">
-            <div class="card ">
-                <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                        <h4 class="card-title card-title-dash">Author</h4>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                    <div class="mt-3"
-                    >
-                        <div class="chart">
-                        <canvas id="lineChart" style="min-height:250px; height:550px; max-height:600px; max-width:100%;"></canvas>
-                    </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 @endsection
 
@@ -212,7 +216,7 @@
     }
 
 
-    // Bar Chart
+    //== Bar Chart ===
     var areaChartData = {
         labels : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ' October', 'November', 'December'],
         datasets: JSON.parse(data_bar)
@@ -246,8 +250,8 @@
     labels: labels,
     datasets: [{
       label: 'Author Report',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: '#E0C3FC',
+      borderColor: '#E0C3FC',
       data: JSON.parse(data_line),
     }]
   };

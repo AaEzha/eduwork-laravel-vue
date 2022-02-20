@@ -17,9 +17,9 @@
     </div>
     <hr class="my-5">
     <div class="row">
-        <div class="col-3 mb-3" v-for="book in filteredList">
-           <div class="card" style="width: 18rem;" v-on:click="editData(book)"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <div class="card-body">
+        <div class="col-3 mb-4" v-for="book in filteredList">
+           <div class="card h-100" style="width: 18rem;" v-on:click="editData(book)"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="card-body ">
                 <h5 class="card-title">@{{ book.title }} (@{{ book.qty }})</h5>
                 <small class="card-subtitle mb-2 text-muted">Year : @{{ book.year }}</small>
                 <h6 class="card-subtitle mb-2 text-muted">ISBN : @{{ book.isbn }}</h6>
