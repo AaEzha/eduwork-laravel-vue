@@ -189,13 +189,14 @@
               <span class="menu-title">Members</span>
             </a>
           </li>
-
+          @role('admin')
            <li class="nav-item {{ (request()->is('transactions')) ? 'active' : ((request()->is('transactions/{id}/')) ? 'active' : '') }}">
             <a class="nav-link"  href="{{ route('transactions.index') }}">
               <i class="menu-icon mdi  mdi mdi-barcode-scan"></i>
               <span class="menu-title">Transactions</span>
             </a>
           </li>
+          @endrole
 
 
         </ul>

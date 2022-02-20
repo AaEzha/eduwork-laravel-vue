@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
@@ -21,6 +23,11 @@ use App\Http\Controllers\TransactionDetailController;
 */
 
 Route::get('/', function () {
+    // $role = Role::first();
+    // $role->givePermissionTo('manage transactions');
+    // return $role;
+    // $user = User::with('roles')->get();
+    // return $user;
     return view('welcome');
 });
 
