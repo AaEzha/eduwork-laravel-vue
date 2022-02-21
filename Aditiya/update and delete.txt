@@ -1,0 +1,5 @@
+UPDATE `data_pelanggan` SET nama_pelanggan = 'gugun' WHERE id_pelanggan = 12;
+UPDATE `data_pelanggan` SET alamat = 'bumi ciruas permai' WHERE id_pelanggan = 19;
+DELETE FROM `data_penjualan` WHERE kode_transaksi = '30';
+DELETE FROM `data_pegawai` WHERE id_pegawai ='4';
+UPDATE `data_penjualan` SET jumlah_obat = '2', total = '30000' WHERE kode_transaksi = '25'
