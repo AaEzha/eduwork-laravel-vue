@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->timestamps();
 
-            $table->foreign('transaction_id')->references('id')->on('transaction');
+            $table->foreign('transaction_id')->references('id')->on('transactions');
             $table->foreign('book_id')->references('id')->on('books');
         });
     }
