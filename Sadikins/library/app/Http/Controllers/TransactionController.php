@@ -134,8 +134,6 @@ class transactionController extends Controller
             ->groupBy(['transactions.id','members.name', 'date_start'])
             ->get();
 
-
-
         return view('admin.transaction.show', ['transactions' => $transactions]);
     }
 
@@ -148,14 +146,6 @@ class transactionController extends Controller
     public function edit(Transaction $transaction)
     {
 
-        $loan =  collect($transaction->books)->map(function($loan){
-
-            return $loan->id;
-
-        });
-
-        
-       
 
         return view('admin.transaction.edit', [
             'transaction' => $transaction, 
@@ -163,9 +153,6 @@ class transactionController extends Controller
             'books' => Book::select('books.id', 'title')
             ->where('books.qty', '>=', '1')
             ->get(),
-
-            'loan' => $loan,
-            
            
            
         ]);

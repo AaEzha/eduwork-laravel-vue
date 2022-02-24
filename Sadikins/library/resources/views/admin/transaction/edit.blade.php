@@ -56,17 +56,11 @@
 
                         <select class="js-example-basic-multiple w-100 my-3 @error('books') is-invalid @enderror" name="books[]" id="books" multiple="multiple">
 
-                            {{-- Buku yg telah dipilih --}}
-                            @foreach ($transaction->books as  $loan)
-
-                            <option selected  value="{{ $loan->id }}"> {{ $loan->title }}</option>
-
-                            @endforeach
 
                             {{-- daftar buku --}}
-                            @foreach($books as  $book)
+                            @foreach($books as $key=>  $book)
 
-                             <option {{ $loan->id == $book->id ? 'disabled' : '' }}  value="{{ $book->id }}">{{ $book->title }}</option>
+                            <option {{ $transaction->books()->find($book->id) ? 'selected' : '' }}  value="{{ $book->id }}">{{ $key+1 }} . {{ $book->title }}</option>
                                 
                             @endforeach
                            
