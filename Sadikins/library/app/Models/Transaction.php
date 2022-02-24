@@ -17,6 +17,6 @@ class Transaction extends Model
 
     public function books()
     {
-        return $this->belongsToMany(Book::class);
+        return $this->belongsToMany(Book::class)->withPivot('book_id', 'qty');
     }
 }

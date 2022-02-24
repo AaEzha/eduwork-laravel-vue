@@ -14,7 +14,7 @@
                     <div  class="col-sm-3 mt-3 ">Name</div>
                     <div class="col-sm-9 mt-3">
                         <select name="member" id="member" class="form-select form-control-lg pt-3 @error('member') is-invalid @enderror">
-                             <option selected disabled>Choose one!</option>
+                            <option selected disabled>Choose one!</option>
                             @foreach ($members as $member)
                             <option {{ $member->id == $transaction->member_id ? 'selected' : '' }} value="{{ $member->id }}">{{ $member->name }}</option>
                             @endforeach
@@ -56,13 +56,20 @@
 
                         <select class="js-example-basic-multiple w-100 my-3 @error('books') is-invalid @enderror" name="books[]" id="books" multiple="multiple">
 
-                            @foreach ($transaction->books as $book)
-                            <option selected value="{{ $book->id }}">{{ $book->title }}</option>
+                            {{-- Buku yg telah dipilih --}}
+                            @foreach ($transaction->books as  $loan)
+
+                            <option selected  value="{{ $loan->id }}"> {{ $loan->title }}</option>
+
                             @endforeach
 
-                            @foreach ($books as $book)
-                            <option value="{{ $book->id }}">{{ $book->title }}</option>
+                            {{-- daftar buku --}}
+                            @foreach($books as  $book)
+
+                             <option {{ $loan->id == $book->id ? 'disabled' : '' }}  value="{{ $book->id }}">{{ $book->title }}</option>
+                                
                             @endforeach
+                           
                         </select>
 
                              @error('books')

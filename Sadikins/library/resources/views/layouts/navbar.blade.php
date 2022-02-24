@@ -115,11 +115,17 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
               <a class="dropdown-item py-3">
-                <p class="mb-0 font-weight-medium float-left">You have nofication </p>
+                <p class="mb-0 font-weight-medium float-left">
+
+                    Notifications  
+                  
+                </p>
                 <span class="badge badge-pill badge-primary float-right">Close</span>
               </a>
               <div class="dropdown-divider"></div>
+
               {{ due_date() }}
+              
             </div>
           </li>
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
