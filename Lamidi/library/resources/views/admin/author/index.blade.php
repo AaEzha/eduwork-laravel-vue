@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('header','HOME')
+@section('header','Author')
 @section('content')
-HALAMAN HOME
+HALAMAN Author
 @endsection
