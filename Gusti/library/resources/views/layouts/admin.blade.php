@@ -153,13 +153,13 @@
                             <a href="{{ url ('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Home
+                                    Dasboard
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a href="{{ url('book') }}" class="nav-link {{ request()->is('book') ? 'active' : '' }}">
+                        <li class="nav-item dropdown">
+                            <a href="{{ url('buku') }}" class="nav-link {{ request()->is('buku') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
@@ -178,16 +178,52 @@
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item ">
-                            <a href="{{ url('catalog') }}" class="nav-link {{ request()->is('catalog') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th-large"></i>
+                            <a href="{{ url('pengarang') }}" class="nav-link {{ request()->is('pengarang') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-person-lines-fill"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                    Catalog
+                                     Pengarang
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item ">
+                            <a href="{{ url('penerbit') }}" class="nav-link {{ request()->is('penerbit') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-bookmark-star-fill"></i>
+                                <!-- <i class="fa-solid fa-book-open-cover"></i> -->
+                                <p>
+                                    Penerbit
+                                    <i class="right fas fa-angle-down"></i>
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item ">
+                            <a href="{{ url('katalog') }}" class="nav-link {{ request()->is('katalog') ? 'active' : '' }}">
+                                <i class="nav-icon bi-grid"></i>
+                                <!-- <i class="fa-solid fa-book-open-cover"></i> -->
+                                <p>
+                                    Katalog
+                                    <i class="right fas fa-angle-down"></i>
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a href="{{ url('transaksi') }}" class="nav-link {{ request()->is('transaksi') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-wallet-fill"></i>
+                                <!-- <i class="fa-solid fa-book-open-cover"></i> -->
+                                <p>
+                                    Transaksi
+                                    <i class="right fas fa-angle-down"></i>
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

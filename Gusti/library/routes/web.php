@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +33,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');   
 
-Route::get('/book', [BookController::class, 'index']);
+Route::get('/buku', [BookController::class, 'index']);
 Route::get('/member', [MemberController::class, 'index']);
-Route::get('/catalog', [CatalogController::class, 'index']);
+Route::get('/katalog', [CatalogController::class, 'index']);
+Route::get('/penerbit', [PublisherController::class, 'index']);
+Route::get('/pengarang', [AuthorController::class, 'index']);
+Route::get('/transaksi', [TransactionController::class, 'index']);
+
