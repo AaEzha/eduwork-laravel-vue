@@ -150,7 +150,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ url ('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Home
@@ -159,7 +159,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('book') }}" class="nav-link {{ request()->is('book') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
@@ -168,13 +168,22 @@
                                 </p>
                             </a>
                         </li>
-                      
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-solid fa-users"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                    Data Anggota
+                                    Data Member
+                                    <i class="right fas fa-angle-down"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{{ url('catalog') }}" class="nav-link {{ request()->is('catalog') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th-large"></i>
+                                <!-- <i class="fa-solid fa-book-open-cover"></i> -->
+                                <p>
+                                    Catalog
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>
@@ -192,7 +201,7 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <h2>Dashboard</h2>
+                    <h2>@yield('header')</h2>
                     <br>
                     @yield('content')
                 </div><!-- /.container-fluid -->
