@@ -9,6 +9,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Book;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,3 @@ Route::get('/katalog', [CatalogController::class, 'index']);
 Route::get('/penerbit', [PublisherController::class, 'index']);
 Route::get('/pengarang', [AuthorController::class, 'index']);
 Route::get('/transaksi', [TransactionController::class, 'index']);
-

@@ -14,7 +14,7 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return view('admin.catalog');
+        return view('admin.pages.catalog');
     }
 
     /**
