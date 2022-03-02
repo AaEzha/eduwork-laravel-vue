@@ -7,7 +7,10 @@ use App\Models\Member;
 use App\Models\Publisher;
 use App\Models\Author;
 use App\Models\Catalog;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -34,9 +37,72 @@ class HomeController extends Controller
         //$books = Book::with('catalog')->get();
         //$authors = Author::with('books')->get();
         //$catalogs = Catalog::with('books')->get();
-        $publishers = Publisher::with('books')->get();
+        //$publishers = Publisher::with('books')->get();
 
-        return $publishers;
+        //no 1
+        $data = Member::select('*')->join('users', 'users.member_id', '=', 'members.id')->get();
+
+        //no 2
+        $data2 = Member::select('*')->leftjoin('users', 'users.member_id', '=', 'members.id')->where('users.id', null)->get();
+
+        //no 3
+        $data3 = Transaction::select('members.id', 'members.name')->rightjoin('members', 'members.id', '=', 'transactions.member_id')->where('transactions.member_id', null)->get();
+
+        //no 4
+        $data4 = Member::select('members.id', 'members.name', 'members.phone_number')->join('transactions', 'transactions.member_id', '=', 'members.id')->orderby('members.id', 'asc')->get();
+
+        //no 5
+        $data5 = Member::select('members.id', 'members.name', 'members.phone_number')->join('transactions', 'transactions.member_id', '=', 'members.id')->groupby('members.id', 'members.name', 'members.phone_number')->having(DB::raw('count(members.id)'), '>', 1)->get();
+
+        //no 6
+        $data6 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')->join('members', 'members.id', '=', 'transactions.member_id')->get();
+
+        //no 7
+        $start_date = date('Y-m-d', strtotime('2021-06-01'));
+        $end_date = date('Y-m-d', strtotime('2021-06-31'));
+        $data7 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')->join('members', 'members.id', '=', 'transactions.member_id')->wheredate('transactions.date_start', '>=', $start_date)->wheredate('transactions.date_end', '<=', $end_date)->get();
+
+        //no 8
+        $start_date2 = date('Y-m-d', strtotime('2021-05-01'));
+        $end_date2 = date('Y-m-d', strtotime('2021-05-31'));
+        $data8 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')->join('members', 'members.id', '=', 'transactions.member_id')->wheredate('transactions.date_start', '>=', $start_date2)->wheredate('transactions.date_end', '<=', $end_date2)->get();
+
+        //no 9
+        $data9 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')->join('members', 'members.id', '=', 'transactions.member_id')->wheremonth('transactions.date_start', '=', 6)->wheremonth('transactions.date_end', '=', 6)->get();
+
+        //no 10
+        $data10 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')->join('members', 'members.id', '=', 'transactions.member_id')->where('address', 'like', '%Bandung%')->get();
+
+        //no 11
+        $data11 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')->join('members', 'members.id', '=', 'transactions.member_id')->where('address', 'like', '%Bandung%', 'and', 'sex=p')->get();
+
+        //no 12
+        $data12 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty',)->join('transactions', 'transactions.id', '=', 'transaction_details.transaction_id')->join('books', 'books.id', '=', 'transaction_details.book_id')->join('members', 'members.id', '=', 'transactions.member_id')->where('transaction_details.qty', '>', 1)->get();
+
+        //no 13
+        $data13 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'books.price')->join('transactions', 'transactions.id', '=', 'transaction_details.transaction_id')->join('books', 'books.id', '=', 'transaction_details.book_id')->join('members', 'members.id', '=', 'transactions.member_id')->where('transaction_details.qty', '*', 'books.price')->get();
+
+        //no 14
+        $data14 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'publishers.name', 'authors.name', 'catalogs.name as nama_katalog')->join('transactions', 'transactions.id', '=', 'transaction_details.transaction_id')->join('books', 'books.id', '=', 'transaction_details.book_id')->join('members', 'members.id', '=', 'transactions.member_id')->join('publishers', 'publishers.id', '=', 'books.publisher_id')->join('authors', 'authors.id', '=', 'books.author_id')->join('catalogs', 'catalogs.id', '=', 'books.catalog_id')->get();
+
+        //no 15
+        $data15 = Catalog::select('catalogs.id', 'name', 'books.title')->join('books', 'books.catalog_id', '=', 'catalogs.id')->get();
+
+        //no 16
+        $data16 = Book::select('isbn', 'title', 'year', 'publisher_id', 'author_id', 'catalog_id', 'qty', 'price', 'publishers.name as publisher')->leftjoin('publishers', 'publishers.id', '=', 'books.publisher_id')->get();
+
+        //no 17
+        $data17 = Book::select('author_id')->where('author_id', '=', 'PG05')->count();
+
+        //no 18
+        $data18 = Book::all()->where('price', '>', '10000');
+
+        //no 19
+        $data19 = Book::all()->where('publishers.name', '=', 'Penerbit01')->where('qty', '>', '10')->join('publishers', 'publishers.id', '=', 'books.publisher_id');
+
+        //no 20
+        $data20 = DB::table('members')->wheremonth('created_at', '6')->get();
+        return $data20;
         return view('home');
     }
 }

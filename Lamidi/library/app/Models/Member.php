@@ -10,6 +10,6 @@ class Member extends Model
     use HasFactory;
     public function transaction()
     {
-        return $this->belongsTo('App\Models\Transaction', 'member_id');
+        //  return $this->belongsTo('App\Models\Transaction', 'member_id');
     }
 }
