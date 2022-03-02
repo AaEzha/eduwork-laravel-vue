@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use App\Models\Book;
+// use App\Models\Member;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaction extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'member_id', 'date_start', 'date_end'
+    ];
 
     public function member()
     {
@@ -16,6 +22,6 @@ class Transaction extends Model
 
     public function books()
     {
-        return $this->belongsToMany(Book::class,'book_id');
+        return $this->belongsToMany(Book::class)->wherePivotIn( 'book_id','qty');
     }
 }

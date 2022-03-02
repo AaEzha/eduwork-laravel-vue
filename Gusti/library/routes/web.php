@@ -9,6 +9,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\TransactionController;
+
 use App\Models\Book;
 
 /*
@@ -34,9 +35,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');   
 
-Route::get('/buku', [BookController::class, 'index']);
+Route::get('/buku', [BookController::class,'index']);
 Route::get('/member', [MemberController::class, 'index']);
 Route::get('/katalog', [CatalogController::class, 'index']);
 Route::get('/penerbit', [PublisherController::class, 'index']);
 Route::get('/pengarang', [AuthorController::class, 'index']);
-Route::get('/transaksi', [TransactionController::class, 'index']);
+Route::get('/transaksi', [TransactionController::class,'index']);
+
+
+// Route::get('create_transaction', function(){
+//     $book = Book::findOrFail(1);
+
+//     $book->transactions()->create([
+        
+//     ]);
+// });
