@@ -45,43 +45,43 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="{{ url('buku') }}" class="nav-link {{ request()->is('buku') ? 'active' : '' }}">
+                            <a href="{{ url('books') }}" class="nav-link {{ request()->is('books') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                    Data Buku
+                                    Book
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="{{ url('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
+                            <a href="{{ url('members') }}" class="nav-link {{ request()->is('members') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-solid fa-users"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                    Data Member
+                                    Member
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item ">
-                            <a href="{{ url('pengarang') }}" class="nav-link {{ request()->is('pengarang') ? 'active' : '' }}">
+                            <a href="{{ url('authors') }}" class="nav-link {{ request()->is('authors') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-person-lines-fill"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                     Pengarang
+                                     Author
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item ">
-                            <a href="{{ url('penerbit') }}" class="nav-link {{ request()->is('penerbit') ? 'active' : '' }}">
+                            <a href="{{ url('publishers') }}" class="nav-link {{ request()->is('publishers') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-bookmark-star-fill"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                    Penerbit
+                                    Publisher
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>
@@ -89,22 +89,22 @@
 
 
                         <li class="nav-item ">
-                            <a href="{{ url('katalog') }}" class="nav-link {{ request()->is('katalog') ? 'active' : '' }}">
+                            <a href="{{ url('catalogs') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : '' }}">
                                 <i class="nav-icon bi-grid"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                    Katalog
+                                    Catalog
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item ">
-                            <a href="{{ url('transaksi') }}" class="nav-link {{ request()->is('transaksi') ? 'active' : '' }}">
+                            <a href="{{ url('transactions') }}" class="nav-link {{ request()->is('transactions') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-wallet-fill"></i>
                                 <!-- <i class="fa-solid fa-book-open-cover"></i> -->
                                 <p>
-                                    Transaksi
+                                    Transaction
                                     <i class="right fas fa-angle-down"></i>
                                 </p>
                             </a>

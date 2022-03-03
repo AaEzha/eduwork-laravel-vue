@@ -35,12 +35,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');   
 
-Route::get('/buku', [BookController::class,'index']);
-Route::get('/member', [MemberController::class, 'index']);
-Route::get('/katalog', [CatalogController::class, 'index']);
-Route::get('/penerbit', [PublisherController::class, 'index']);
-Route::get('/pengarang', [AuthorController::class, 'index']);
-Route::get('/transaksi', [TransactionController::class,'index']);
+Route::get('/books', [BookController::class,'index']);
+Route::get('/members', [MemberController::class, 'index']);
+Route::get('/catalogs', [CatalogController::class, 'index']);
+Route::get('/publishers', [PublisherController::class, 'index']);
+Route::get('/authors', [AuthorController::class, 'index']);
+Route::get('/transactions', [TransactionController::class,'index']);
 
 
 // Route::get('create_transaction', function(){
