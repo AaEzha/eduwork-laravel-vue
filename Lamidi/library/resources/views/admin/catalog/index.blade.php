@@ -7,7 +7,7 @@ HALAMAN Catalog
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Catalog</h3>
+                <a href="{{url('catalogs/create')}}" class="btn btn-sm btn-primary pull-right">Create New Catalog</a>
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -26,6 +26,7 @@ HALAMAN Catalog
                             <th>No</th>
                             <th>Name</th>
                             <th>Total Books</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,14 @@ HALAMAN Catalog
                             <td>{{$key+1}}</td>
                             <td>{{$catalog->name}}</td>
                             <td>{{count($catalog->books)}}</td>
+                            <td><a href="{{url('catalogs/'.$catalog->id.'/edit')}}" class="btn btn-sm btn-warning pull-right">Edit</a></td>
+                            <td>
+                                <form action="{{url('catalogs',['id'=>$catalog->id])}}" method="POST">
+                                    <input class="btn btn-danger btn-sm" type="submit" value="Delete" onclick="return confirm('Are you sure ?')">
+                                    @method('delete')
+                                    @csrf
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
