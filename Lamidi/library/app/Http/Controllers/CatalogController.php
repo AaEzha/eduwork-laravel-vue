@@ -12,6 +12,10 @@ class CatalogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $catalogs = Catalog::with('books')->get();
@@ -90,6 +94,5 @@ class CatalogController extends Controller
     public function destroy(Catalog $catalog)
     {
         $catalog->delete();
-        return redirect('catalogs');
     }
 }

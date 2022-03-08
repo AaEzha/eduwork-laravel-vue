@@ -17,6 +17,7 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <script src="https://kit.fontawesome.com/50c6f555d8.js" crossorigin="anonymous"></script>
+  @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -239,7 +240,7 @@
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="{{url('publishers')}}" class="nav-link {{request()->is('publishers')?'active':''}}">
+              <a href="<?= url('publishers'); ?>" class="nav-link {{request()->is('publishers')?'active':''}}">
                 <i class="nav-icon fas fa-upload"></i>
                 <p>
                   Publisher
@@ -335,6 +336,9 @@
   <script src="{{asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
   <!-- AdminLTE App -->
   <script src="{{asset('assets/dist/js/adminlte.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  @yield('js')
 </body>
 
 </html>
