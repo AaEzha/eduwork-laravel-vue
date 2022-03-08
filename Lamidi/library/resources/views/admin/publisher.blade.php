@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('header','Publisher')
 @section('css')
+<!-- Datatables -->
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 @endsection
 @section('content')
 HALAMAN Publisher
@@ -12,19 +16,9 @@ HALAMAN Publisher
                 <div class="card-header">
                     <div class="card-header">
                         <a href="" @click="addData()" data-toggle="modal" class="btn btn-sm btn-primary pull-right">Create New publisher</a>
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="card-body table-responsive p-0" style="height: 300px;">
-                        <table class="table table-head-fixed text-nowrap">
+                    <div class="card-body table-responsive p-0">
+                        <table id="example1" class="table table-head-fixed text-nowrap table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -33,7 +27,7 @@ HALAMAN Publisher
                                     <th>Phone Number</th>
                                     <th>Address</th>
                                     <th>Total Books</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,6 +92,24 @@ HALAMAN Publisher
 </div>
 @endsection
 @section('js')
+<!-- Datatables & Plugins -->
+<script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('assets/plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('assets/plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script>
+    $(function() {
+        $("#example1").DataTable();
+    });
+</script>
 <script type="text/javascript">
     var controller = new Vue({
         el: '#controller',
