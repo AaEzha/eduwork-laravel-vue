@@ -18,7 +18,7 @@ HALAMAN Publisher
                         <a href="" @click="addData()" data-toggle="modal" class="btn btn-sm btn-primary pull-right">Create New publisher</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table id="example1" class="table table-head-fixed text-nowrap table-bordered table-striped">
+                        <table id="datatable" class="table table-head-fixed text-nowrap table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -26,25 +26,10 @@ HALAMAN Publisher
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Address</th>
-                                    <th>Total Books</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($publishers as $key => $publisher)
-                                <tr>
-                                    <td>{{$key+1}}</td>
-                                    <td>{{$publisher->name}}</td>
-                                    <td>{{$publisher->email}}</td>
-                                    <td>{{$publisher->phone_number}}</td>
-                                    <td>{{$publisher->address}}</td>
-                                    <td>{{count($publisher->books)}}</td>
-                                    <td class="text-center">
-                                        <a href="" @click="editData({{$publisher}})" data-toggle="modal" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="" @click="deleteData({{$publisher->id}})" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
-                                </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -55,9 +40,9 @@ HALAMAN Publisher
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" :action="actionUrl" autocomplete="off">
-                    <div class="modal-header">
-                        <h4 class="modal-title"> publisher</h4>
+                <form method="post" :action="actionUrl" autocomplete="off" @submit="submitForm($event, data.id)">
+                    <div class=" modal-header">
+                        <h4 class="modal-title"> Publisher</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -105,7 +90,46 @@ HALAMAN Publisher
 <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-<script>
+
+<script type="text/javascript">
+    var actionUrl = "{{url('publishers')}}";
+    var apiUrl = "{{url('api/publishers')}}";
+
+    var columns = [{
+            data: 'DT_RowIndex',
+            orderable: true
+        },
+        {
+            data: 'name',
+            orderable: true
+        },
+        {
+            data: 'email',
+            orderable: true
+        },
+        {
+            data: 'phone_number',
+            orderable: true
+        },
+        {
+            data: 'address',
+            orderable: true
+        },
+        {
+            render: function(index, row, data, meta) {
+                return ` 
+                <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData (event,${meta.row})"> Edit </a> 
+                <a class="btn btn-danger btn-sm" onclick="controller.deleteData(event,${data.id})">Delete </a>
+                `;
+            },
+            orderable: false,
+            width: '200px',
+            class: 'text-center'
+        },
+    ];
+</script>
+<script src="{{asset('js/data.js')}}"></script>
+<!-- <script>
     $(function() {
         $("#example1").DataTable();
     });
@@ -147,5 +171,5 @@ HALAMAN Publisher
             }
         }
     });
-</script>
+</script> -->
 @endsection

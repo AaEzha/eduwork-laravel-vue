@@ -16,13 +16,16 @@ class PublisherController extends Controller
     {
         $this->middleware('auth');
     }
-
     public function index()
     {
-        $publishers = Publisher::with('books')->get();
-        return view('admin.publisher', compact('publishers'));
+        return view('admin.publisher');
     }
-
+    public function api()
+    {
+        $publishers = Publisher::all();
+        $datatables = datatables()->of($publishers)->addIndexColumn();
+        return $datatables->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
