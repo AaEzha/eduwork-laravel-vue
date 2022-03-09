@@ -35,12 +35,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');   
 
-Route::get('/books', [BookController::class,'index']);
-Route::get('/members', [MemberController::class, 'index']);
-Route::get('/catalogs', [CatalogController::class, 'index']);
-Route::get('/publishers', [PublisherController::class, 'index']);
-Route::get('/authors', [AuthorController::class, 'index']);
-Route::get('/transactions', [TransactionController::class,'index']);
+Route::resource('catalogs', CatalogController::class);
+// Route::get('/catalogs',[CatalogController::class, 'index']);
+// Route::get('/catalogs/create',[CatalogController::class, 'create']);
+// Route::post('/catalogs',[CatalogController::class, 'store']);
+// Route::get('/catalogs/{catalog}/edit',[CatalogController::class, 'edit']);
+// Route::put('/catalogs/{catalog}',[CatalogController::class, 'update']);
+// Route::delete('/catalogs/{catalog}',[CatalogController::class, 'destroy']);
+
+Route::resource('books', BookController::class);
+Route::resource('members', MemberController::class);
+Route::resource('publishers', PublisherController::class);
+Route::resource('authors', AuthorController::class);
+Route::resource('transactions', TransactionController::class);
 
 
 // Route::get('create_transaction', function(){
