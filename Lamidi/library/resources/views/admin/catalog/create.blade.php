@@ -18,12 +18,11 @@
                         <label>Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Enter Name" required="">
                     </div>
-                </div>
-                <!-- /.card-body -->
+                    <!-- /.card-body -->
 
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
             </form>
         </div>
     </div>

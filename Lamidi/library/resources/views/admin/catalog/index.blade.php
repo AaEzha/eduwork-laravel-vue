@@ -26,6 +26,7 @@ HALAMAN Catalog
                             <th>No</th>
                             <th>Name</th>
                             <th>Total Books</th>
+                            <th>Date Created</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@ HALAMAN Catalog
                             <td>{{$key+1}}</td>
                             <td>{{$catalog->name}}</td>
                             <td>{{count($catalog->books)}}</td>
+                            <td>{{format_date($catalog->created_at)}}</td>
                             <td><a href="{{url('catalogs/'.$catalog->id.'/edit')}}" class="btn btn-sm btn-warning pull-right">Edit</a></td>
                             <td>
                                 <form action="{{url('catalogs',['id'=>$catalog->id])}}" method="POST">

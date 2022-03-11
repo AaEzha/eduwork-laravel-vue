@@ -26,7 +26,7 @@ HALAMAN Author
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Address</th>
-                                    <th>Total Books</th>
+                                    <th>Created Date</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -64,6 +64,10 @@ HALAMAN Author
                         <div class="form-group">
                             <label>Address</label>
                             <input type="text" class="form-control" name="address" :value="data.address" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>Created Date</label>
+                            <input type="text" class="form-control" name="created_at" :value="data.created_at" required="">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -112,6 +116,10 @@ HALAMAN Author
         },
         {
             data: 'address',
+            orderable: true
+        },
+        {
+            data: 'date',
             orderable: true
         },
         {
