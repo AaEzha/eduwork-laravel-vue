@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset ('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Icon Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -81,6 +82,11 @@
     <script src="{{ asset ('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset ('assets/dist/js/adminlte.min.js') }}"></script>
+    {{-- vueJS --}}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    {{-- Axios JS --}}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @yield('js')
 
 </body>
 
