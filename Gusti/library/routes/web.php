@@ -49,6 +49,8 @@ Route::resource('publishers', PublisherController::class);
 Route::resource('authors', AuthorController::class);
 Route::resource('transactions', TransactionController::class);
 
+Route::get('api/authors', [AuthorController::class, 'api']);
+Route::get('api/publishers', [PublisherController::class, 'api']);
 
 // Route::get('create_transaction', function(){
 //     $book = Book::findOrFail(1);

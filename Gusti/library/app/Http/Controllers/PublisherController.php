@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Spatie\FlareClient\Api;
 
 class PublisherController extends Controller
 {
@@ -18,12 +19,17 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        
-        $publishers = Publisher::with('books')->get();
     
-        return view('admin.publisher' ,compact('publishers'));
+        return view('admin.publisher');
     }
 
+    public function api ()
+    {
+        $publishers = Publisher::all();
+        $datatables = datatables()->of($publishers)->addIndexColumn();
+
+        return $datatables->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -55,6 +61,8 @@ class PublisherController extends Controller
 
         return redirect('publishers');
     }
+
+    
 
     /**
      * Display the specified resource.

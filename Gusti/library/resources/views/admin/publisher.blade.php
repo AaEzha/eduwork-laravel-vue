@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="card-body p-3">
-                            <table id="datatable" class="table table-striped table-bordered">
+                            <table id="datatable" class="table table-hover table-bordered">
                                 <thead>
                                     <tr class="text-center">
                                         <th style="width: 10px">No</th>
@@ -31,29 +31,9 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
-                                        <th style="width: 15%">Action</th>
+                                        <th>Action</th>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($publishers as $publisher)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $publisher->name }}</td>
-                                            <td>{{ $publisher->email }}</td>
-                                            <td>{{ $publisher->phone_number }}</td>
-                                            <td>{{ $publisher->address }}</td>
-                                            <td class="text-center">
-                                                <a href="#" @click="editData({{ $publisher }})"
-                                                    class="btn btn-sm btn-primary">Edit
-                                                    {{-- <i class="bi bi-pencil"></i> --}}
-                                                </a>
-                                                {{-- <i class="bi bi-pencil"></i></a> --}}
-
-                                                <a href="#" @click="deleteData({{ $publisher->id }})" class="btn btn-sm btn-danger">Delete</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
+                                </thead>                           
                             </table>
                         </div>
 
@@ -71,7 +51,7 @@
                 <div class="modal fade" id="modal-default">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form :action="actionUrl" method="post" autocomplete="off">
+                            <form :action="actionUrl" method="post" autocomplete="off" @submit="submitForm(event, data.id)">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Publisher</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -135,25 +115,104 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <!-- Page specific script -->
-<script>
+
+<script type="text/javascript">
+    var actionUrl = '{{ url('publishers') }}';
+    var apiUrl = '{{ url('api/publishers') }}';
+
+    var columns = [
+        {data: 'DT_RowIndex', class: 'text-center', orderable: true},
+        {data: 'name', class: 'text-center', orderable: true},
+        {data: 'email', class: 'text-center', orderable: true},
+        {data: 'phone_number', class: 'text-center', orderable: true},
+        {data: 'address', class: 'text-center', orderable: true},
+        {render: function(index, row, data, meta) {
+            return `
+            <a href="#" class="btn btn-primary btn-sm bi bi-pencil-square" onclick="controller.editData(event, ${meta.row})">
+             </a>
+            
+            <a href="#" class="btn btn-danger btn-sm bi bi-trash" onclick="controller.deleteData(event, ${data.id})">
+             </a>`;
+        }, orderable: false, width:'100px', class:'text-center'},
+    ];
+
+    var controller = new Vue({
+        el: '#controller',
+        data: {
+            datas: [],
+            data: {},
+            actionUrl,
+            apiUrl,
+            editStatus:false,
+        },
+        mounted: function() {
+            this.datatable();
+        },
+        methods: {
+            datatable() {
+                const _this = this;
+                _this.table = $('#datatable').DataTable({
+                    ajax: {
+                            url: _this.apiUrl,
+                            type: 'GET',
+                        },
+                        columns
+                    }).on('xhr', function() {
+                        _this.datas = _this.table.ajax.json().data;
+                    });
+                },
+                addData() {
+                    this.data = {};
+                    this.editStatus = false;
+                    $('#modal-default').modal();
+                },
+                editData(event, row) {
+                    this.data = this.datas[row];
+                    this.editStatus = true;
+                    $('#modal-default').modal();
+                },
+                deleteData(event, id) {
+                    if (confirm('Are you sure?')) {
+                        $(event.target).parents('tr').remove();
+                        axios.post(this.actionUrl + '/' + id, {
+                            _method: 'DELETE'
+                        }).then(response => {
+                            alert('Data has been removed');
+                        });
+                    }
+                },
+                submitForm(event, id) {
+                    event.preventDefault();
+                    const _this = this;
+                    var actionUrl = !this.editStatus ? this.actionUrl : this.actionUrl + '/' + id;
+                    axios.post(actionUrl, new FormData($(event.target)[0])).then(response => {
+                        $('#modal-default').modal('hide');
+                        _this.table.ajax.reload();
+                    });
+                },
+            }
+    });
+</script>
+
+{{-- <script>
     $(function () {
       $("#datatable").DataTable();
-        // "responsive": true, "lengthChange": false, "autoWidth": false,
-        // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    //   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    //   $('#example2').DataTable({
-    //     "paging": true,
-    //     "lengthChange": false,
-    //     "searching": false,
-    //     "ordering": true,
-    //     "info": true,
-    //     "autoWidth": false,
-    //     "responsive": true,
-    //   });
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
     });
-  </script>
+  </script> --}}
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         var controller = new Vue ({
             el : '#controller',
             data: {
@@ -189,5 +248,5 @@
                 }     
             });
         
-    </script>
+    </script> --}}
 @endsection
