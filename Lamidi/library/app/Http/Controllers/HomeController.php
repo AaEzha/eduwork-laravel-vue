@@ -31,6 +31,34 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $total_anggota = Member::count();
+        $total_buku = Book::count();
+        $total_peminjaman = Transaction::count();
+        $total_penerbit = Publisher::count();
+
+        $data_donut = Book::select(DB::raw("COUNT(publisher_id) as total"))->groupby('publisher_id')->orderby('publisher_id', 'asc')->pluck('total');
+        $label_donut = Publisher::orderBy('publishers.id', 'asc')->join('books', 'books.publisher_id', '=', 'publishers.id')->groupby('name')->pluck('name');
+        $pieDatas = Book::select(DB::raw("COUNT(catalog_id) as total"))->groupby('catalog_id')->orderby('catalog_id', 'asc')->pluck('total');
+        $pieLabel = Catalog::orderBy('catalogs.id', 'asc')->join('books', 'books.catalog_id', '=', 'catalogs.id')->groupby('name')->pluck('name');
+        $label_bar = ['transaction'];
+        $data_bar = [];
+
+        foreach ($label_bar as $key => $value) {
+            $data_bar[$key]['label'] = $label_bar[$key];
+            $data_bar[$key]['backgroundcolor'] = $key == 0 ? 'rgba(60,141,188,0.9)' : 'rgba(210,214,222,1)';
+            $data_month = [];
+
+            foreach (range(1, 12) as $month) {
+                if ($key == 0) {
+                    $data_month[] = Transaction::select(db::raw("count(*)as total"))->wheremonth('date_start', $month)->first()->total;
+                } else {
+                    $data_month[] = Transaction::select(db::raw("count(*)as total"))->wheremonth('date_end', $month)->first()->total;
+                }
+            }
+
+            $data_bar[$key]['data'] = $data_month;
+        }
+        return view('home', compact('total_buku', 'total_anggota', 'total_peminjaman', 'total_penerbit', 'data_donut', 'label_donut', 'data_bar', 'pieDatas', 'pieLabel'));
         //$members = Member::with('user')->get();
         //$books = Book::with('publisher')->get();
         //$books = Book::with('author')->get();
@@ -83,6 +111,6 @@ class HomeController extends Controller
         //no 20
         //$data20 = DB::table('members')->wheremonth('created_at', '6')->get();
         //return $data20;
-        return view('home');
+        //return view('home');
     }
 }

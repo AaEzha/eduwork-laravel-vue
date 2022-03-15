@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 @endsection
 @section('content')
-HALAMAN Author
 <br><br>
 <div id="controller">
     <div class="row">
