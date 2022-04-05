@@ -8,8 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
-    public function transaction()
-    {
-        //  return $this->belongsTo('App\Models\Transaction', 'member_id');
-    }
+    protected $fillable = ['name', 'gender', 'phone_number', 'address', 'email'];
 }

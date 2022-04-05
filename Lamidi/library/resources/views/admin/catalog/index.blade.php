@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 @section('header','Catalog')
 @section('content')
-HALAMAN Catalog
-<br><br>
 <div class="row">
     <div class="col-12">
         <div class="card">

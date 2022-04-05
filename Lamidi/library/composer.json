@@ -7,14 +7,21 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "artifact",
+            "url": "artifacts/"
+        }
+    ],
     "require": {
         "php": "^8.0.2",
+        "grocerycrud/enterprise": "2.9.3",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "^9.19"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

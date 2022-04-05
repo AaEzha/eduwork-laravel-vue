@@ -9,8 +9,11 @@ use App\Models\Author;
 use App\Models\Catalog;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Notifications\TransactionNotification;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 
 class HomeController extends Controller
 {
@@ -29,8 +32,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $members = Member::all();
         $total_anggota = Member::count();
         $total_buku = Book::count();
         $total_peminjaman = Transaction::count();
@@ -58,6 +62,7 @@ class HomeController extends Controller
 
             $data_bar[$key]['data'] = $data_month;
         }
+        // Notification::send($members, new TransactionNotification($request->name));
         return view('home', compact('total_buku', 'total_anggota', 'total_peminjaman', 'total_penerbit', 'data_donut', 'label_donut', 'data_bar', 'pieDatas', 'pieLabel'));
         //$members = Member::with('user')->get();
         //$books = Book::with('publisher')->get();

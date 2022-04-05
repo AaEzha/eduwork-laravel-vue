@@ -41,6 +41,17 @@
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-bell"></i>
+            <span class="badge badge-warning navbar-badge">Notification</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
@@ -146,7 +157,7 @@
               </a>
             </li>
             <li class="nav-item menu-open">
-              <a href="{{url('transactions')}}" class="nav-link {{request()->is('transactions')?'active':''}}">
+              <a href="<?= url('transactions'); ?>" class="nav-link {{request()->is('transactions')?'active':''}}">
                 <i class="nav-icon fas fa-cash-register"></i>
                 <p>
                   Transaction

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +22,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
-Route::get('/transactions', [App\Http\Controllers\MemberController::class, 'index']);
-
 Route::get('/catalogs', [App\Http\Controllers\CatalogController::class, 'index']);
 Route::get('/catalogs/create', [App\Http\Controllers\CatalogController::class, 'create']);
 Route::post('/catalogs', [App\Http\Controllers\CatalogController::class, 'store']);
@@ -34,7 +32,22 @@ Route::delete('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::cl
 Route::resource('/authors', App\Http\Controllers\AuthorController::class);
 Route::resource('/publishers', App\Http\Controllers\PublisherController::class);
 Route::resource('/books', App\Http\Controllers\BookController::class);
+Route::resource('/members', App\Http\Controllers\MemberController::class);
+
+Route::resource('/transactions', [App\Http\Controllers\TransactionController::class, 'index']);
+Route::resource('/transactions/create', [App\Http\Controllers\TransactionController::class, 'create']);
+Route::resource('/transactions', [App\Http\Controllers\TransactionController::class, 'store']);
+Route::resource('/transactions/{transaction}/edit', [App\Http\Controllers\TransactionController::class, 'edit']);
+Route::resource('/transactions/{transaction}', [App\Http\Controllers\TransactionController::class, 'update']);
+Route::resource('/transactions/{transaction}', [App\Http\Controllers\TransactionController::class, 'destroy']);
 
 Route::get('api/authors', [App\Http\Controllers\AuthorController::class, 'api']);
 Route::get('api/publishers', [App\Http\Controllers\PublisherController::class, 'api']);
 Route::get('api/books', [App\Http\Controllers\BookController::class, 'api']);
+Route::get('api/members', [App\Http\Controllers\MemberController::class, 'api']);
+Route::get('api/transactions', [App\Http\Controllers\TransactionController::class, 'api']);
+
+Route::get('/transactions/{transaction}/edit', function () {
+    $books = App\Models\Book::get()->toArray();
+    return view('array', compact('books'));
+});

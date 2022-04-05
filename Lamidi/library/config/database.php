@@ -4,6 +4,13 @@ use Illuminate\Support\Str;
 
 return [
 
+    'adapter' => [
+        'driver' => 'Pdo_Mysql',
+        'database' => 'db_name',
+        'username' => 'db_username',
+        'password' => 'db_password',
+        'charset' => 'utf8'
+    ],
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -123,7 +130,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
