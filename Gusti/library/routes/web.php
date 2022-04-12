@@ -10,7 +10,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\TransactionController;
 
-use App\Models\Book;
+// use App\Models\Book;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +51,8 @@ Route::resource('transactions', TransactionController::class);
 
 Route::get('api/authors', [AuthorController::class, 'api']);
 Route::get('api/publishers', [PublisherController::class, 'api']);
+Route::get('api/members', [MemberController::class, 'api']);
+Route::get('api/books', [BookController::class, 'api']);
 
 // Route::get('create_transaction', function(){
 //     $book = Book::findOrFail(1);
