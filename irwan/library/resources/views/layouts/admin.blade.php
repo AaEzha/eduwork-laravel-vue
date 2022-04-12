@@ -196,14 +196,60 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li>
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="{{ url('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Home
               </p>
             </a>
           </li>
+
+           <li class="nav-item">
+            <a href="{{ url('catalog') }}" class="nav-link {{ request()->is('catalog') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-calendar-day"></i>
+              <p>
+                Catalog
+              </p>
+            </a>
+          </li>
+
+           <li class="nav-item">
+            <a href="{{ url('publisher') }}" class="nav-link {{ request()->is('publisher') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-upload"></i>
+              <p>
+                Publisher
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('author') }}" class="nav-link {{ request()->is('author') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Author
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('book') }}" class="nav-link {{ request()->is('book') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Book
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-astronaut"></i>
+              <p>
+                Member
+              </p>
+            </a>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -218,7 +264,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">@yield('header')</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

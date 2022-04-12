@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Models\Catalog;
 use Illuminate\Http\Request;
 
-class MemberCotroller extends Controller
+class CatalogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class MemberCotroller extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.catalog.index');
+        
     }
 
     /**
@@ -41,10 +42,10 @@ class MemberCotroller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $member)
+    public function show(Catalog $catalog)
     {
         //
     }
@@ -52,10 +53,10 @@ class MemberCotroller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $member)
+    public function edit(Catalog $catalog)
     {
         //
     }
@@ -64,10 +65,10 @@ class MemberCotroller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, Catalog $catalog)
     {
         //
     }
@@ -75,10 +76,10 @@ class MemberCotroller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Member  $member
+     * @param  \App\Models\Catalog  $catalog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function destroy(Catalog $catalog)
     {
         //
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Catalog;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
-class CatalohController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CatalohController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.member.index');
     }
 
     /**
@@ -41,10 +41,10 @@ class CatalohController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Catalog  $catalog
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Catalog $catalog)
+    public function show(Member $member)
     {
         //
     }
@@ -52,10 +52,10 @@ class CatalohController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Catalog  $catalog
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Catalog $catalog)
+    public function edit(Member $member)
     {
         //
     }
@@ -64,10 +64,10 @@ class CatalohController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Catalog  $catalog
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Catalog $catalog)
+    public function update(Request $request, Member $member)
     {
         //
     }
@@ -75,10 +75,10 @@ class CatalohController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Catalog  $catalog
+     * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Catalog $catalog)
+    public function destroy(Member $member)
     {
         //
     }
