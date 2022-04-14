@@ -11,15 +11,10 @@ class Transaction extends Model
     protected $fillable = ['member_id', 'date_start', 'date_end', 'status'];
     public function books()
     {
-        return $this->belongsTo(TransactionDetail::class);
-        // ->withPivot('book_id', 'qty');
+        return $this->belongsToMany(Book::class)->withPivot('book_id', 'qty');
     }
     public function members()
     {
         return $this->belongsTo(Member::class);
-    }
-    public function transaction_details()
-    {
-        return $this->belongsToMany(TransactionDetail::class);
     }
 }

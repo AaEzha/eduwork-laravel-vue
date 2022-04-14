@@ -16,9 +16,9 @@ class TransactionNotification extends Notification
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($transactions)
     {
-        $this->name = $name;
+        $this->transactions = $transactions;
     }
 
     /**
@@ -55,7 +55,7 @@ class TransactionNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name' => $this->name
+            'status' => $this->transactions['status']
         ];
     }
 }

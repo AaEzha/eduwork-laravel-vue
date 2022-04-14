@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use GroceryCrud\Core\GroceryCrud;
+use App\Models\Transaction;
 
 class AdminController extends Controller
 {
-
     /**
      * Grocery CRUD Example
      *

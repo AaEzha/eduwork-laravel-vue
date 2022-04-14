@@ -13,8 +13,8 @@ class Book extends Model
     {
         return $this->belongsTo('App\Models\Catalog', 'id');
     }
-    public function transaction()
+    public function transactions()
     {
-        return $this->hasTo('App\Models\Transaction', 'book_id');
+        return $this->belongsToMany(Transaction::class);
     }
 }

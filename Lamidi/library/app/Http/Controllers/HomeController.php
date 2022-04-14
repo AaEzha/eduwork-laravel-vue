@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Member;
 use App\Models\Publisher;
-use App\Models\Author;
 use App\Models\Catalog;
 use App\Models\Transaction;
-use App\Models\TransactionDetail;
-use App\Notifications\TransactionNotification;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Notification as FacadesNotification;
+
 
 class HomeController extends Controller
 {
@@ -34,11 +30,14 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $notifications = auth()->user()->unreadNotifications;
+        $transactions = Transaction::find(1);
         $members = Member::all();
         $total_anggota = Member::count();
         $total_buku = Book::count();
         $total_peminjaman = Transaction::count();
         $total_penerbit = Publisher::count();
+
 
         $data_donut = Book::select(DB::raw("COUNT(publisher_id) as total"))->groupby('publisher_id')->orderby('publisher_id', 'asc')->pluck('total');
         $label_donut = Publisher::orderBy('publishers.id', 'asc')->join('books', 'books.publisher_id', '=', 'publishers.id')->groupby('name')->pluck('name');
@@ -62,8 +61,7 @@ class HomeController extends Controller
 
             $data_bar[$key]['data'] = $data_month;
         }
-        // Notification::send($members, new TransactionNotification($request->name));
-        return view('home', compact('total_buku', 'total_anggota', 'total_peminjaman', 'total_penerbit', 'data_donut', 'label_donut', 'data_bar', 'pieDatas', 'pieLabel'));
+        return view('home', compact('total_buku', 'total_anggota', 'total_peminjaman', 'total_penerbit', 'data_donut', 'label_donut', 'data_bar', 'pieDatas', 'pieLabel', 'transactions', 'notifications'));
         //$members = Member::with('user')->get();
         //$books = Book::with('publisher')->get();
         //$books = Book::with('author')->get();

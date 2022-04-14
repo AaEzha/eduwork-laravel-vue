@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\TransactionRequest;
 use App\Models\TransactionDetail;
+use Illuminate\Notifications\Notification;
+use App\Notifications\TransactionNotification;
+
+use function GuzzleHttp\Promise\all;
 
 class TransactionController extends Controller
 {
@@ -40,10 +44,12 @@ class TransactionController extends Controller
     }
     public function index()
     {
+
         return view('admin.transaction.index');
     }
     public function api(Request $request)
     {
+        $transactions2 = Transaction::all();
         $transactions = Transaction::select(
             'transactions.id',
             'members.name',
@@ -90,6 +96,7 @@ class TransactionController extends Controller
         })
             ->rawColumns(['status', 'duration', 'total_book'])->addIndexColumn();
         return $datatables->make(true);
+        // Notification::send($transactions2, new TransactionNotification($request->status));
     }
     /**
      * Show the form for creating a new resource.
@@ -183,21 +190,23 @@ class TransactionController extends Controller
     public function edit(Transaction $transaction)
     {
 
-        $members = Member::get();
-        $books = TransactionDetail::select('books.id', 'books.title')
-            ->leftjoin('books', 'transaction_details.book_id', 'books.id')
-            ->where('books.qty', '>=', '1')
-            ->get();
-        return view('admin.transaction.edit', compact('transaction', 'members', 'books'));
-        //     [
-        //         'transaction' => $transaction,
-        //         'transaction_detail' => TransactionDetail::get(),
-        //         'members' => Member::get(),
-        //         'books' => Book::select('books.id', 'title')
-        //             ->where('books.qty', '>=', '1')
-        //             ->get(),
-        //     ]
-        // );
+        // $members = Member::get();
+        // $books = TransactionDetail::select('books.id', 'books.title')
+        //     ->leftjoin('books', 'transaction_details.book_id', 'books.id')
+        //     ->where('books.qty', '>=', '1')
+        //     ->get();
+        return view(
+            'admin.transaction.edit',
+            // compact('transaction', 'members', 'books'));
+            [
+                'transaction' => $transaction,
+                // 'transaction_detail' => TransactionDetail::get(),
+                'members' => Member::get(),
+                'books' => Book::select('books.id', 'title')
+                    ->where('books.qty', '>=', '1')
+                    ->get(),
+            ]
+        );
     }
     /**
      * Update the specified resource in storage.

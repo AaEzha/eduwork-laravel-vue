@@ -4,6 +4,7 @@
 <!-- Multiple Select-->
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
 @endsection
 @section('content')
 <div class="col-md-6 m-auto">
@@ -35,9 +36,15 @@
                 </div>
                 <br>
                 <label>Book Selected</label><br>
-                <select class="select2" name="books[]" id="books" multiple="multiple">
-                    @foreach($books as $book)
+                <select class="js-example-basic-multiple" name="books[]" id="books" multiple='multiple'>
+                    <!-- @foreach($books as $book)
                     <option value="{{ $book->id }}" @if($transaction->books()->find($book->id)) ? 'selected' : '' @endif>{{ $book->title }}</option>
+                    @endforeach -->
+                    {{-- daftar buku --}}
+                    @foreach($books as $key=> $book)
+
+                    <option {{ $transaction->books()->find($book->id) ? 'selected' : '' }} value="{{ $book->id }}">{{ $key+1 }} . {{ $book->title }}</option>
+
                     @endforeach
                 </select><br>
 
@@ -68,11 +75,12 @@
 @endsection
 @section('js')
 <!-- Multiple Select -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 <script src="{{asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
 <script>
-    $('.datepicker').datepicker();
-</script>
-<script>
-    $("#books").select2();
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+        $('.datepicker').datepicker();
+    });
 </script>
 @endsection
