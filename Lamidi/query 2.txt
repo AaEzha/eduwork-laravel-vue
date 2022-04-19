@@ -1,0 +1,5 @@
+1. UPDATE `pasien` SET `nama_pasien`='KARIMA' WHERE id_pasien ='1';
+2. UPDATE `pasien` SET `alamat`='BONDOWOSO' WHERE id_pasien = '4';
+3. UPDATE `detail_transaksi` SET `jumlah`='4' WHERE id_detail_transaksi = '1';
+4. DELETE FROM `detail_transaksi` WHERE id_detail_transaksi = '2';
+5. DELETE FROM `transaksi` WHERE id_transaksi = '3';
