@@ -136,12 +136,13 @@ class TransactionController extends Controller
                     'book_id' => $data['books'][$item],
                     'qty' => '1'
                 );
+                $transaction->books()->attach($value);
                 TransactionDetail::create($data2);
             }
         }
 
         $qty = $data['books'];
-        // Jika hanya satu buku yang dipinjam 
+        // Jika hanya satu buku yang dipinjam
         if (COUNT(array($qty)) == 1) {
             DB::table('books')->where('id', $qty)->decrement('qty');
         }
@@ -226,7 +227,7 @@ class TransactionController extends Controller
         $data['status'] = $request->status;
         $borrowed = $transaction->books()->pluck('book_id');
 
-        // Perubahan jumlah buku yang dipinjam 
+        // Perubahan jumlah buku yang dipinjam
         if ($borrowed > $request->books) {
             return  $request->books;
         }
@@ -237,7 +238,7 @@ class TransactionController extends Controller
             $transaction->bookss()->sync(request('books'));
         }
 
-        // Jika "Status" diubah dari Not Returned ke Returned 
+        // Jika "Status" diubah dari Not Returned ke Returned
         // maka tambahkan qty pada table transaction_details
         if ($transaction->status == 0 && $data['status'] ==  1) {
             $transaction->update($data);
@@ -258,7 +259,7 @@ class TransactionController extends Controller
             }
         }
 
-        // Jika buku diubah dari status Returned ke Not Returned 
+        // Jika buku diubah dari status Returned ke Not Returned
         if ($transaction->status == 1 && $data['status'] ==  0) {
             $transaction->update($data);
             $transaction->books()->sync(request('books'));
