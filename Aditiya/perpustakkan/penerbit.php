@@ -21,7 +21,7 @@ order by nama_penerbit asc");
         </div> 
 </center>
 
-<a class= "btn btn-secondary" href="add_penerbit.php"> Add New Penerbit</a>
+<a class= "btn btn-warning" href="add_penerbit.php"> Add New Penerbit</a>
 
 <table class = "table" width = '80%' border=1>
 

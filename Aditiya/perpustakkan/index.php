@@ -23,7 +23,7 @@ order by judul asc");
         </div>    
 </center>
 
-<a class= "btn btn-secondary" href="add.php"> Add New Buku</a>
+<a class= "btn btn-warning" href="add.php"> Add New Buku</a>
 
 <table class="table" width = '80%' border=1>
 <tr>

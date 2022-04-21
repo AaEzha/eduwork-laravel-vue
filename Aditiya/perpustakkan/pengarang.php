@@ -21,7 +21,7 @@ order by nama_pengarang asc");
         </div> 
 </center>
 
-<a class= "btn btn-secondary" href="add_pengarang.php"> Add New pengarang</a>
+<a class= "btn btn-warning" href="add_pengarang.php"> Add New pengarang</a>
 
 <table class= "table" width = '80%' border=1>
 

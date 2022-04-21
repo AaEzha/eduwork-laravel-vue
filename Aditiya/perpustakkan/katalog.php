@@ -20,7 +20,7 @@ order by nama asc");
         </div>    
 </center>
 
-<a class= "btn btn-secondary" href="add_katalog.php"> Add New katalog</a>
+<a class= "btn btn-warning" href="add_katalog.php"> Add New katalog</a>
 
 <table class= "table" width = '80%' border=1>
 
