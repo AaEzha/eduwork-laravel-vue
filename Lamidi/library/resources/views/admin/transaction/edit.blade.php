@@ -4,13 +4,12 @@
 <!-- Multiple Select-->
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
 @endsection
 @section('content')
 <div class="col-md-6 m-auto">
     <div class="card p-4">
         <div class="card-body">
-            <form action="{{ url('transactions/', $transaction->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('transactions/'. $transaction->id) }}" method="POST" enctype="multipart/form-data">
                 {{method_field('PUT')}}
                 @csrf
                 <h3>Edit Transaction</h3>
@@ -36,18 +35,13 @@
                 </div>
                 <br>
                 <label>Book Selected</label><br>
-                <select class="js-example-basic-multiple" name="books[]" id="books" multiple='multiple'>
-                    <!-- @foreach($books as $book)
-                    <option value="{{ $book->id }}" @if($transaction->books()->find($book->id)) ? 'selected' : '' @endif>{{ $book->title }}</option>
-                    @endforeach -->
-                    {{-- daftar buku --}}
-                    @foreach($books as $key=> $book)
-
-                    <option {{ $transaction->books()->find($book->id) ? 'selected' : '' }} value="{{ $book->id }}">{{ $key+1 }} . {{ $book->title }}</option>
-
-                    @endforeach
-                </select><br>
-
+                <div class="select2-purple">
+                    <select class="select2" name="books[]" id="books" multiple='multiple'>
+                        @foreach($books as $book)
+                        <option {{ $transaction->books()->find($book->id) ? 'selected' : '' }} value="{{ $book->id }}">{{ $book->title }}</option>
+                        @endforeach
+                    </select><br>
+                </div>
                 <label> Status </label>
                 <div class="mt-2">
                     <div class="form-check">
@@ -63,7 +57,6 @@
                         </label>
                     </div>
                 </div>
-
                 <div class="modal-footer justify-content-between">
                     <a href="{{ url('transactions') }}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary mb-2">Save Change</button>
@@ -75,11 +68,10 @@
 @endsection
 @section('js')
 <!-- Multiple Select -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 <script src="{{asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
+        $('.select2').select2();
         $('.datepicker').datepicker();
     });
 </script>

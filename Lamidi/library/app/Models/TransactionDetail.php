@@ -9,8 +9,8 @@ class TransactionDetail extends Model
 {
     use HasFactory;
     protected $fillable = ['transaction_id', 'book_id', 'qty'];
-    public function transactions()
-    {
-        return $this->belongsToMany(Transaction::class);
-    }
+    // public function books()
+    // {
+    //     return $this->belongsToMany(Transaction::class, 'transaction_details', 'book_id', 'transaction_id')->withPivot('qty');
+    // }
 }
