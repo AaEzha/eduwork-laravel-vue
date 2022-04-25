@@ -14,9 +14,9 @@
 @section('content')
 
     <div id="controller">
-        <div class="container">
+        {{-- <div class="container"> --}}
             <div class="row">
-                <div class="col-md">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <a href="#" @click="addData()" class="btn btn-sm btn-primary">
@@ -34,6 +34,7 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
+                                        <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -77,6 +78,11 @@
                                         <input type="text" class="form-control" name="address" :value="data.address"
                                             placeholder="Enter address" required>
                                     </div>
+                                    {{-- <div class="form-group">
+                                        <label>Create_at</label>
+                                        <input type="text" class="form-control" name="create_at" :value="data.address"
+                                            placeholder="Enter address" required>
+                                    </div> --}}
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -90,7 +96,7 @@
                 </div>
             </div>
 
-        </div>
+        {{-- </div> --}}
     </div>
 @endsection
 
@@ -113,31 +119,13 @@
         var actionUrl = '{{ url('authors') }}';
         var apiUrl = '{{ url('api/authors') }}';
 
-        var columns = [{
-                data: 'DT_RowIndex',
-                class: 'text-center',
-                orderable: true
-            },
-            {
-                data: 'name',
-                class: 'text-center',
-                orderable: true
-            },
-            {
-                data: 'email',
-                class: 'text-center',
-                orderable: true
-            },
-            {
-                data: 'phone_number',
-                class: 'text-center',
-                orderable: true
-            },
-            {
-                data: 'address',
-                class: 'text-center',
-                orderable: true
-            },
+        var columns = [        
+            {data: 'DT_RowIndex', class: 'text-center', orderable: true},
+            {data: 'name', class: 'text-center', orderable: true},
+            {data: 'email', class: 'text-center', orderable: true},
+            {data: 'phone_number', class: 'text-center', orderable: true},
+            {data: 'address', class: 'text-center', orderable: true},
+            {data: 'date', class: 'text-center', orderable: true},
             {
                 render: function(index, row, data, meta) {
                     return `

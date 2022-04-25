@@ -33,7 +33,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $catalog->name }}</td>
                                         <td class="text-center">{{ count($catalog->books) }}</td>
-                                        <td class="text-center">{{ date('d/M/Y', strtotime($catalog->created_at)) }}
+                                        <td class="text-center">{{ dateFormat($catalog->created_at) }}
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ url('/catalogs/' . $catalog->id . '/edit') }}"
