@@ -207,7 +207,7 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(TransactionRequest $request, transaction $transaction)
+    public function update(TransactionRequest $request, Transaction $transaction)
     {
         $data = $request->validated();
         $data['member_id'] = $request->member;
@@ -217,17 +217,16 @@ class TransactionController extends Controller
         $data['status'] = $request->status;
         $borrowed = $transaction->books()->pluck('book_id');
 
-        // Perubahan jumlah buku yang dipinjam 
-        if ($borrowed > $request->books) {
-            return  $request->books;
-        }
+        // Perubahan jumlah buku yang dipinjam
+        // $transaction->books()->sync($request->books);
+
         // Jika tidak ada perubahan "Status"
         if ($transaction->status == 1 && $data['status'] ==  1 || $transaction->status == 0 && $data['status'] ==  0) {
 
             $transaction->update($data);
             $transaction->books()->sync(request('books'));
         }
-        // Jika "Status" diubah dari Not Returned ke Returned 
+        // Jika "Status" diubah dari Not Returned ke Returned
         // maka tambahkan qty pada table books
         if ($transaction->status == 0 && $data['status'] ==  1) {
             $transaction->update($data);
@@ -247,7 +246,7 @@ class TransactionController extends Controller
                 }
             }
         }
-        // Jika buku diubah dari status Returned ke Not Returned 
+        // Jika buku diubah dari status Returned ke Not Returned
         if ($transaction->status == 1 && $data['status'] ==  0) {
             $transaction->update($data);
             $transaction->books()->sync(request('books'));

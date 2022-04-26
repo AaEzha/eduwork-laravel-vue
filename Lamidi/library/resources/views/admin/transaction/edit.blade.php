@@ -6,6 +6,15 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @endsection
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="col-md-6 m-auto">
     <div class="card p-4">
         <div class="card-body">
@@ -16,7 +25,8 @@
                 <br>
                 <div class="form-group col-sm-5 row">
                     <label>Member Name</label>
-                    <select name="member" id="member" class="form-control" disabled>
+                    <input type="hidden" name="member" value="{{ $transaction->member_id }}">
+                    <select name="memberx" id="member" class="form-control" disabled>
                         @foreach ($members as $member)
                         <option {{ $member->id == $transaction->member_id ? 'selected' : '' }} value="{{ $member->id }}">{{ $member->name }}</option>
                         @endforeach
@@ -25,7 +35,8 @@
                 <label> Loan Date </label>
                 <div class="col-sm-10 row">
                     <div class="col-6 d-flex justify-content-between">
-                        <input type="date" name="date_start" class="form-control" value="{{ old('date_start') ?? $transaction->date_start }}" disabled>
+                        <input type="hidden" name="date_start" value="{{ old('date_start', $transaction->date_start) }}">
+                        <input type="date" name="date_startx" class="form-control" value="{{ old('date_start') ?? $transaction->date_start }}" readonly>
                         <span class="icon-calendar"></span>
                     </div>
                     <div class="col-6 d-flex justify-content-between">
