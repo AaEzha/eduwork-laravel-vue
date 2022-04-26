@@ -49,20 +49,20 @@ class TransactionController extends Controller
     }
     public function api(Request $request)
     {
-        $transactions2 = Transaction::all();
+        //$transactions2 = Transaction::all();
         $transactions = Transaction::select(
             'transactions.id',
             'members.name',
             'date_start',
             'date_end',
             DB::raw('DATEDIFF(date_end, date_start) as duration'),
-            DB::raw('SUM(transaction_details.qty) as total_book'),
-            DB::raw('SUM(transaction_details.qty * books.price) as total_price'),
+            DB::raw('SUM(book_transaction.qty) as total_book'),
+            DB::raw('SUM(book_transaction.qty * books.price) as total_price'),
             'status'
         )
             ->leftJoin('members', 'transactions.member_id', 'members.id')
-            ->leftJoin('transaction_details', 'transaction_details.transaction_id', 'transactions.id')
-            ->leftJoin('books', 'transaction_details.book_id', 'books.id')
+            ->leftJoin('book_transaction', 'book_transaction.transaction_id', 'transactions.id')
+            ->leftJoin('books', 'book_transaction.book_id', 'books.id')
             ->groupBy(['transactions.id', 'members.name', 'date_start', 'date_end', 'status']);
         // Filter Status
         if ($request->status) {

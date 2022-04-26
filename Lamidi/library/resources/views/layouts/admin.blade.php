@@ -49,9 +49,7 @@
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span class="dropdown-item dropdown-header">Notifications</span>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item">
-            </a>
-            <a class="dropdown-item">No Have Notification</a>
+            {{ due_date() }}
           </div>
         </li>
         <li class="nav-item">

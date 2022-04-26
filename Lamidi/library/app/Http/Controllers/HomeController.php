@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         // $notifications = auth()->user()->unreadNotifications;
-        $notifications = [];
+        //$notifications = [];
         $transactions = Transaction::find(1);
         $members = Member::all();
         $total_anggota = Member::count();

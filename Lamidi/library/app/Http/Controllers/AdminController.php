@@ -18,9 +18,9 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response|\Illuminate\View\View
      */
 
-    public function transaction()
+    public function test_spatie()
     {
-        if (auth()->user()->role('officer')) {
+        if (auth()->user()->can('index transactions')) {
             $books = Book::all();
             $members = Member::all();
             return view('admin.transaction.index', compact('books', 'members'));
