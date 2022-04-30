@@ -1,0 +1,9 @@
+1. UPDATE `obat` SET `stok_obat`= '100' WHERE id = 3;
+
+2. UPDATE `obat` SET `pembuat_obat`='sawindri' WHERE id = 7;
+
+3. UPDATE `obat` SET `nama_obat`='Ambroxol',`pembuat_obat`='Indriyani saputri',`stok_obat`='230',`harga`='15000' WHERE `id` = 5;
+
+4. DELETE FROM `obat` WHERE id = 10;
+
+5. DELETE FROM `obat`;

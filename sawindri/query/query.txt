@@ -1,0 +1,19 @@
+1. SELECT * FROM `obat` WHERE stok_obat > 60;
+
+2. SELECT * FROM `obat` WHERE stok_obat >= 70;
+
+3. SELECT nama_obat FROM `obat`;
+
+4. SELECT * FROM `obat`;
+
+5. SELECT nama_obat, pembuat_obat FROM `obat`;
+
+6. SELECT * FROM `obat` WHERE pembuat_obat = 'diana';
+
+7. SELECT nama_obat, pembuat_obat FROM `obat` WHERE stok_obat >=70;
+
+8. SELECT * FROM `obat` WHERE stok_obat < 65;
+
+9. SELECT * FROM `obat` WHERE id BETWEEN 3 and 7;
+
+10. SELECT * FROM `obat` WHERE id in (2,4,6);
