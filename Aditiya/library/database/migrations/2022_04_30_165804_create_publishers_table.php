@@ -16,7 +16,6 @@ class CreatePublishersTable extends Migration
         Schema::create('publishers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 64);
-            $table->char('gender', 1);
             $table->char('phone_number', 15);
             $table->text('address');
             $table->string('email', 64);
