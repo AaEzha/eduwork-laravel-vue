@@ -12,8 +12,10 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function index()
     {
+        $members = Member::with('user')->get();
+        return $members;
         return view('admin.member.index');
     }
 

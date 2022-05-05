@@ -158,6 +158,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url('book')}}" class="nav-link {{ request()->is('book') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Book
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
