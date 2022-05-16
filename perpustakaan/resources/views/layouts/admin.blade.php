@@ -124,13 +124,40 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="{{ url('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
+              <p> Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('catalog') }}" class="nav-link {{ request()->is('catalog') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p> Catalog</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('publisher') }}" class="nav-link {{ request()->is('publisher') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p> Publisher</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('author') }}" class="nav-link {{ request()->is('author') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p> Author</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('book') }}" class="nav-link {{ request()->is('book') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p> Book</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p> Member</p>
             </a>
           </li>
         </ul>
@@ -147,7 +174,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0"> @yield('header') </h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -158,8 +185,10 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
+        <div class="row mb-2">
+          <div class="col-sm-6">
             @yield('content')
+          </div>
         </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
