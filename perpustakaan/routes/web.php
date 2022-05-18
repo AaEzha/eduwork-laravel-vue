@@ -6,6 +6,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +27,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/catalog', [CatalogController::class, 'index']);
-Route::get('/publisher', [PublisherController::class, 'index']);
-Route::get('/author', [AuthorController::class, 'index']);
-Route::get('/book', [BookController::class, 'index']);
-Route::get('/member', [MemberController::class, 'index']);
+Route::get('/homes', [HomeController::class, 'index']);
+Route::get('/catalogs', [CatalogController::class, 'index']);
+Route::get('/publishers', [PublisherController::class, 'index']);
+Route::get('/authors', [AuthorController::class, 'index']);
+Route::get('/books', [BookController::class, 'index']);
+Route::get('/members', [MemberController::class, 'index']);
+Route::get('/transactions', [TransactionController::class, 'index']);

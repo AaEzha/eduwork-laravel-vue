@@ -69,7 +69,7 @@ class HomeController extends Controller
                         ->join('transactions', 'transactions.member_id', '=', 'member_id')
                         ->where('members.address', 'like', '%Bandung%', 'and', 'members.gender', '=', '1')
                         ->get();
-        return $data9;
+        // return $data9;
 
         return view('home');
     }

@@ -125,39 +125,45 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
+            <a href="{{ url('homes') }}" class="nav-link {{ request()->is('homes') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p> Dashboard</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('catalog') }}" class="nav-link {{ request()->is('catalog') ? 'active' : '' }}">
+            <a href="{{ url('catalogs') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : '' }}">
               <i class="nav-icon fas fa-edit"></i>
               <p> Catalog</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('publisher') }}" class="nav-link {{ request()->is('publisher') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-edit"></i>
+            <a href="{{ url('publishers') }}" class="nav-link {{ request()->is('publishers') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-newspaper"></i>
               <p> Publisher</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('author') }}" class="nav-link {{ request()->is('author') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-edit"></i>
+            <a href="{{ url('authors') }}" class="nav-link {{ request()->is('authors') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user"></i>
               <p> Author</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('book') }}" class="nav-link {{ request()->is('book') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-edit"></i>
+            <a href="{{ url('books') }}" class="nav-link {{ request()->is('books') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-book"></i>
               <p> Book</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-edit"></i>
+            <a href="{{ url('members') }}" class="nav-link {{ request()->is('members') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-users"></i>
               <p> Member</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('transactions') }}" class="nav-link {{ request()->is('transactions') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-circle"></i>
+              <p> Transaction</p>
             </a>
           </li>
         </ul>
@@ -185,8 +191,8 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row mb-2">
-          <div class="col-sm-6">
+        <div class="row">
+          <div class="col-lg-8">
             @yield('content')
           </div>
         </div>
