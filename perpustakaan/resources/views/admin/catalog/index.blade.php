@@ -20,14 +20,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($catalog as $c)    
-                        <tr>
-                            <th>{{  }}</th>
-                        </tr>
-                    @endforeach --}}
+                    <tr>
+                        <th>1</th>
+                        <th>sawindri</th>
+                        <th>nbdjfn</th>
+                        <th>nbckbjsk</th>
+                    </tr>
                 </tbody>
             </table>
         </div>
+
         <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 float-right">
                 <li class="page-item">
