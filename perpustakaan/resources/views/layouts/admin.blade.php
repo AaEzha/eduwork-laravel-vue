@@ -26,6 +26,10 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+
+  @yield('css')
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -192,7 +196,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-10">
+          <div class="col-lg">
             @yield('content')
           </div>
         </div>
@@ -252,5 +256,14 @@
 <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
+
+{{-- cdn vue js --}}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+{{-- cdn axios js --}}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+@yield('js')
+
 </body>
 </html>

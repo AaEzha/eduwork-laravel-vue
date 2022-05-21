@@ -43,12 +43,13 @@ Route::get('/publishers/{publisher}/edit', [PublisherController::class, 'edit'])
 Route::put('/publishers/{publisher}', [PublisherController::class, 'update']);
 Route::delete('/publishers/{publisher}', [PublisherController::class, 'destroy']);
 
-Route::get('/authors', [AuthorController::class, 'index']);
-Route::get('/authors/create', [AuthorController::class, 'create']);
-Route::post('/authors', [AuthorController::class, 'store']);
-Route::get('/authors/{author}/edit', [AuthorController::class, 'edit']);
-Route::put('/authors/{author}', [AuthorController::class, 'update']);
-Route::delete('/authors/{author}', [AuthorController::class, 'destroy']);
+Route::resource('/authors', AuthorController::class);
+// Route::get('/authors', [AuthorController::class, 'index']);
+// Route::get('/authors/create', [AuthorController::class, 'create']);
+// Route::post('/authors', [AuthorController::class, 'store']);
+// Route::get('/authors/{author}/edit', [AuthorController::class, 'edit']);
+// Route::put('/authors/{author}', [AuthorController::class, 'update']);
+// Route::delete('/authors/{author}', [AuthorController::class, 'destroy']);
 
 Route::get('/books', [BookController::class, 'index']);
 Route::get('/members', [MemberController::class, 'index']);

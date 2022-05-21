@@ -12,12 +12,12 @@
         <table class="table table-striped">
             <thead class="table-dark">
                 <tr>
-                    <td>#</td>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone Number</td>
-                    <td>Address</td>
-                    <td>Opsi</td>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>Opsi</th>
                 </tr>
             </thead>
             <tbody>
