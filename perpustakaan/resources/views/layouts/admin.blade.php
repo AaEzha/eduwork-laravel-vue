@@ -125,7 +125,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('homes') }}" class="nav-link {{ request()->is('homes') ? 'active' : '' }}">
+            <a href="{{ url('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p> Dashboard</p>
             </a>
@@ -192,7 +192,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-10">
             @yield('content')
           </div>
         </div>
