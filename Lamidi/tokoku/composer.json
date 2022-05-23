@@ -14,6 +14,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
+        "kevincobain2000/laravel-erd": "^1.6",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",

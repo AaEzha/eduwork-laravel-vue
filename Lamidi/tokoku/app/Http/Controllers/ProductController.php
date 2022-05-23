@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Queue\RedisQueue;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::paginate(5);
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -35,7 +37,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $products = new Product;
+        $products->product_name = $request->product_name;
+        $products->description = $request->description;
+        $products->brand = $request->brand;
+        $products->price = $request->price;
+        $products->qty = $request->qty;
+        $products->alert_stock = $request->alert_stock;
+        $products->save();
+        if ($products) {
+            return redirect()->back()->with('product Created Successfully');
+        }
+        return redirect()->back()->with('product Failed To Created');
     }
 
     /**
@@ -69,7 +82,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return redirect()->back()->with('Success', 'Product Updated Sucessfully!');
     }
 
     /**
@@ -80,6 +94,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->back()->with('Success', 'Product Deleted Sucessfully!');
     }
 }

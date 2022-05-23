@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Models\Order;
+use App\Models\Order_Detail;
 use Illuminate\Support\Facades\Route;
 
 /*
