@@ -9,10 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\TransactionRequest;
 use App\Models\TransactionDetail;
-use Illuminate\Notifications\Notification;
-use App\Notifications\TransactionNotification;
-
-use function GuzzleHttp\Promise\all;
 
 class TransactionController extends Controller
 {
@@ -215,7 +211,7 @@ class TransactionController extends Controller
         $data['date_end'] = $request->date_end;
         $data['book_id'] = $request->books;
         $data['status'] = $request->status;
-        $borrowed = $transaction->books()->pluck('book_id');
+        //$borrowed = $transaction->books()->pluck('book_id');
 
         // Perubahan jumlah buku yang dipinjam
         // $transaction->books()->sync($request->books);
