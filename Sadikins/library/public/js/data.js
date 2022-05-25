@@ -37,6 +37,7 @@
             deleteData(event, id) {
                 // console.log(id);
                 // this.actionUrl =  '{{ url('authors') }}'+'/'+id ;
+
                 if(confirm("Are you sure ?"))
                 {
                     // Romove table row

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 function convert_date($value)
 {
-    return date('H:i:s - d M Y', strtotime($value));
+    return date('d M Y', strtotime($value));
 }
 
 function rupiah($angka)

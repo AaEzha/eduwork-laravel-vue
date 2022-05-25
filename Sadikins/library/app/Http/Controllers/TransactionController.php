@@ -28,7 +28,7 @@ class transactionController extends Controller
 
     public function api(Request $request)
     {
-
+        
         $transactions = Transaction::select('transactions.id', 'date_start', 'date_end', 'members.name', DB::raw('DATEDIFF(date_end, date_start) as priode'), DB::raw('SUM(book_transaction.qty) as total_book'), DB::raw('SUM(book_transaction.qty * price) as total_price'), 'status')
             ->leftJoin('members', 'transactions.member_id', 'members.id')
             ->leftJoin('book_transaction', 'book_transaction.transaction_id', 'transactions.id')
@@ -65,6 +65,10 @@ class transactionController extends Controller
             } else {
                 return $transaction->total_book . ' <small class="text-secondary">books</small>';
             }
+        })->addColumn('loan_date', function ($transaction) {
+            return convert_date($transaction->date_start);
+        })->addColumn('return_date', function ($transaction) {
+            return convert_date($transaction->date_end);
         })
             ->rawColumns(['status', 'priode', 'total_book'])->addIndexColumn();
         return $datatables->make(true);
@@ -78,7 +82,7 @@ class transactionController extends Controller
     public function create()
     {
         $members = Member::get();
-        $books = Book::select('id', 'title')->where('qty', '>=', '1')->get();
+        $books   = Book::select('id', 'title')->where('qty', '>=', '1')->get();
         $transaction = new Transaction();
         return view('admin.transaction.create', compact('transaction', 'books', 'members'));
     }
@@ -91,13 +95,14 @@ class transactionController extends Controller
      */
     public function store(TransactionRequest $request)
     {
+        // Validasi data
         $data = $request->validated();
         $data['member_id'] = $request->member;
-        $data['date_start'] = $request->date_start;
-        $data['date_end'] = $request->date_end;
-        $data['book_id'] = $request->books;
+        $data['date_start']= $request->date_start;
+        $data['date_end']  = $request->date_end;
+        $data['book_id']   = $request->books;
 
-
+        // Proses input data 
         $transaction = Transaction::create($data);
         $transaction->books()->attach($request->books);
         $qty = $data['book_id'];
@@ -146,14 +151,12 @@ class transactionController extends Controller
     public function edit(Transaction $transaction)
     {
 
-
         return view('admin.transaction.edit', [
             'transaction' => $transaction, 
-            'members' => Member::get(), 
-            'books' => Book::select('books.id', 'title')
+            'members'     => Member::get(), 
+            'books'       => Book::select('books.id', 'title')
             ->where('books.qty', '>=', '1')
             ->get(),
-           
            
         ]);
 
@@ -169,27 +172,13 @@ class transactionController extends Controller
      */
     public function update(TransactionRequest $request, transaction $transaction)
     {
-
-
-
         $data = $request->validated();
 
         $data['member_id'] = $request->member;
-        $data['date_start'] = $request->date_start;
-        $data['date_end'] = $request->date_end;
-        $data['book_id'] = $request->books;
-        $data['status'] = $request->status;
-
-        $borrowed= $transaction->books()->pluck('book_id');
-
-       
-            // return  $request->books;
-            // return $borrowed;
-
-            // Perubahan jumlah buku yang dipinjam 
-            if($borrowed > $request->books) {
-                return  $request->books;
-            }
+        $data['date_start']= $request->date_start;
+        $data['date_end']  = $request->date_end;
+        $data['book_id']   = $request->books;
+        $data['status']    = $request->status;
 
 
         // Jika tidak ada perubahan "Status"
@@ -246,8 +235,7 @@ class transactionController extends Controller
             }
         }
 
-    
-
+       
 
         return redirect('transactions');
     }
@@ -260,23 +248,17 @@ class transactionController extends Controller
      */
     public function destroy(transaction $transaction)
     {
-        $transaction->books()->detach();
-        $transaction->delete();
+      
+         if($transaction->status == 1) {
 
-          //jika Transaksi yang dihapus hanya satu (1)
-          if(COUNT($data['book_id']) == 1) {
-            DB::table('books')->where('id', $data['book_id'])->increment('qty');
-        }
+            $transaction->books()->detach();
+            $transaction->delete();
+         }else{
+            echo "confirm('Data tidak dapat dihapus')";
+         }
 
-        //jika Transaksi yang dihapus lebih dari satu (> 1)
-        if(COUNT($data['book_id']) > 1 ) {
 
-            foreach ($data['book_id'] as $id) {
-
-                DB::table('books')->where('id', $id)->increment('qty');
-            }
-
-        }
+       
         return redirect('transactions');
     }
 }

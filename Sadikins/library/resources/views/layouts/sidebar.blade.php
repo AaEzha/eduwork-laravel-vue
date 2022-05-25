@@ -189,14 +189,14 @@
               <span class="menu-title">Members</span>
             </a>
           </li>
-          @role('Admin')
+          {{-- @role('Admin') --}}
            <li class="nav-item {{ (request()->is('transactions')) ? 'active' : '' }}">
             <a class="nav-link"  href="{{ route('transactions.index') }}">
               <i class="menu-icon mdi  mdi mdi-barcode-scan"></i>
               <span class="menu-title">Transactions</span>
             </a>
           </li>
-          @endrole
+          {{-- @endrole --}}
 
 
         </ul>

@@ -56,7 +56,6 @@
 
                         <select class="js-example-basic-multiple w-100 my-3 @error('books') is-invalid @enderror" name="books[]" id="books" multiple="multiple">
 
-
                             {{-- daftar buku --}}
                             @foreach($books as $key=>  $book)
 
@@ -110,6 +109,7 @@
 <script>
     $('.datepicker').datepicker();
 </script>
+
 <script>
    $(document).ready(function() {
     $('.js-example-basic-multiple').select2();

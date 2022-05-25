@@ -21,12 +21,13 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $total_members = Member::count();
-        $total_books = Book::count();
+        $total_members      = Member::count();
+        $total_books        = Book::count();
         $total_transactions = Transaction::count();
-        $total_publishers = Publisher::count();
+        $total_publishers   = Publisher::count();
+        
         // Doughnut
-        $data_donut = Book::select(DB::raw("COUNT(publisher_id) as total"))->groupBy('publisher_id')->orderBy('publisher_id', 'ASC')->pluck('total');
+        $data_donut  = Book::select(DB::raw("COUNT(publisher_id) as total"))->groupBy('publisher_id')->orderBy('publisher_id', 'ASC')->pluck('total');
         $label_donut = Publisher::orderBy('publishers.id', 'ASC')->join('books', 'books.publisher_id', 'publishers.id')->groupBy('publishers.name')->pluck('publishers.name');
 
         // Line

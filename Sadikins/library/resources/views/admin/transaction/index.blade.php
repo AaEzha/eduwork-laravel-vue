@@ -65,8 +65,8 @@
     var apiUrl= '{{ url('api/transactions') }}';
     var columns = [
         {data: 'DT_RowIndex', orderable: true},
-        {data: 'date_start', orderable: true},
-        {data: 'date_end', orderable: true},
+        {data: 'loan_date', orderable: true},
+        {data: 'return_date', orderable: true},
         {data: 'name', orderable: true},
         {data: 'priode', class: 'text-center', orderable: true},
         {data: 'total_book', class: 'text-center',  orderable: true},
