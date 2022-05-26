@@ -2,6 +2,9 @@
 @section('header', 'Catalog')
 
 @section('content')
+
+	<a href="{{ url('catalogs/create') }}" class="btn btn-sm btn-primary pull-right">Create New Catalog</a>
+	<br> <br>
 	<table class="table">
   <thead>
     <tr>
