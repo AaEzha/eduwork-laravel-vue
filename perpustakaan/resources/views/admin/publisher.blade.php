@@ -19,7 +19,7 @@
             <table id="datatable" class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
@@ -27,7 +27,7 @@
                         <th>Opsi</th>
                     </tr>
                 </thead>
-                <tbody>
+                {{-- <tbody>
                     @foreach ($publishers as $key => $p)    
                         <tr>
                             <td>{{ $key+1 }}</td>
@@ -41,14 +41,14 @@
                             </td>
                         </tr>
                     @endforeach
-                </tbody>
+                </tbody> --}}
             </table>
         </div>
     
         <div class="modal fade" id="modal-default">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form :action="actionUrl" method="POST" autocomplete="off">
+                    <form :action="actionUrl" method="POST" autocomplete="off" @submit="submitForm($event, data.id)">
     
                         <div class="modal-header">
                             <h4 class="modal-title">Publisher</h4>
@@ -106,6 +106,53 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
 <script type="text/javascript">
+    var actionUrl = '{{ url('publishers') }}';
+    var apiUrl = '{{ url('api/publishers') }}';
+
+    var columns = [
+        {
+            data: 'DT_RowIndex',
+            class: 'text-center',
+            orderable: true
+        },
+        {
+            data: 'name',
+            class: 'text-center',
+            orderable: true
+        },
+        {
+            data: 'email',
+            class: 'text-center',
+            orderable: true
+        },
+        {
+            data: 'phone_number',
+            class: 'text-center',
+            orderable: true
+        },
+        {
+            data: 'address',
+            class: 'text-center',
+            orderable: true
+        },
+        {
+            render: function(index, row, data, meta){
+                return `
+                    <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">edit</a>
+                    <a class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">delete</a>
+                    `;
+            },
+            orderable: false,
+            width: '200px',
+            class: 'text-center'
+        }
+    ];
+</script>
+<script src="{{ asset('js/data.js') }}"></script>
+
+
+
+{{-- <script type="text/javascript">
     $(function () {
     $("#datatable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -160,5 +207,5 @@
                 }
             }
         });
-    </script>
+    </script> --}}
 @endsection

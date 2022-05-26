@@ -18,8 +18,14 @@ class AuthorController extends Controller
      */
     public function index()
     {
+        // $authors = Author::all();
+        return view('admin.author');
+    }
+    public function api()
+    {
         $authors = Author::all();
-        return view('admin.author', compact('authors'));
+        $datatables = datatables()->of($authors)->addIndexColumn();
+        return $datatables->make(true);
     }
 
     /**
