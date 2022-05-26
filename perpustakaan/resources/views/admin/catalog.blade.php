@@ -32,7 +32,7 @@
                             <td>{{ $key+1 }}</td>
                             <td>{{ $c->name }}</td>
                             <td class="text-center">{{ count($c->books) }}</td>
-                            <td>{{ date('d M Y', strtotime($c->created_at)) }}</td>
+                            <td class="text-center">{{ dateFormat($c->created_at) }}</td>
                             <td class="text-center">
                                 <a href="#" @click="editData({{ $c }})" class="btn btn-warning btn-sm">edit</a>
                                 <a class="btn btn-danger btn-sm" href="#" @click="deleteData({{ $c->id }})">delete</a>
