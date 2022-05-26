@@ -1,0 +1,13 @@
+- tambah kolom status pada database di table peminjaman, type column boolean
+- pada menu bar diatas, disamping logout, buatlah notification, yang berisi data peminjaman yang telat (menggunakan helpers)
+
+- buat tampilan data untuk peminjaman, sesuaikan dengan mockup (menggunakan datatable yajra)
+- buat button pada bagian action : edit, detail dan hapus
+- untuk add, edit dan detail, tidak usah menggunakan modal (redirect ke halaman lain)
+
+- tambah filter berdasarkan status dan filter tanggal pinjam
+- untuk bagian select option buku, jangan tampilkan buku yang stoknya 0
+- untuk banyaknya buku yang dipinjam, buatlah menjadi default 1 buah pada setiap buku
+- pada setiap transaksi, stok buku pada table buku otomatis berkurang 1 sesuai dengan buku yang dipinjam
+- form status sudah/belum dikembalikan, itu hanya untuk bagian edit peminjaman
+- apabila peminjaman sudah selesai, maka stok buku pada table buku, bertambah 1

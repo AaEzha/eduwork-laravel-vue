@@ -1,0 +1,30 @@
+
+1. Menampil Obat berdasarkan Kategori Obat Herbal 
+   SELECT nama_obat, kategori_obat FROM `obat` WHERE kategori_obat='Obat Herbal';
+
+2. Menampilkan Harga Obat yang lebih dari Rp 100.000
+   SELECT nama_obat, harga_obat FROM `obat` WHERE harga_obat > 100000;
+
+3. Menampilkan Stok Obat yang kurang dari 50
+   SELECT * FROM `obat` WHERE stok_obat < 50;
+
+4. Menampilkan petugas dengan jabatan Apoteker
+   SELECT * FROM `petugas` WHERE jabatan_petugas = 'apoteker';
+
+5. Menampilkan petugas dengan jabatan Kasir
+   SELECT * FROM `petugas` WHERE jabatan_petugas = 'kasir';
+
+6. Menampilkan petugas dengan jabatan Dokter
+   SELECT * FROM `petugas` WHERE jabatan_petugas = 'dokter';
+
+7. Menampilkan pelanggan dengan jenis kelmin Laki-laki
+   SELECT nama_pelanggan, jk_pelanggan FROM `pelanggan` WHERE jk_pelanggan = 'Laki-laki';
+
+8. Menampilkan pelanggan dengan jenis kelamin Perempuan
+   SELECT nama_pelanggan, jk_pelanggan FROM `pelanggan` WHERE jk_pelanggan = 'Perempuan';
+
+9. Menampilkan transaksi dengan jumlah pembelian lebih dari 1
+   SELECT * FROM `transaksi` WHERE jumlah_beli > 1;
+
+10. Menampilkan transaksi lebih dari hari ini (tgl 8) 
+   SELECT * FROM `transaksi` WHERE day(tanggal_transaksi) > 8;

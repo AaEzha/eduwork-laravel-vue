@@ -1,0 +1,19 @@
+------------------------------
+Tugas : MYSQL DELETE dan UPDATE
+Nama  : Dikdik Muhamad Sadikin
+------------------------------
+
+1. Update data stok obat Bintang Toedjoe Obat Maag Waisan dari 12 menjadi 50
+   UPDATE `obat` SET `stok_obat`='50' WHERE id=2;
+
+2. Update data nama obat dari Acetylcysteine 200 mg 10 Kapsul menjadi Acetylcysteine 200 mg
+   UPDATE `obat` SET `nama_obat`='Acetylcysteine 200 mg' WHERE id=10;
+
+3. Update data harga obat dan stok obat pada obat dengan id 10 
+   UPDATE `obat` SET `harga_obat`= 40000 ,`stok_obat`=10 WHERE id= 10; 
+
+4. Delete data pelanggan dengan id 10
+   DELETE FROM `pelanggan` WHERE id=10;
+
+5. Delete data obat dengan id = 5
+   DELETE FROM `obat` WHERE id=5;
