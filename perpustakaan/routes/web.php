@@ -27,7 +27,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'dashboard']);
 
 Route::resource('/catalogs', CatalogController::class);
 
