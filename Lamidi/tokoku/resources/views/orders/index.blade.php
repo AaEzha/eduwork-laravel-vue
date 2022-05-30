@@ -171,11 +171,11 @@
         var product = $('.product_id').html();
         var numberofrow = ($('.addMoreProduct tr').length - 0) + 1;
         var tr = '<tr><td class"no"">' + numberofrow + '</td>' +
-            '<td> <select class="form-control product_id" name"product_id[]">' + product + '</select></td>' +
-            '<td> <input type="number" class="form-control qty" name"qty[]"></td>' +
-            '<td> <input type="number" class="form-control price" name"price[]"></td>' +
-            '<td> <input type="number" class="form-control discount" name"discount[]"></td>' +
-            '<td> <input type="number" class="form-control total_amount" name"total_amount[]"></td>' +
+            '<td> <select class="form-control product_id" name="product_id[]">' + product + '</select></td>' +
+            '<td> <input type="number" class="form-control qty" name="qty[]"></td>' +
+            '<td> <input type="number" class="form-control price" name="price[]"></td>' +
+            '<td> <input type="number" class="form-control discount" name="discount[]"></td>' +
+            '<td> <input type="number" class="form-control total_amount" name="total_amount[]"></td>' +
             '<td><a class="btn btn-sm btn-danger rounded-circle delete"><i class="fa fa-times-circle"></i></a></td>';
         $('.addMoreProduct').append(tr);
     });

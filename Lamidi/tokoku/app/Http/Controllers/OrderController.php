@@ -42,14 +42,38 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         DB::transaction(
             function () use ($request) {
                 $orders = new Order();
                 $orders->name = $request->customer_name;
-                $orders->phone = $request->customer_phone;
+                $orders->address = $request->customer_phone;
                 $orders->save();
 
-                $product_id = $request->product_id;
+                // $product_id = $request->product_id;
+
+                // order_details
+                $total_amount = 0;
+                foreach ($request->product_id as $key => $product) {
+                    $orders->order_details()->create([
+                        'product_id' => $product,
+                        'qty' => $request->qty[$key],
+                        'price' => $request->price[$key],
+                        'amount' => $request->total_amount[$key],
+                        'discount' => $request->discount[$key] ?? 0,
+                    ]);
+                    $total_amount += $request->total_amount[$key];
+                }
+
+                // transaction
+                $orders->transaction()->create([
+                    'paid_amount' => $request->paid_amount ?? 0,
+                    'balance' => $request->balance ?? 0,
+                    'payment_method' => $request->payment_method,
+                    'user_id' => auth()->user()->id,
+                    'transac_date' => now(),
+                    'transac_amount' => $total_amount
+                ]);
 
                 // if (count($product_id) > 0) {
                 //     foreach ($product_id as $item => $value) {
@@ -76,20 +100,20 @@ class OrderController extends Controller
                 //     $order_details->discount = $request->discount;
                 //     $order_details->save();
                 // }
-                $order_id = $orders->id;
-                $transaction = new Transaction;
-                $transaction->order_id = $order_id;
-                $transaction->user_id = Auth::user()->id;
-                $transaction->balance = $request->balance;
-                $transaction->paid_amount = $request->paid_amount;
-                $transaction->payment_method = $request->payment_method;
-                $transaction->transac_date = date('Y-m-d');
-                $transaction->transac_amount = $request->amount;
-                $transaction->save();
+                // $order_id = $orders->id;
+                // $transaction = new Transaction;
+                // $transaction->order_id = $order_id;
+                // $transaction->user_id = Auth::user()->id;
+                // $transaction->balance = $request->balance;
+                // $transaction->paid_amount = $request->paid_amount;
+                // $transaction->payment_method = $request->payment_method;
+                // $transaction->transac_date = date('Y-m-d');
+                // $transaction->transac_amount = $request->amount;
+                // $transaction->save();
 
                 $products = Product::all();
-                $order_details = Order_Detail::where('order_id', $order_id)->get();
-                $orderedBy = Order::where('id', $order_id)->get();
+                $order_details = Order_Detail::where('order_id', $orders->getKey())->get();
+                $orderedBy = Order::where('id', $orders->getKey())->get();
                 return view('orders.index', ['product' => $products, 'order_details' => $order_details, 'cutomer_orders' => $orderedBy]);
             }
         );
