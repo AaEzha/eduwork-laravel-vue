@@ -25,7 +25,14 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('admin.transaction.index');
+        if (auth()->user()->can('index peminjaman')) {
+            $data_book = Book::all();
+            $data_member = Member::all();
+
+            return view('admin.transaction.index', compact('data_member', 'data_book'));
+        } else {
+            return abort('403');
+        }
     }
 
 

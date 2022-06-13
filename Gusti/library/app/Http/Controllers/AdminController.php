@@ -10,7 +10,10 @@ use App\Models\Publisher;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -92,6 +95,44 @@ class AdminController extends Controller
         return view('admin.publisher.publisher');
     }
     
+    public function author(){
+        $data_author = Author::all();
+
+        return view('admin.author');
+    }
+
+    public function member(){
+        return view('admin.member');
+    }
+
+    public function book(){
+        return view('admin.book.index');
+    }
+
+    public function transaction(){
+
+            $data_book = Book::all();
+            $data_member = Member::all();
+
+            return view('admin.transaction.index', compact('data_member', 'data_book'));
+    }
+
+    public function test_spatie(){
+
+
+        // $role = Role::create(['name' => 'admin']);
+        // $permission = Permission::create(['name' => 'index peminjaman']);
+
+        // $role->givePermissionTo($permission);
+        // $permission->assignRole($role);
+
+        // $user = User::where('id', 3)->first();
+        // $user->assignRole('admin');
+        // return $user;
+
+        // $user = User::with('roles')->get();
+        // return $user;
+    }
 
     public function create()
     {

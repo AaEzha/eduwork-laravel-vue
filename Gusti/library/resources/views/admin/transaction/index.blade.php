@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('header', 'Data Transaksi')
+@section('header', 'Data Transaaction')
 
 @section('css')
     <!-- DataTables -->
@@ -11,56 +11,59 @@
 
 @section('content')
 
-    <div id="controller">
-        <div class="col-md-12">
-            <h2 class="mb-5"> Transactions </h2>
-            <div class="card p-3">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="me-auto">
-                            <!-- Button trigger modal -->
-                            <a href="{{ route('transactions.create') }}" type="button" class="btn btn-primary">
-                                Add New transaction &nbsp;+
-                            </a>
-                        </div>
+    @role('admin')
+        <div id="controller">
+            <div class="col-md-12">
+                <h2 class="mb-5"> Transactions </h2>
+                <div class="card p-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="me-auto">
+                                <!-- Button trigger modal -->
+                                <a href="{{ route('transactions.create') }}" type="button" class="btn btn-primary">
+                                    Add New transaction &nbsp;+
+                                </a>
+                            </div>
 
-                        <div class="col-md-2">
-                            {{-- <label for="">Load Status</label> --}}
-                            <select name="status" class="form-select form-control form-control-lg">
-                                <option value="">Loan Status</option>
-                                <option value="Not Returned">Not Returned</option>
-                                <option value="1">Returned</option>
-                            </select>
+                            <div class="col-md-2">
+                                {{-- <label for="">Load Status</label> --}}
+                                <select name="status" class="form-select form-control form-control-lg">
+                                    <option value="">Loan Status</option>
+                                    <option value="Not Returned">Not Returned</option>
+                                    <option value="1">Returned</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 ps-4">
+                                <input type="text" name="date_start" onfocus="(this.type = 'date')"
+                                    class="form-control form-control-lg" placeholder="Loan Date">
+                            </div>
                         </div>
-                        <div class="col-md-2 ps-4">
-                            <input type="text" name="date_start" onfocus="(this.type = 'date')"
-                                class="form-control form-control-lg" placeholder="Loan Date">
-                        </div>
+                        <hr>
+                        <table id="datatable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="10">#</th>
+                                    <th>Loan Date</th>
+                                    <th>Return Date</th>
+                                    <th>Name</th>
+                                    <th>Loan Priode</th>
+                                    <th>Total Book</th>
+                                    <th>Total Paymant</th>
+                                    <th>Loan Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                        </table>
                     </div>
-                    <hr>
-                    <table id="datatable" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th width="10">#</th>
-                                <th>Loan Date</th>
-                                <th>Return Date</th>
-                                <th>Name</th>
-                                <th>Loan Priode</th>
-                                <th>Total Book</th>
-                                <th>Total Paymant</th>
-                                <th>Loan Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                    </table>
                 </div>
+
+
+
             </div>
+        @endrole
 
-
-
-        </div>
-    @endsection
+        @endsection
     @section('js')
         {{-- Data table --}}
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

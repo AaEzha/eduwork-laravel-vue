@@ -50,6 +50,7 @@ Route::resource('members', MemberController::class);
 Route::resource('publishers', PublisherController::class);
 Route::resource('authors', AuthorController::class);
 Route::resource('transactions', TransactionController::class);
+Route::get('test_spatie', [App\Http\Controllers\AdminController::class, 'test_spatie']);
 // Route::resource('dashboard', AdminController::class);
 
 Route::get('api/authors', [AuthorController::class, 'api']);
