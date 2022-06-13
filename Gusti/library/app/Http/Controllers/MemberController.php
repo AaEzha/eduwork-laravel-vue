@@ -19,13 +19,18 @@ class MemberController extends Controller
      */ 
     public function index()
     {
+
         return view('admin.member');
     }
 
-    public function api ()
+    public function api (Request $request)
     {
-        $members = Member::all();
-        $datatables = datatables()->of($members)->addIndexColumn();
+        if ($request->gender) {
+            $datas = Member::where('gender', $request->gender)->get();
+        } else {
+            $datas = Member::all();
+        }
+        $datatables = datatables()->of($datas)->addIndexColumn();
 
         return $datatables->make(true);
     }

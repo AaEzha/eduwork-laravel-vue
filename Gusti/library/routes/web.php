@@ -56,6 +56,7 @@ Route::get('api/authors', [AuthorController::class, 'api']);
 Route::get('api/publishers', [PublisherController::class, 'api']);
 Route::get('api/members', [MemberController::class, 'api']);
 Route::get('api/books', [BookController::class, 'api']);
+Route::get('api/transactions', [TransactionController::class, 'api']);
 
 // Route::get('create_transaction', function(){
 //     $book = Book::findOrFail(1);

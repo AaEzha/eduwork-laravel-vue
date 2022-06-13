@@ -16,10 +16,20 @@
             <div class="col-md">
                 <div class="card">
                     <div class="card-header">
-                        <a href="#" @click="addData()" class="btn btn-sm btn-primary">
-                            <i class="fa fa-plus"></i>
-                            Add New Member</a>
-
+                        <div class="row">
+                            <div class="col-md-10">
+                                <a href="#" @click="addData()" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-plus"></i>
+                                    Add New Member</a>
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control" name="gender">
+                                    <option value="0">All Gender</option>
+                                    <option value="P">Female</option>
+                                    <option value="L">Male</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body p-3">
@@ -225,6 +235,19 @@
     });
 </script>
 
+<script src="{{ asset('js/data.js') }}"></script>
+<script type="text/javascript">
+
+    $('select[name=gender]').on('change', function() {
+        gender = $('select[name=gender]').val();
+
+        if( gender == 0) {
+            controller.table.ajax.url(apiUrl).load();
+        }else {
+            controller.table.ajax.url(apiUrl + '?gender=' +gender).load();
+        }
+    });
+</script>
 {{-- <script>
     $(function () {
       $("#datatable").DataTable();

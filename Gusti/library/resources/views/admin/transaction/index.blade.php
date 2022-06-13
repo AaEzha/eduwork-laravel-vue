@@ -3,10 +3,10 @@
 @section('header', 'Data Transaksi')
 
 @section('css')
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
@@ -106,10 +106,10 @@
                 {
                     render: function(index, row, data, meta) {
                         return `
-            <a href="${actionUrl}/${data.id}/" class="btn btn-rounded btn-info  py-2 ms-1" onclick="controller.detailData(event, ${meta.row})"> view </a>
-            <a href="${actionUrl}/${data.id}/edit" class="btn btn-rounded btn-warning  py-2 ms-1" onclick="controller.editData(event, ${meta.row})"> Edit </a>
-            <a  class="btn btn-rounded btn-danger  py-2 ms-1" onclick="controller.deleteData(event, ${data.id})"> Delete </a>
-            `;
+                <a href="${actionUrl}/${data.id}/" class="btn btn-rounded btn-info  py-2 ms-1" onclick="controller.detailData(event, ${meta.row})"> view </a>
+                <a href="${actionUrl}/${data.id}/edit" class="btn btn-rounded btn-warning  py-2 ms-1" onclick="controller.editData(event, ${meta.row})"> Edit </a>
+                <a  class="btn btn-rounded btn-danger  py-2 ms-1" onclick="controller.deleteData(event, ${data.id})"> Delete </a>
+                `;
                     },
                     orderable: false,
                     width: '10%',
