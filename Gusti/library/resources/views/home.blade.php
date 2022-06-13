@@ -3,8 +3,22 @@
 @section('header', 'Dashboard')
 
 @section('content')
-Ini Adalah Halaman Home
-{{-- <div class="container">
+{{-- 
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ $total_book }}</h3>
+                <p> Total Buku </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-book"></i>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -22,7 +36,7 @@ Ini Adalah Halaman Home
             </div> 
         </div>
     </div>
-</div> --}}
+</div>
 @endsection
 
 

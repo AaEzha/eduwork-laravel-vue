@@ -20,7 +20,7 @@ class PublisherController extends Controller
     public function index()
     {
     
-        return view('admin.publisher');
+        return view('admin.publisher.publisher');
     }
 
     public function api ()

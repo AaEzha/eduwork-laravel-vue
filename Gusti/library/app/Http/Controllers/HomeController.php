@@ -30,6 +30,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    // public function home()
+    // {
+    //     $total_member = Member::count();
+    //     $total_book = Book::count();
+    //     $total_transaction = Transaction::whereMonth('tgl_pinjam', date('m'))->count();
+    //     $total_publisher = Publisher::count(); 
+
+    //     return view('home', compact('total_book', 'total_member','total_transaction','total_publisher'));
+    // }
+    
     public function index()
     {
         // $members = Member::with('user')->get();
@@ -160,6 +170,6 @@ class HomeController extends Controller
 
         
 
-        return view('home');
+        // return view('home');
     }
 }

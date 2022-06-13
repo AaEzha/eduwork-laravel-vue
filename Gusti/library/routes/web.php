@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CatalogController;
@@ -29,7 +31,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 // Auth::routes();
 
@@ -42,12 +44,13 @@ Route::resource('catalogs', CatalogController::class);
 // Route::get('/catalogs/{catalog}/edit',[CatalogController::class, 'edit']);
 // Route::put('/catalogs/{catalog}',[CatalogController::class, 'update']);
 // Route::delete('/catalogs/{catalog}',[CatalogController::class, 'destroy']);
-
+Route::get('/home', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('home');
 Route::resource('books', BookController::class);
 Route::resource('members', MemberController::class);
 Route::resource('publishers', PublisherController::class);
 Route::resource('authors', AuthorController::class);
 Route::resource('transactions', TransactionController::class);
+// Route::resource('dashboard', AdminController::class);
 
 Route::get('api/authors', [AuthorController::class, 'api']);
 Route::get('api/publishers', [PublisherController::class, 'api']);
