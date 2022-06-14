@@ -7,6 +7,7 @@
 <a href="" class=" btn btn-outline rounded-pill"><i class="fa fa-users"></i>Customer</a>
 <a href="{{route('suppliers.index')}}" class=" btn btn-outline rounded-pill"><i class="fa fa-chart-bar"></i>Supplier</a>
 <a href="" class=" btn btn-outline rounded-pill"><i class="fa fa-truck"></i>Incoming</a>
+<a href="{{route('products.barcode')}}" class=" btn btn-outline rounded-pill"><i class="fa fa-barcode"></i>Barcode</a>
 
 <style>
     .btn-ouline {

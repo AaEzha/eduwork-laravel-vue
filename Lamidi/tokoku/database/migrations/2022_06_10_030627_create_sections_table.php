@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->text('phone')->nullable();
+            $table->string('section_name')->nullable();
+            $table->tinyInteger('status')->default(1)->comment('if the section status is 0 which means the section disable otherwise the section enabled.');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('sections');
     }
 };

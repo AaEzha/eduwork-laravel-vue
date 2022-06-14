@@ -12,6 +12,9 @@
         <li>
             <a href="{{route('products.index')}}"><i class="fa fa-truck fa-lg"></i>PRODUCTS</a>
         </li>
+        <li>
+            <a href="{{route('sections.index')}}"><i class="fa fa-truck fa-lg"></i>SECTIONS</a>
+        </li>
     </ul>
 </nav>
 <style>

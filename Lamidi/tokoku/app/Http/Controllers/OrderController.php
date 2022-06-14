@@ -21,7 +21,9 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         $products = Product::all();
-        return view('orders.index', compact('orders', 'products'));
+        $lastID = Order_Detail::max('order_id');
+        $order_receipt = Order_Detail::where('order_id', $lastID)->get();
+        return view('orders.index', compact('orders', 'products', 'order_receipt'));
     }
 
     /**
@@ -42,40 +44,26 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         DB::transaction(
             function () use ($request) {
                 $orders = new Order();
                 $orders->name = $request->customer_name;
                 $orders->phone = $request->customer_phone;
                 $orders->save();
+                $order_id = $orders->id;
 
-                $product_id = $request->product_id;
-
-                // if (count($product_id) > 0) {
-                //     foreach ($product_id as $item => $value) {
-                //         $data2 = array(
-                //             'order_id' => $orders->id,
-                //             'product_id' => $product_id[$item],
-                //             'qty' => $request->qty,
-                //             'price' => $request->price,
-                //             'amount' => $request->total_amount,
-                //             'discount' => $request->discount,
-                //             'transac_amount' => $request->transac_amount,
-                //         );
-                //         $orders->product_id()->attach($value);
-                //         Order_Detail::create($data2);
-                //     }
-                // }
-                // if (is_countable($product_id) && count($product_id) > 0) {
-                //     $order_details = new Order_Detail;
-                //     $order_details->order_id = $request->order_id;
-                //     $order_details->product_id = $request->product_id;
-                //     $order_details->qty = $request->qty;
-                //     $order_details->price = $request->price;
-                //     $order_details->amount = $request->total_amount;
-                //     $order_details->discount = $request->discount;
-                //     $order_details->save();
-                // }
+                // order_details
+                foreach ($request->product_id as $key => $product) {
+                    $orders->order_details()->create([
+                        'product_id' => $product,
+                        'qty' => $request->qty[$key],
+                        'price' => $request->price[$key],
+                        'amount' => $request->total_amount[$key],
+                        'discount' => $request->discount[$key] ?? 0,
+                    ]);
+                }
+                // transaction
                 $order_id = $orders->id;
                 $transaction = new Transaction;
                 $transaction->order_id = $order_id;
@@ -84,18 +72,20 @@ class OrderController extends Controller
                 $transaction->paid_amount = $request->paid_amount;
                 $transaction->payment_method = $request->payment_method;
                 $transaction->transac_date = date('Y-m-d');
-                $transaction->transac_amount = $request->amount;
+                $transaction->transac_amount = ($request->paid_amount -= $request->balance);
                 $transaction->save();
 
+                //last order history
                 $products = Product::all();
                 $order_details = Order_Detail::where('order_id', $order_id)->get();
+                $order_details = Order_Detail::where('order_id', $orders->getKey())->get();
                 $orderedBy = Order::where('id', $order_id)->get();
+                $orderedBy = Order::where('id', $orders->getKey())->get();
                 return view('orders.index', ['product' => $products, 'order_details' => $order_details, 'cutomer_orders' => $orderedBy]);
             }
         );
         return back()->with("Product orders Failed to inserted! check your inputs!");
     }
-
 
     /**
      * Display the specified resource.

@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
-use App\Models\Order;
-use App\Models\Order_Detail;
+use App\Models\Product;
+use App\Models\Section;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +35,5 @@ Route::resource('/suppliers', SupplierController::class);
 Route::resource('/companies', CompanyController::class);
 Route::resource('/users', UserController::class);
 Route::resource('/transactions', TransactionController::class);
+Route::get('/barcode', [App\Http\Controllers\ProductController::class, 'getproductbarcodes'])->name('products.barcode');
+Route::resource('/sections', SectionController::class);

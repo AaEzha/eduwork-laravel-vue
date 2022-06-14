@@ -10,7 +10,9 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "livewire/livewire": "^2.10",
+        "picqer/php-barcode-generator": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
