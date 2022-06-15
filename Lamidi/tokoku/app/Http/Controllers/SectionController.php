@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Section as SectionModel;
 
 class SectionController extends Controller
 {
@@ -34,7 +35,6 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -54,9 +54,8 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($section_id)
     {
-        //
     }
 
     /**
@@ -66,9 +65,14 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $sections)
     {
-        //
+        // dd($request->all());
+        $sections = SectionModel::find($sections);
+        $sections->section_name = $request->section_name;
+        $sections->status = $request->section_status ??  0;
+        $sections->save();
+        return redirect()->back()->with('Success', 'Section Updated Sucessfully!');
     }
 
     /**
@@ -77,8 +81,9 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SectionModel $section)
     {
-        //
+        $section->delete();
+        return redirect()->back()->with('Success', 'Section Deleted Sucessfully!');
     }
 }

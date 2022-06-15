@@ -1,5 +1,5 @@
 <div class="modal fade" id="addsection" wire:ignore.self data-backdrop="static">
-    <div class="modal-dialog right-crud modal-xl">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title">
@@ -13,12 +13,12 @@
                     <div class="form-row">
                         <td class="col-md-5">
                             <label for="">Section Name</label>
-                            <input type="text" wire:model="section_name.{{$more}}" class="form-control" autocomplete="off">
+                            <input type="text" wire:model="section_name.{{$more}}" name="section_name[]" id="section_name" class="form-control" autocomplete="off">
                             @error('section_name')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </td>
-                        <td class="col-sm-1" data-bs-toggle="tooltip" data-placement="top" title="status[]">
+                        <td class="col-sm-1" data-bs-toggle="tooltip" data-placement="top" title="status" name="section_status[]">
                             <label class="switch"> Status</label>
                             <input type="checkbox" wire:model="section_status.{{$more}}">
                         </td>

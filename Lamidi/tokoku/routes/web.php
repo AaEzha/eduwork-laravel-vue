@@ -7,8 +7,6 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
-use App\Models\Product;
-use App\Models\Section;
 use Illuminate\Support\Facades\Route;
 
 /*

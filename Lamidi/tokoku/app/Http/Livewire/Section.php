@@ -24,13 +24,20 @@ class Section extends Component
     }
     public function store()
     {
-        foreach ($this->section_name as $key => $name) {
+        foreach ($this->section_name as $key => $section) {
             SectionModel::create([
-                'section_name' => $this->section_name['$key'],
-                'status' => $this->section_status['$key'] ?? 0
+                'section_name' => $this->section_name[$key],
+                'status' => $this->section_status[$key] ?? 0
             ]);
         }
         $this->formreset();
+        $this->SwalMessageDialog('Section Inserted Successfully');
+    }
+    public function editsection($section_id)
+    {
+        $section = SectionModel::findOrFail($section_id);
+        $this->section_name = $section->section_name;
+        $this->section_status = $section->status ?? 0;
     }
     public function formreset()
     {
@@ -38,6 +45,10 @@ class Section extends Component
         $this->section_status = '';
         $this->addmore = [1];
         $this->dispatchBrowserEvent('closemodel');
+    }
+    public function SwalMessageDialog($message)
+    {
+        $this->dispatchBrowserEvent('msgsuccessfull', ['title' => $message,]);
     }
     public function render()
     {

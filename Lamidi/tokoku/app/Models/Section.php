@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     use HasFactory;
-    protected $fillabel = ['section_name', 'status'];
+    protected $fillable = ['section_name', 'status'];
 }

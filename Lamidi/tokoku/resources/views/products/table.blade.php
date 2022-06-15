@@ -1,7 +1,7 @@
 <table class="table table-bordered table-left">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Product Name</th>
             <th>Brand</th>
             <th>Price</th>
