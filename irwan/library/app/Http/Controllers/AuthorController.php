@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,7 @@ class AuthorController extends Controller
         $authors = Author::with('books')->get();
 
         // 0eturn $catalogs;
-        return view('admin.author.index', compact('authors'));
+        return view('admin.author', compact('authors'));
     }
 
     /**
@@ -27,7 +31,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('admin.author.create');
+        return view('admin.author');
     }
 
     /**
@@ -38,15 +42,17 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[
-            'name'      =>['required'],
+
+        $this->validate($request,[
+            'name' =>['required'],
+            'email' =>['required'],
+            'phone_number' =>['required'],
+            'address' =>['required'],
 
         ]);
-        $author = new Author;
-        $author->name = $request->name;
-        $author->save();
+        
 
-        // Catalog::create($request->all());
+        Author::create($request->all());
 
         return redirect('authors');
     }
@@ -86,6 +92,9 @@ class AuthorController extends Controller
         
         $this->validate($request,[
             'name'      =>['required'],
+            'email' =>['required'],
+            'phone_number' =>['required'],
+            'address' =>['required'],
 
         ]);
         $author = new Catalog;

@@ -30,6 +30,9 @@ Route::get('/edit', [App\Http\Controllers\CatalogController::class, 'edit']);
 Route::put('/edit', [App\Http\Controllers\CatalogController::class, 'update']);
 Route::delete('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::class, 'destroy']);
 
+// Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);
+
+
 Route::get('/publishers', [App\Http\Controllers\PublisherController::class, 'index']);
 Route::get('/createpublisher', [App\Http\Controllers\PublisherController::class, 'create']);
 Route::post('/publishers', [App\Http\Controllers\PublisherController::class, 'store']);
@@ -43,3 +46,5 @@ Route::post('/author', [App\Http\Controllers\AuthorController::class, 'store']);
 Route::get('/edit', [App\Http\Controllers\AuthorController::class, 'edit']);
 Route::put('/edit', [App\Http\Controllers\AuthorController::class, 'update']);
 Route::delete('/author/{author}', [App\Http\Controllers\AuthorController::class, 'destroy']);
+
+Route::resource('/authors',App\Http\Controllers\AuthorController::class);

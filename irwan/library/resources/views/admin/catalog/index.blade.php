@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('header', 'Catalog')
 
+
+
 @section('content')
 
 	<a href="{{ url('create') }}" class="btn btn-sm btn-primary pull-right">Create New Catalog</a>
@@ -36,3 +38,4 @@
 </table>
 
 @endsection
+
