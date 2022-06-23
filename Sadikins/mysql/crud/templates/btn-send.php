@@ -1,1 +1,0 @@
-<button type="submit" name="Submit" class="btn p-3 btn-primary ms-2">Submit <i class="bi bi-send"></i></button>
