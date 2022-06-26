@@ -13,7 +13,7 @@
       <th scope="col">No</th>
       <th scope="col">Name</th>
       <th scope="col">Total Books</th>
-      <th scope="col">Craeted At</th>
+      <th scope="col">Created At</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -23,7 +23,7 @@
       <th>{{ $key+1 }}</th>
       <td>{{ $catalog->name }}</td>
       <td>{{ count($catalog->books) }}</td>
-      <td>{{ $catalog->created_at }}</td>
+      <td>{{ convert_date($catalog->created_ad) }}</td>
       <td class="text-center">
         <a href="{{ url('edit') }}" class="btn btn-warning btn-sm">Edit</a>
          <form action="{{ url('catalogs', ['id' => $catalog->id]) }}" method="post">
