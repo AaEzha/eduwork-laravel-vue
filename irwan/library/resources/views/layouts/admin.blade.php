@@ -201,7 +201,7 @@
             <a href="{{ url('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Home
+                Data Master
               </p>
             </a>
           </li>

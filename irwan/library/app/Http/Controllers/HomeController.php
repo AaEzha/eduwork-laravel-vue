@@ -12,6 +12,14 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    public function home ()
+     {
+        $total_anggota = Anggota::count();
+        $total_buku = Buku::count();
+        $toal_peminjaman = Peminjaman::wherMonth('tgl_pinjam', date('m'))->count();
+        $total_penerbit = Penerbit::count();
+    }
     /**
      * Create a new controller instance.
      *
@@ -137,7 +145,6 @@ class HomeController extends Controller
         $data20 = Member::select('*')
                 ->get(); 
 
-         return $data20;
         // return $publishers;
         // return $members;
         return view('home');
