@@ -209,7 +209,7 @@
 
            <li class="nav-item">
             <a href="{{ url('peminjamans') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-book"></i>
+              <i class="nav-icon fas fa-car"></i>
               <p>
                 Peminjaman
               </p>
