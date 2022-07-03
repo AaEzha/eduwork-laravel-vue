@@ -49,6 +49,8 @@ Route::put('/edit', [App\Http\Controllers\AuthorController::class, 'update']);
 Route::delete('/author/{author}', [App\Http\Controllers\AuthorController::class, 'destroy']);
 
 Route::resource('/authors',App\Http\Controllers\AuthorController::class);
+Route::resource('/datas',App\Http\Controllers\AnggotaController::class);
+Route::resource('/peminjamans',App\Http\Controllers\PeminjamanController::class);
 
 Route::get('/api/authors',[App\Http\Controllers\AuthorController::class, 'api']);
 Route::get('/api/publishers',[App\Http\Controllers\PublisherController::class, 'api']);

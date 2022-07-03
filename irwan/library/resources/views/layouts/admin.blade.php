@@ -206,6 +206,16 @@
             </a>
           </li>
 
+
+           <li class="nav-item">
+            <a href="{{ url('peminjamans') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Peminjaman
+              </p>
+            </a>
+          </li>
+
            <li class="nav-item">
             <a href="{{ url('catalogs') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : '' }}">
               <i class="nav-icon fas fa-calendar-day"></i>
@@ -247,6 +257,15 @@
               <i class="nav-icon fas fa-user-astronaut"></i>
               <p>
                 Member
+              </p>
+            </a>
+          </li>
+
+           <li class="nav-item">
+            <a href="{{ url('#') }}" class="nav-link {{ request()->is('members') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Anggota
               </p>
             </a>
           </li>
