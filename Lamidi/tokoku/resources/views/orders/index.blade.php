@@ -56,23 +56,20 @@
                         <h4>Total <b class="total">0.00</b></h4>
                     </div>
                     <div class="card-body">
-                        <div class="btn-group">
-                            <button type="button" onclick="PrintReceiptContent('print')" class="btn btn-dark"><i class="fa fa-print"></i> Print</button>
-                            <button type="button" onclick="PrintReceiptContent('print')" class="btn btn-dark"><i class="fa fa-print"></i> History</button>
-                            <button type="button" onclick="PrintReceiptContent('print')" class="btn btn-dark"><i class="fa fa-print"></i> Report</button>
-
-                        </div>
                         <div class="panel">
                             <div class="row">
                                 <table class="table table-striped">
                                     <tr>
                                         <td>
                                             <label for="">Cutomer Name</label>
-                                            <input type="text" name="customer_name" id="" class="form-control">
+                                            <select name="customer_name" id="customer_name" class="form-control" onchange="customer()">
+                                                <option value="" selected disabled hidden>Choose item...</option> @foreach($customers as $customer)
+                                                <option value="{{$customer->phone}}">{{$customer->name}}</option>@endforeach
+                                            </select>
                                         </td>
                                         <td>
                                             <label for="">Cutomer Phone</label>
-                                            <input type="text" name="customer_phone" id="" class="form-control">
+                                            <input type="text" size="10" name="customer_phone" id="customer_phone" class="form-control">
                                         </td>
                                     </tr>
                                 </table>
@@ -96,13 +93,10 @@
                                 <td>
                                     Returning Change <input type="number" readonly name="balance" id="balance" class="form-control">
                                 </td>
-                                <td> <button class="btn-pimary btn-lg btn-block mt-3">Save</button>
+                                <td> <button class="btn btn-info mt-3">Save</button>
                                 </td>
-                                <td> <button class="btn-danger btn-lg btn-block mt-2">Calculator</button>
+                                <td> <button type="button" onclick="PrintReceiptContent('print')" class="btn btn-dark"><i class="fa fa-print"></i> Print</button></button>
                                 </td>
-                                <div class="text-center">
-                                    <a href="#" class="text-danger"><i class="fa fa-sign-out-alt"></i></a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,12 +110,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
+                <h2 class="modal-title" id="exampleModalLabel">
                     <center>TOKOKU</center>
-                </h5>
+                </h2>
                 <div class="mid">
                     <div class="info">
-                        <h2> Contact Us</h2>
+                        <h4> Contact Us</h4>
                         <p> Address: Rejoso, Pasuruan, Indonesia <br>
                             Email: elkira03@gmail.com <br>
                             Phone: 082248969890</p>
@@ -133,76 +127,80 @@
                     <div class="form-group">
                         <div class="bot">
                             <div id="table">
-                                <table>
-                                    <tr class="tabletitle">
-                                        <td class="item">
-                                            <h2>Item</h2>
-                                        </td>
-                                        <td class="hour">
-                                            <h2>Qty</h2>
-                                        </td>
-                                        <td class="rate">
-                                            <h2>Price</h2>
-                                        </td>
-                                        <td class="rate">
-                                            <h2>Discount</h2>
-                                        </td>
-                                        <td class="rate">
-                                            <h2>Sub Total</h2>
-                                        </td>
-                                    </tr>
-                                    @foreach($order_receipt as $receipt)
-                                    <tr class="service">
-                                        <td class="tableitem">
-                                            <p class="itemtext">{{$receipt->product->product_name}}</p>
-                                        </td>
-                                        <td class="tableitem">
-                                            <p class="itemtext">{{$receipt->qty}}</p>
-                                        </td>
-                                        <td class="tableitem">
-                                            <p class="itemtext">{{number_format($receipt->price,2)}}</p>
-                                        </td>
-                                        <td class="tableitem">
-                                            <p class="itemtext">{{number_format($receipt->discount,2)}}</p>
-                                        </td>
-                                        <td class="tableitem">
-                                            <p class="itemtext">{{number_format($receipt->amount,2)}}</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="tabletitle">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class=" Rate">
-                                            <p class="itemtext">Tax</p>
-                                        </td>
-                                        <td class="Payment">
-                                            <p class="itemtext">{{number_format($receipt->amount*0.11,2)}}</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="tabletitle">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class=" Rate">
-                                            <p class="itemtext">Total</p>
-                                        </td>
-                                        <td class="Payment">
-                                            <p class="itemtext">{{number_format($receipt->sum('amount'),2)}}</p>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                <table class="table dark">
+                                    <thead>
+                                        <tr>
+                                            <td class="item">
+                                                <h4>Item</h4>
+                                            </td>
+                                            <td class="hour">
+                                                <h4>Qty</h4>
+                                            </td>
+                                            <td class="rate">
+                                                <h4>Price</h4>
+                                            </td>
+                                            <td class="rate">
+                                                <h4>Discount</h4>
+                                            </td>
+                                            <td class="rate">
+                                                <h4>Sub Total</h4>
+                                            </td>
+                                        </tr>
+                                        @foreach($order_receipt as $receipt)
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">{{$receipt->product->product_name}}</p>
+                                            </td>
+                                            <td class="tableitem">
+                                                <p class="itemtext">{{$receipt->qty}}</p>
+                                            </td>
+                                            <td class="tableitem">
+                                                <p class="itemtext">{{number_format($receipt->price,2)}}</p>
+                                            </td>
+                                            <td class="tableitem">
+                                                <p class="itemtext">{{number_format($receipt->discount,2)}}</p>
+                                            </td>
+                                            <td class="tableitem">
+                                                <p class="itemtext">{{number_format($receipt->amount,2)}}</p>
+                                            </td>
+                                        </tr>
+                                        <tr class="tabletitle">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class=" Rate">
+                                                <p class="itemtext">Tax</p>
+                                            </td>
+                                            <td class="Payment">
+                                                <p class="itemtext">{{number_format($receipt->amount*0.11,2)}}</p>
+                                            </td>
+                                        </tr>
+                                        <tr class="tabletitle">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class=" Rate">
+                                                <p class="itemtext">Total</p>
+                                            </td>
+                                            <td class="Payment">
+                                                <p class="itemtext">{{number_format($receipt->sum('amount'),2)}}</p>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                 </table>
                                 <div class=" leagalcopy">
                                     <p class=" legal"><strong>*** Thank you for your purchasing ***</strong><br></p>
-                                    Barang yang sudah dibeli tidak dapat dikembalikan lagi
                                 </div>
                                 <div class="serial-number">
-                                    Serial: <span class="serial">
-                                        1234567890
+                                    <span>Serial Code: @foreach($order_receipt as $receipt) {{$receipt->id}}@endforeach</span><br>
+                                    <span> Date:
+                                        <?php
+                                        date_default_timezone_set('Asia/Jakarta'); // Zona Waktu indonesia
+                                        echo date('l, d-m-Y  H:i:s'); //kombinasi jam dan tanggal
+                                        ?>
                                     </span>
-                                    <span> 30/05/2022 &nbsp; 14:20</span>
                                 </div>
+                                </thead>
                             </div>
                         </div>
                     </div>
@@ -342,6 +340,7 @@
 </style>
 </div>
 @endsection
+
 @section('script')
 <script>
     $('.add_more').on('click', function() {
@@ -411,8 +410,14 @@
         myReceipt.focus();
         setTimeout(() => {
             myReceipt.close();
-        }, 8000);
+        }, 100000);
 
     }
+
+    $('#customer_name').on('change', function() {
+        $('#customer_phone').val($(this).val());
+    })
+    // init
+    $('#customer_name').change();
 </script>
 @endsection

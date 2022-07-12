@@ -14,7 +14,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::paginate(5);
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -35,16 +36,25 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $suppliers = new Supplier;
+        $suppliers->supplier_name = $request->supplier_name;
+        $suppliers->email = $request->email;
+        $suppliers->phone = $request->phone;
+        $suppliers->address = $request->address;
+        $suppliers->save();
+        if ($suppliers) {
+            return redirect()->back()->with('Supplier Created Successfully');
+        }
+        return redirect()->back()->with('Supplier Failed To Created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
+    public function show(Supplier $transaction)
     {
         //
     }
@@ -52,34 +62,48 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier)
+    public function edit(Supplier $transaction)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, $suppliers)
     {
-        //
+        $suppliers = Supplier::find($suppliers);
+        $suppliers->supplier_name = $request->supplier_name;
+        $suppliers->email = $request->email;
+        $suppliers->phone = $request->phone;
+        $suppliers->address = $request->address;
+        $suppliers->save();
+        if (!$suppliers) {
+            return back()->with('Error', 'Supplier not Found');
+        }
+        // $suppliers->update($request->all());
+        return back()->with('Success', 'Supplier Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-        //
+        $suppliers = Supplier::find($id);
+        if (!$suppliers) {
+            return back()->with('Error', 'User not Found');
+        }
+        $suppliers->delete();
+        return back()->with('Success', 'User Deleted Successfully');
     }
 }

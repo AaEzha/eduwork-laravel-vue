@@ -9,15 +9,20 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products';
-    protected $fillable = ['product_name', 'description', 'brand', 'price', 'qty', 'product_code', 'alert_stock', 'barcode', 'qrcode', 'product_image'];
+    protected $fillable = ['product_name', 'description', 'brand', 'price', 'qty', 'product_code', 'alert_stock', 'barcode', 'qrcode', 'product_image', 'supplier'];
 
-    public function orderdetail()
+
+    public function order_detail()
     {
-        return $this->hasMany(Order_Detail::class);
+        return $this->hasOne(Order_Detail::class);
     }
 
     public function cart()
     {
         return $this->hasMany(Cart::class);
+    }
+    public function suppliers()
+    {
+        return $this->hasMany(Suppliers::class);
     }
 }

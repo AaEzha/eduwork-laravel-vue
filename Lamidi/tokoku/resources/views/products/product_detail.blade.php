@@ -25,7 +25,15 @@
             <input type="text" class="form-control" value="{{$product->price}}" readonly>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="form-group">
+        <label>Supplier</label>
+        <select name="supplier" id="" class="form-control" disabled>
+            @foreach($suppliers as $supplier)
+            <option value="{{$product->supplier}}" {{($supplier->id == $product->supplier) ? "selected" : "" }}>{{ $supplier->supplier_name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class=" col-md-12">
         <div class="form-group">
             <label for="">Product Qty</label>
             <input type="text" class="form-control" value="{{$product->qty}}" readonly>

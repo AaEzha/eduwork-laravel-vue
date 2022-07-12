@@ -10,10 +10,10 @@
                         <a href="#" style="float: right" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addUser"><i class=" fa fa-plus">Add New User</i></a>
                         <br><br>
                         <div class="card-body">
-                            <table class="table table-bordered table-left">
+                            <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>No</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
@@ -104,14 +104,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Search User</h4>
-                        <div class="card-body"></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- Modal -->
@@ -175,4 +167,26 @@
         }
     </style>
 </div>
+<script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('assets/plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('assets/plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["excel", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
 @endsection

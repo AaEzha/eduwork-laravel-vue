@@ -1,22 +1,42 @@
 <nav class="active" id="sidebar">
     <ul class="list-unstyled lead">
+        @can('admin page')
         <li>
-            <a href=""><i class="fa fa-home"></i>HOME</a>
+            <a href="{{route('home')}}"><i class="fa fa-home"></i>HOME</a>
+        </li>
+        <li>
+            <a href="{{route('users.index')}}"><i class="fa fa-user"></i>USER</a>
+        </li>
+        <li>
+            <a href="{{route('products.index')}}"><i class="fa fa-box"></i>PRODUCT</a>
+        </li>
+        <li>
+            <a href="{{route('products.barcode')}}"><i class="fa fa-barcode"></i>BARCODE</a>
+        </li>
+        <li>
+            <a href="{{route('charts.index')}}"><i class="fa fa-file"></i>Report</a>
+        </li>
+        <li>
+            <a href="{{route('customers.index')}}"><i class="fa fa-users"></i>Customer</a>
+        </li>
+        <li>
+            <a href="{{route('suppliers.index')}}"><i class="fa fa-chart-bar"></i>Supplier</a>
+        </li>
+        @endcan
+        @role('cashier')
+        <li>
+            <a href="{{route('home')}}"><i class="fa fa-home"></i>HOME</a>
+        </li>
+        <li>
+            <a href="{{route('customers.index')}}"><i class="fa fa-users"></i>Customer</a>
         </li>
         <li>
             <a href="{{route('orders.index')}}"><i class="fa fa-box fa-lg"></i>ORDERS</a>
         </li>
-        <li>
-            <a href="{{route('transactions.index')}}"><i class="fa fa-money-bill fa-lg"></i>TRANSACTIONS</a>
-        </li>
-        <li>
-            <a href="{{route('products.index')}}"><i class="fa fa-truck fa-lg"></i>PRODUCTS</a>
-        </li>
-        <li>
-            <a href="{{route('sections.index')}}"><i class="fa fa-truck fa-lg"></i>SECTIONS</a>
-        </li>
+        @endrole
     </ul>
 </nav>
+
 <style>
     #sidebar ul.lead {
         border-bottom: 1px solid #47748b;

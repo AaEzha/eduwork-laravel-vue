@@ -11,7 +11,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = ['name', 'address'];
 
-    public function order_details()
+    public function order_detail()
     {
         return $this->hasMany(Order_Detail::class);
     }

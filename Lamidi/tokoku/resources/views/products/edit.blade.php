@@ -26,6 +26,14 @@
                         <input type="number" name="price" id="" value="{{$product->price}}" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label>Supplier</label>
+                        <select name="supplier[]" class="form-control">
+                            @foreach($suppliers as $supplier)
+                            <option value="{{$product->supplier}}" {{($supplier->id == $product->supplier) ? "selected" : "" }}>{{ $supplier->supplier_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="">Qty</label>
                         <input type="number" name="qty" id="" value="{{$product->qty}}" class="form-control">
                     </div>

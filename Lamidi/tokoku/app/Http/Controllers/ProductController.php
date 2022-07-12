@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 require 'C:\xampp\htdocs\eduwork\tokoku\vendor\autoload.php';
 
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Picqer;
 
 
@@ -20,7 +22,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(5);
-        return view('products.index', compact('products'));
+        $suppliers = Supplier::all();
+        return view('products.index', compact('products', 'suppliers'));
     }
 
     /**
@@ -43,7 +46,6 @@ class ProductController extends Controller
     {
         $products = new Product;
         $product_code = $request->product_code;
-
         if ($request->hasFile('product_image')) {
             $file = $request->file('product_image');
             $file->move('assets/products/images/', $file->getClientOriginalName());
@@ -68,6 +70,7 @@ class ProductController extends Controller
         $products->brand = $request->brand;
         $products->price = $request->price;
         $products->qty = $request->qty;
+        $products->supplier = $request->supplier;
         $products->alert_stock = $request->alert_stock;
         $products->barcode = $product_code . '.jpg';
         $products->save();
@@ -96,7 +99,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $suppliers = Supplier::all();
+        return view('products.edit', compact('suppliers'));
     }
 
     /**
@@ -149,8 +153,12 @@ class ProductController extends Controller
         $products->brand = $request->brand;
         $products->price = $request->price;
         $products->qty = $request->qty;
+        $products->supplier = $request->supplier;
         $products->alert_stock = $request->alert_stock;
         $products->save();
+        if (!$products) {
+            return back()->with('Error', 'Product not Found');
+        }
         return redirect()->back()->with('Success', 'Product Updated Sucessfully!');
     }
 

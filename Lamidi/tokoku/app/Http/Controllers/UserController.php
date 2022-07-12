@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -100,5 +102,19 @@ class UserController extends Controller
         }
         $users->delete();
         return back()->with('Success', 'User Deleted Successfully');
+    }
+    public function test_spatie()
+    {
+        // $role = Role::create(['name' => 'cashier']);
+        // $permission = Permission::create(['name' => 'cashier page']);
+        // $role->givePermissionTo($permission);
+        // $permission->assignRole($role);
+        // $user = auth()->user();
+        // $user->assignRole('cashier');
+        // return $user;
+        $user = User::with('roles')->get();
+        return $user;
+        // $user = auth()->user();
+        // $user->removeRole('admin');
     }
 }

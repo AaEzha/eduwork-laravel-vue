@@ -25,6 +25,13 @@
                         <input type="text" name="brand" id="" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="">Supplier</label>
+                        <select name="supplier" id="" class="form-control">
+                            <option value="" selected disabled hidden>Choose item...</option> @foreach($suppliers as $supplier)
+                            <option value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>@endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="">Price</label>
                         <input type="number" name="price" id="" class="form-control">
                     </div>

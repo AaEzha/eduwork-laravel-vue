@@ -176,7 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Spatie\Permission\PermissionServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -192,6 +193,10 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Form' => 'Collective\Html\FormFacade',
+        'HTML' => 'Collective\Html\HtmlFacade',
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
+
 
 ];

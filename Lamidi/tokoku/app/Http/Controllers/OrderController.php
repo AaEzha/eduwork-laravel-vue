@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use App\Models\Product;
@@ -19,11 +20,12 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $customers = Customer::all();
         $orders = Order::all();
         $products = Product::all();
         $lastID = Order_Detail::max('order_id');
         $order_receipt = Order_Detail::where('order_id', $lastID)->get();
-        return view('orders.index', compact('orders', 'products', 'order_receipt'));
+        return view('orders.index', compact('orders', 'products', 'order_receipt', 'customers',));
     }
 
     /**
@@ -55,7 +57,7 @@ class OrderController extends Controller
 
                 // order_details
                 foreach ($request->product_id as $key => $product) {
-                    $orders->order_details()->create([
+                    $orders->order_detail()->create([
                         'product_id' => $product,
                         'qty' => $request->qty[$key],
                         'price' => $request->price[$key],
@@ -63,6 +65,7 @@ class OrderController extends Controller
                         'discount' => $request->discount[$key] ?? 0,
                     ]);
                 }
+
                 // transaction
                 $order_id = $orders->id;
                 $transaction = new Transaction;
@@ -81,6 +84,14 @@ class OrderController extends Controller
                 $order_details = Order_Detail::where('order_id', $orders->getKey())->get();
                 $orderedBy = Order::where('id', $order_id)->get();
                 $orderedBy = Order::where('id', $orders->getKey())->get();
+
+                // pengurangan stock
+                $qty = $request->qty;
+                if (COUNT($qty) > 1) {
+                    foreach ($qty as $id) {
+                        DB::table('products')->where('id', $id)->decrement('qty');
+                    }
+                }
                 return view('orders.index', ['product' => $products, 'order_details' => $order_details, 'cutomer_orders' => $orderedBy]);
             }
         );
