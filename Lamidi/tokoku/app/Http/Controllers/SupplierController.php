@@ -43,9 +43,9 @@ class SupplierController extends Controller
         $suppliers->address = $request->address;
         $suppliers->save();
         if ($suppliers) {
-            return redirect()->back()->with('Supplier Created Successfully');
+            return redirect()->back()->with('success', 'Supplier Successfully Inserted');
         }
-        return redirect()->back()->with('Supplier Failed To Created');
+        return redirect()->back()->with('error', 'Supplier Failed To Inserted');
     }
 
     /**
@@ -85,10 +85,10 @@ class SupplierController extends Controller
         $suppliers->address = $request->address;
         $suppliers->save();
         if (!$suppliers) {
-            return back()->with('Error', 'Supplier not Found');
+            return back()->with('error', 'Supplier not Found');
         }
         // $suppliers->update($request->all());
-        return back()->with('Success', 'Supplier Updated Successfully');
+        return back()->with('info', 'Supplier Updated Successfully');
     }
 
     /**
@@ -101,9 +101,9 @@ class SupplierController extends Controller
     {
         $suppliers = Supplier::find($id);
         if (!$suppliers) {
-            return back()->with('Error', 'User not Found');
+            return back()->with('error', 'Supplier not Found');
         }
         $suppliers->delete();
-        return back()->with('Success', 'User Deleted Successfully');
+        return back()->with('warning', 'Supplier Deleted Successfully');
     }
 }

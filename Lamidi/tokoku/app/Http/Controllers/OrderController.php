@@ -92,10 +92,11 @@ class OrderController extends Controller
                         DB::table('products')->where('id', $id)->decrement('qty');
                     }
                 }
-                return view('orders.index', ['product' => $products, 'order_details' => $order_details, 'cutomer_orders' => $orderedBy]);
+                return view('orders.index', ['product' => $products, 'order_details' => $order_details, 'cutomer_orders' => $orderedBy])->with('success', 'Your Orders Successfull to Inserted');
             }
+
         );
-        return back()->with("Product orders Failed to inserted! check your inputs!");
+        return back()->with('error', 'Your orders Failed to inserted! check your inputs!');
     }
 
     /**

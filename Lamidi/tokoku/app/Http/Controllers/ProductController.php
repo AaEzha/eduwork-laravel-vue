@@ -75,9 +75,9 @@ class ProductController extends Controller
         $products->barcode = $product_code . '.jpg';
         $products->save();
         if ($products) {
-            return redirect()->back()->with('product Created Successfully');
+            return redirect()->back()->with('success', 'Product Successfully Inserted');
         }
-        return redirect()->back()->with('product Failed To Created');
+        return redirect()->back()->with('error', 'Product Failed To Inserted');
     }
 
     /**
@@ -157,9 +157,9 @@ class ProductController extends Controller
         $products->alert_stock = $request->alert_stock;
         $products->save();
         if (!$products) {
-            return back()->with('Error', 'Product not Found');
+            return back()->with('error', 'Product not Found');
         }
-        return redirect()->back()->with('Success', 'Product Updated Sucessfully!');
+        return redirect()->back()->with('info', 'Product Updated Sucessfully!');
     }
 
     /**
@@ -171,7 +171,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->back()->with('Success', 'Product Deleted Sucessfully!');
+        return redirect()->back()->with('warning', 'Product Deleted Sucessfully!');
     }
     public function getproductbarcodes()
     {

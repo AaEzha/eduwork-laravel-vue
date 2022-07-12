@@ -45,9 +45,9 @@ class UserController extends Controller
         $users->is_admin = $request->is_admin;
         $users->save();
         if ($users) {
-            return redirect()->back()->with('User Created Successfully');
+            return redirect()->back()->with('success', 'User Created Successfully');
         }
-        return redirect()->back()->with('User Failed To Created');
+        return redirect()->back()->with('error', 'User Failed To Created');
     }
 
     /**
@@ -82,10 +82,10 @@ class UserController extends Controller
     {
         $users = User::find($id);
         if (!$users) {
-            return back()->with('Error', 'User not Found');
+            return back()->with('error', 'User not Found');
         }
         $users->update($request->all());
-        return back()->with('Success', 'User Updated Successfully');
+        return back()->with('success', 'User Updated Successfully');
     }
 
     /**
@@ -98,10 +98,10 @@ class UserController extends Controller
     {
         $users = User::find($id);
         if (!$users) {
-            return back()->with('Error', 'User not Found');
+            return back()->with('error', 'User not Found');
         }
         $users->delete();
-        return back()->with('Success', 'User Deleted Successfully');
+        return back()->with('warning', 'User Deleted Successfully');
     }
     public function test_spatie()
     {

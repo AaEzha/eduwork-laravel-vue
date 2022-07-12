@@ -43,9 +43,9 @@ class CustomerController extends Controller
         $customers->address = $request->address;
         $customers->save();
         if ($customers) {
-            return redirect()->back()->with('Customer Created Successfully');
+            return redirect()->back()->with('success', 'Customer Successfully Inserted');
         }
-        return redirect()->back()->with('Customer Failed To Created');
+        return redirect()->back()->with('error', 'Customer Failed To Inserted');
     }
 
     /**
@@ -80,10 +80,10 @@ class CustomerController extends Controller
     {
         $customers = Customer::find($id);
         if (!$customers) {
-            return back()->with('Error', 'Customer not Found');
+            return back()->with('error', 'Customer not Found');
         }
         $customers->update($request->all());
-        return back()->with('Success', 'Customer Updated Successfully');
+        return back()->with('info', 'Customer Updated Successfully');
     }
 
     /**
@@ -96,9 +96,9 @@ class CustomerController extends Controller
     {
         $customers = Customer::find($id);
         if (!$customers) {
-            return back()->with('Error', 'Customer not Found');
+            return back()->with('error', 'Customer not Found');
         }
         $customers->delete();
-        return back()->with('Success', 'Customer Deleted Successfully');
+        return back()->with('warning', 'Customer Deleted Successfully');
     }
 }

@@ -115,6 +115,6 @@ class ChartController extends Controller
         if (COUNT(array($qty)) > 1) {
             DB::table('products')->where('id', $qty)->increment('qty');
         }
-        return response()->json(['success' => "Transaction deleted successfully."]);
+        return response()->json(['warning' => "Transaction deleted successfully."]);
     }
 }
