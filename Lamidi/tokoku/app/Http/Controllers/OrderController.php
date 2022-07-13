@@ -18,6 +18,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $customers = Customer::all();
@@ -28,6 +29,10 @@ class OrderController extends Controller
         return view('orders.index', compact('orders', 'products', 'order_receipt', 'customers',));
     }
 
+    public function api()
+    {
+        $customers = Customer::all();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -92,11 +97,10 @@ class OrderController extends Controller
                         DB::table('products')->where('id', $id)->decrement('qty');
                     }
                 }
-                return view('orders.index', ['product' => $products, 'order_details' => $order_details, 'cutomer_orders' => $orderedBy])->with('success', 'Your Orders Successfull to Inserted');
+                return view('orders.index', ['product' => $products, 'order_details' => $order_details, 'cutomer_orders' => $orderedBy]);
             }
-
         );
-        return back()->with('error', 'Your orders Failed to inserted! check your inputs!');
+        return back()->with('success', 'Your Orders Successfull to Inserted');
     }
 
     /**

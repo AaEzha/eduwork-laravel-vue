@@ -56,6 +56,17 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <i class="far fa-bell"></i>
+                                <span class="badge badge-warning navbar-badge"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                <span class="dropdown-item dropdown-header">Stock Notifications</span>
+                                <div class="dropdown-divider"></div>
+                                {{ stock() }}
+                            </div>
+                        </li>
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">

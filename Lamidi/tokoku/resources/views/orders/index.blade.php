@@ -61,20 +61,20 @@
                                 <table class="table table-striped">
                                     <tr>
                                         <td>
-                                            <label for="">Cutomer Name</label>
-                                            <select name="customer_name" id="customer_name" class="form-control" onchange="customer()">
-                                                <option value="" selected disabled hidden>Choose item...</option> @foreach($customers as $customer)
-                                                <option value="{{$customer->phone}}">{{$customer->name}}</option>@endforeach
+                                            <label for="">Customer Name</label>
+                                            <select name="customer_name" id="customer_name" class="form-control customer_name">
+                                                <option value="" selected disabled hidden>Choose Name...</option> @foreach($customers as $customer)
+                                                <option data-customer="{{$customer->phone}}" value="{{$customer->id}}">{{$customer->name}}</option>@endforeach
                                             </select>
                                         </td>
                                         <td>
-                                            <label for="">Cutomer Phone</label>
-                                            <input type="text" size="10" name="customer_phone" id="customer_phone" class="form-control">
+                                            <label for="">Customer Phone</label>
+                                            <input type="text" size="10" name="customer_phone" id="customer_phone" class="form-control customer_phone" readonly>
                                         </td>
                                     </tr>
                                 </table>
                                 <td> Payment Method <br>
-                                    <span class="radio-item">
+                                    <span class=" radio-item">
                                         <input type="radio" name="payment_method" id="payment_method" class="true" value="cash" checked="checked">
                                         <label for="payment_method"><i class="fa fa-money-bill text-success"></i> Cash</label>
                                     </span>
@@ -415,9 +415,8 @@
     }
 
     $('#customer_name').on('change', function() {
-        $('#customer_phone').val($(this).val());
-    })
-    // init
-    $('#customer_name').change();
+        var phone = $('.customer_name option:selected').attr('data-customer');
+        $('.customer_phone').val(phone);
+    });
 </script>
 @endsection
