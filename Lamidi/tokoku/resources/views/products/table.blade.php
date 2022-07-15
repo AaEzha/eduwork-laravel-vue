@@ -21,7 +21,7 @@
             <td>{{$key+1}}</td>
             <td style="cursor: pointer" data-toggle="tooltip" data-placemet="right" title="Click to view Detail" wire:click="ProductDetails({{$product->id}})">{{$product->product_name}}</td>
             <td>{{$product->brand}}</td>
-            <td>{{number_format($product->price,2)}}</td>
+            <td>{{rupiah($product->price)}}</td>
             <td>
                 @if ($product->alert_stock > $product->qty) <span class="text text-danger">
                     Low Stock</span>
@@ -61,7 +61,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["excel", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>

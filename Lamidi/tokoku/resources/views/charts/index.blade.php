@@ -52,11 +52,12 @@
         </div>
     </div>
     <br>
-    <div class="row">
+    <div id="reportPage" class="row">
         <div class="col-md-6">
             <div class="card card-danger">
                 <div class="card-header">
                     <h3 class="card-title">ORDERS CHARTS</h3>
+
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
@@ -69,8 +70,6 @@
                 <div class="card-body">
                     <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-
-                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
             </div>
         </div>
         <br>
@@ -90,7 +89,6 @@
                 <div class="card-body">
                     <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
             </div>
         </div>
         <br>
@@ -110,7 +108,6 @@
                 <div class="card-body">
                     <canvas id="pieChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
             </div>
         </div>
         <br>
@@ -130,10 +127,10 @@
                 <div class="card-body">
                     <canvas id="donutChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
             </div>
         </div>
     </div>
+    <a href="#" id="downloadPdf" class="btn btn-default"><i class="fas fa-print"></i> Print Charts</a>
     <table id="example1" class="table table-bordered table-left">
         <thead>
             <tr>
@@ -150,18 +147,18 @@
         </thead>
         <tbody>
             @if($orders->count())
-            <a href="#" style="margin: 5px;" class="btn btn-danger" id="multiple_deleted">Delete Selected</a>
+            <a href="#" style="margin: 5px;" class="btn btn-danger" id="multiple_deleted">Delete Selected Data</a>
             @foreach ($orders as $key => $order)
             <tr id="sid{{$order->id}}">
                 <td><input type="checkbox" name="ids" class="checkboxclass" value="{{$order->id}}"></td>
                 <td>{{$key+1}}</td>
                 <td>{{$order->nameo}}</td>
-                <td>{{$order->paid_amount}}</td>
-                <td>{{$order->balance}}</td>
+                <td>{{rupiah($order->paid_amount)}}</td>
+                <td>{{rupiah($order->balance)}}</td>
                 <td>{{$order->payment_method}}</td>
                 <td>{{$order->nameu}}</td>
                 <td>{{$order->transac_date}}</td>
-                <td>{{$order->transac_amount}}</td>
+                <td>{{rupiah($order->transac_amount)}}</td>
             </tr>
             @endforeach
             @endif
@@ -186,7 +183,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
@@ -247,13 +244,17 @@
         var donutOptions = {
             maintainAspectRatio: false,
             responsive: true,
+            title: {
+                display: true,
+                text: "ORDERS CHARTS"
+            },
         };
         //Create pie or douhnut chart
         // You can switch between pie and douhnut using the method below.
         new Chart(donutChartCanvas, {
             type: 'doughnut',
             data: donutData,
-            options: donutOptions
+            options: donutOptions,
         });
         //-------------
         //- PIE CHART -
@@ -270,13 +271,17 @@
         var pieOptions = {
             maintainAspectRatio: false,
             responsive: true,
+            title: {
+                display: true,
+                text: "SUPPLIERS CHARTS"
+            },
         };
         //Create pie or douhnut chart
         // You can switch between pie and douhnut using the method below.
         new Chart(pieChartCanvas, {
             type: 'pie',
             data: pieData,
-            options: pieOptions
+            options: pieOptions,
         });
         //-------------
         //- PIE CHART CUSTOMER -
@@ -293,6 +298,10 @@
         var pieOptions = {
             maintainAspectRatio: false,
             responsive: true,
+            title: {
+                display: true,
+                text: "CUSTOMERS CHARTS"
+            },
         };
         //Create pie or douhnut chart
         // You can switch between pie and douhnut using the method below.
@@ -316,6 +325,10 @@
         var donutOptions = {
             maintainAspectRatio: false,
             responsive: true,
+            title: {
+                display: true,
+                text: "CASHIER CHARTS"
+            },
         };
         //Create pie or douhnut chart
         // You can switch between pie and douhnut using the method below.
@@ -325,6 +338,48 @@
             options: donutOptions
         });
 
+    });
+    $('#downloadPdf').click(function(event) {
+        // get size of report page
+        var reportPageHeight = $('#reportPage').innerHeight();
+        var reportPageWidth = $('#reportPage').innerWidth();
+
+        // create a new canvas object that we will populate with all other canvas objects
+        var pdfCanvas = $('<canvas />').attr({
+            id: "canvaspdf",
+            width: reportPageWidth,
+            height: reportPageHeight
+        });
+
+        // keep track canvas position
+        var pdfctx = $(pdfCanvas)[0].getContext('2d');
+        var pdfctxX = 0;
+        var pdfctxY = 0;
+        var buffer = 100;
+
+        // for each chart.js chart
+        $("canvas").each(function(index) {
+            // get the chart height/width
+            var canvasHeight = $(this).innerHeight();
+            var canvasWidth = $(this).innerWidth();
+
+            // draw the chart into the new canvas
+            pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
+            pdfctxX += canvasWidth + buffer;
+
+            // our report page is in a grid pattern so replicate that in the new canvas
+            if (index % 2 === 1) {
+                pdfctxX = 0;
+                pdfctxY += canvasHeight + buffer;
+            }
+        });
+
+        // create new pdf and add our new canvas as an image
+        var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
+        pdf.addImage($(pdfCanvas)[0], 'PNG', 0, 0);
+
+        // download the pdf
+        pdf.save('filename.pdf');
     });
 </script>
 @endsection

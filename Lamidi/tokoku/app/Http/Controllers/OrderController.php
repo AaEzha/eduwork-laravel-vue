@@ -23,9 +23,9 @@ class OrderController extends Controller
     {
         $customers = Customer::all();
         $orders = Order::all();
-        $products = Product::all();
+        $products = Product::all()->where('qty', '>=', '1');
         $lastID = Order_Detail::max('order_id');
-        $order_receipt = Order_Detail::where('order_id', $lastID)->get();
+        $order_receipt = Order_Detail::where('order_id', $lastID)->join('orders', 'orders.id', '=', 'order_details.order_id')->get();
         return view('orders.index', compact('orders', 'products', 'order_receipt', 'customers',));
     }
 
@@ -64,7 +64,7 @@ class OrderController extends Controller
                 foreach ($request->product_id as $key => $product) {
                     $orders->order_detail()->create([
                         'product_id' => $product,
-                        'qty' => $request->qty[$key],
+                        'qty' => $request->qty[$key]->decrement('qty'),
                         'price' => $request->price[$key],
                         'amount' => $request->total_amount[$key],
                         'discount' => $request->discount[$key] ?? 0,
@@ -91,7 +91,12 @@ class OrderController extends Controller
                 $orderedBy = Order::where('id', $orders->getKey())->get();
 
                 // pengurangan stock
+                // Jika satu product yang dibeli
                 $qty = $request->qty;
+                if (COUNT(array($qty)) == 1) {
+                    DB::table('products')->where('id', $qty)->decrement('qty');
+                }
+                // Jika ada lebih dari satu product yang dipinjam
                 if (COUNT($qty) > 1) {
                     foreach ($qty as $id) {
                         DB::table('products')->where('id', $id)->decrement('qty');

@@ -42,9 +42,6 @@ Route::resource('/charts', ChartController::class);
 Route::delete('/multiple_deleted',  [ChartController::class, 'deletemultiple'])->name('multiple_deleted');
 Route::resource('/customers', CustomerController::class);
 Route::resource('/sections', SectionController::class);
-Route::delete('/deleteselected',  [SectionController::class, 'deletemultiple'])->name('deleteselected');
-Route::resource('/categories', CategoryController::class);
-Route::resource('/subcategories', SubCategoryController::class);
 Route::get('test_spatie', [App\Http\Controllers\UserController::class, 'test_spatie']);
 Route::match(['get', 'post'], 'logout', [LoginController::class, 'logout']);
 Route::get('receipt', function () {

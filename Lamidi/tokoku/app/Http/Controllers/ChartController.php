@@ -14,6 +14,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use mikehaertl\wkhtmlto\Pdf;
 
 class ChartController extends Controller
 {
@@ -40,7 +41,6 @@ class ChartController extends Controller
         $pieLabel2 = Order::orderBy('orders.id', 'asc')->join('order_details', 'order_details.order_id', '=', 'orders.id')->groupby('name')->pluck('name');
         return view('charts.index', compact('orders', 'total_order', 'total_supplier', 'total_customer', 'data_donut', 'total_cashier', 'label_donut', 'data_donut2', 'label_donut2', 'pieDatas', 'pieLabel', 'pieDatas2', 'pieLabel2'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
