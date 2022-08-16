@@ -4,22 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model implements HasMedia
+class Product extends Model
 {
-    use HasFactory,InteractsWithMedia;
+    use HasFactory;
 
-    protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'name',
+        'image',
+        'description',
+        'price',
+    ];
 
-    protected $appends = ['image'];
-
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
-
-    public function getImageAttribute(){
-        return $this->getMedia('image')->last();
-    }
 }
