@@ -13,7 +13,11 @@
 <div id="controller">
     <div class="card">
         <div class="card-header">
-            <a href="#" @click="addData()" class="btn btn-primary">Create New Publisher</a>
+            <div class="row">
+                <div class="col-md-10">
+                    <a href="#" @click="addData()" class="btn btn-primary">Create New Publisher</a>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <table id="datatable" class="table table-bordered table-striped">
@@ -28,21 +32,6 @@
                         <th>Opsi</th>
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @foreach ($publishers as $key => $p)    
-                        <tr>
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $p->name }}</td>
-                            <td>{{ $p->email }}</td>
-                            <td>{{ $p->phone_number }}</td>
-                            <td>{{ $p->address }}</td>
-                            <td>
-                                <a href="#" @click="editData({{ $p }})" class="btn btn-warning btn-sm">edit</a>
-                                <a class="btn btn-danger btn-sm" href="#" @click="deleteData({{ $p->id }})">delete</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody> --}}
             </table>
         </div>
     
@@ -130,8 +119,6 @@
     ];
 </script>
 <script src="{{ asset('js/data.js') }}"></script>
-
-
 
 {{-- <script type="text/javascript">
     $(function () {

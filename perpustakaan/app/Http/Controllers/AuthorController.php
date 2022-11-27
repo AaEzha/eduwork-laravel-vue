@@ -16,7 +16,7 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $authors = Author::all();
         return view('admin.author');

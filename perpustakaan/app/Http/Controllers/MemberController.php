@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +14,18 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('admin.member.index');
+        $members = Member::all();
+        return view('admin.member', compact('members'));
+    }
+    public function api(Request $request){
+        if($request->gender){
+            $datas = Member::where('gender', $request->gender)->get();
+        }else{
+            $datas = Member::all();
+        }
+        
+        $datatables = datatables()->of($datas)->addIndexColumn();
+        return $datatables->make(true);
     }
 
     /**
@@ -39,16 +46,25 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required|min:11',
+            'address' => 'required',
+            'email' => 'required',
+        ]);
+
+        Member::create($request->all());
+        return redirect('members');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Member  $member
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $member)
+    public function show($id)
     {
         //
     }
@@ -56,10 +72,10 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Member  $member
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $member)
+    public function edit($id)
     {
         //
     }
@@ -68,22 +84,31 @@ class MemberController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Member  $member
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, Member $members)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required|min:11',
+            'address' => 'required',
+            'email' => 'required',
+        ]);
+
+        $members->update($request->all());
+        return redirect('members');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Member  $member
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function destroy(Member $members)
     {
-        //
+        $members->delete();
     }
 }

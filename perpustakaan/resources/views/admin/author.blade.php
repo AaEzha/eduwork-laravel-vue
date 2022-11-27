@@ -13,7 +13,11 @@
 <div id="controller">
     <div class="card">
         <div class="card-header">
-            <a href="#" @click="addData()" class="btn btn-primary">Create New Author</a>
+            <div class="row">
+                <div class="col-md-10">
+                    <a href="#" @click="addData()" class="btn btn-primary">Create New Author</a>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <table id="datatable" class="table table-bordered table-striped">
@@ -28,21 +32,6 @@
                         <th class="text-center">Opsi</th>
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @foreach ($authors as $key => $a)    
-                        <tr>
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $a->name }}</td>
-                            <td>{{ $a->email }}</td>
-                            <td>{{ $a->phone_number }}</td>
-                            <td>{{ $a->address }}</td>
-                            <td class="text-right">
-                                <a href="#" @click="editData({{ $a }})" class="btn btn-warning btn-sm">edit</a>
-                                <a class="btn btn-danger btn-sm" href="#" @click="deleteData({{ $a->id }})">delete</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody> --}}
             </table>
         </div>
     
@@ -153,9 +142,9 @@
             class: 'text-center'
         }
     ];
-
 </script>
 <script src="{{ asset('js/data.js') }}"></script>
+
 
 
 {{-- <script type="text/javascript">

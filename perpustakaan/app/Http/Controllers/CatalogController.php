@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Catalog;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -19,8 +21,9 @@ class CatalogController extends Controller
     public function index()
     {
         $catalogs = Catalog::all();
+        $books = Book::all();
 
-        return view('admin.catalog', compact('catalogs'));
+        return view('admin.catalog.index', compact('catalogs', 'books'));
     }
 
     /**
@@ -30,7 +33,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        // return view('admin.catalog.create');
+        return view('admin.catalog.create');
     }
 
     /**
@@ -69,7 +72,8 @@ class CatalogController extends Controller
      */
     public function edit(Catalog $catalog)
     {
-        // return view('admin.catalog.edit', compact('catalog'));
+
+        return view('admin.catalog.edit', compact('catalog'));
     }
 
     /**
@@ -85,7 +89,7 @@ class CatalogController extends Controller
             'name' => 'required'
         ]);
 
-        Catalog::create($request->all());
+        $catalog->update($request->all());
 
         return redirect('catalogs');
     }
@@ -99,6 +103,5 @@ class CatalogController extends Controller
     public function destroy(Catalog $catalog)
     {
         $catalog->delete();
-        // return redirect('catalogs');
     }
 }

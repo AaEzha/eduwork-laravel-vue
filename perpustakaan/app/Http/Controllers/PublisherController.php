@@ -16,10 +16,11 @@ class PublisherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $publishers = Publisher::all();
         return view('admin.publisher');
+
     }
     public function api()
     {
