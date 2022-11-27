@@ -8,8 +8,12 @@ use App\Models\Catalog;
 use App\Models\Member;
 use App\Models\Publisher;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Assign;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AuthorController extends Controller
 {
@@ -45,6 +49,31 @@ class AuthorController extends Controller
     public function catalog(){
         $dataCatalog = Catalog::all();
         return view('admin.catalog', compact('dataCatalog'));
+    }
+
+    public function test_spatie(){
+        if (auth()->user()->can('index transactions')) {
+            $books = Book::all();
+            $members = Member::all();
+            return view('admin.transaction.index', compact('books', 'members'));
+        } else {
+            return abort('403');
+            // }
+            // $role = Role::create(['name' => 'officer']);
+            // $permission = Permission::create(['name' => 'index transactions']);
+
+            // $role->givePermissionTo($permission);
+            // $permission->assignRole($role);
+
+            // $user = auth()->user();
+            // $user->assignRole('officer');
+
+            // $user = User::with('roles')->get();
+
+            // $user = User::where('id', 2)->first();
+            // $user->removeRole('officer');
+            //return $user;
+        }
     }
     /**
      * Display a listing of the resource.

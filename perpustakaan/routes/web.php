@@ -29,7 +29,7 @@ Auth::routes();
 
 //Home or Dashboard
 // Route::get('/home', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'dashboard']);
+Route::resource('/home', HomeController::class);
 
 //Catalog
 Route::resource('/catalogs', CatalogController::class);
